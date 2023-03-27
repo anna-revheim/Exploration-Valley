@@ -1,4 +1,5 @@
 # Exploration-Valley
+![exploationvalley](https://user-images.githubusercontent.com/117365329/227992991-019a5de2-fd8c-4841-b48d-3fc7854744be.png)
 
 
 This is a relaxing game
