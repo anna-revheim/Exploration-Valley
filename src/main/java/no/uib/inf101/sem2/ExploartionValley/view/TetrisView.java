@@ -13,7 +13,7 @@ public class TetrisView extends JPanel {
     private DefaultColorTheme ct;
     private ViewableTetrisModel model;
 
-    private static final int OUTER_MARGIN = 30;
+    private static final int OUTER_MARGIN = 1;
 
     // Konstruktør til TetrisView. Tar inn ViewableTetrisModel som paramter.
     //Ønsker public sa. klassen er tilgjengelig overalt.

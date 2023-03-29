@@ -13,7 +13,7 @@ public class DefaultColorTheme implements ColorTheme {
     @Override
     public Color getFrameColor() {
         //Personlig utvalg av rammefarge.
-        return Color.RED;
+        return Color.LIGHT_GRAY;
     }
 
     @Override
