@@ -1,4 +1,4 @@
-package no.uib.inf101.tetris.view;
+package no.uib.inf101.sem2.ExploartionValley.view;
 
 import javax.swing.JPanel;
 

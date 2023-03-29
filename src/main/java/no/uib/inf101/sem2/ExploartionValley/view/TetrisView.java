@@ -1,12 +1,9 @@
-package no.uib.inf101.tetris.view;
+package no.uib.inf101.sem2.ExploartionValley.view;
 
 import javax.swing.JPanel;
-import no.uib.inf101.grid.GridCell;
-import no.uib.inf101.tetris.model.GameState;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.Color;
 import java.awt.Dimension;
 
 public class TetrisView extends JPanel {
@@ -17,10 +14,9 @@ public class TetrisView extends JPanel {
 
     // Konstruktør til TetrisView. Tar inn ViewableTetrisModel som paramter.
     //Ønsker public sa. klassen er tilgjengelig overalt.
-    public TetrisView(ViewableTetrisModel model) {
-        this.model = model;
+    public TetrisView() {
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(350, 600));
+        this.setPreferredSize(new Dimension(1200, 800));
 
         ct = new DefaultColorTheme();
         this.setBackground(ct.getBackgroundColor());
@@ -34,9 +30,7 @@ public class TetrisView extends JPanel {
         g2.setColor(this.ct.getFrameColor());
         g2.fill(rektangel);
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimension(), (double) 2);
-        drawCells(g2, model.getTilesOnBoard(), cp, this.ct);
-        drawCells(g2, model.revealPieces(), cp, this.ct);
-        gameOver(g2, rektangel);
+        //gameOver(g2, rektangel);
     }
 
     @Override
@@ -46,7 +40,7 @@ public class TetrisView extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         drawGame(g2);
     }
-
+/* 
     private static void drawCells(Graphics2D g, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
             DefaultColorTheme ct) {
         // Hensikt: å tegne en samling med ruter, f.eks. rutene på tetrisbrettet
@@ -56,8 +50,8 @@ public class TetrisView extends JPanel {
             g.setColor(color);
             g.fill(cellPos);
         }
-    }
-
+    }*/
+/* 
     private void gameOver(Graphics2D g2, Rectangle2D rektangel) {
         if (model.getGameState() == GameState.GAME_OVER) {
             g2.setColor(this.ct.GameOverColor());
@@ -66,4 +60,5 @@ public class TetrisView extends JPanel {
             Inf101Graphics.drawCenteredString(g2, "GAME OVER", rektangel);
         }
     }
+} */
 }

@@ -1,4 +1,4 @@
-package no.uib.inf101.grid;
+package no.uib.inf101.sem2.ExploartionValley.grid;
 
 import java.util.ArrayList;
 import java.util.Iterator;

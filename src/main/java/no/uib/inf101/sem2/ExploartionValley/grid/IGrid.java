@@ -1,4 +1,4 @@
-package no.uib.inf101.grid;
+package no.uib.inf101.sem2.ExploartionValley.grid;
 
 public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
   

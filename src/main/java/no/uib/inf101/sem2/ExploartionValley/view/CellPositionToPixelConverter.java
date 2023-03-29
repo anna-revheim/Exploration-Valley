@@ -1,7 +1,7 @@
-package no.uib.inf101.tetris.view;
+package no.uib.inf101.sem2.ExploartionValley.view;
 
-import no.uib.inf101.grid.CellPosition;
-import no.uib.inf101.grid.GridDimension;
+import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
+import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
 import java.awt.geom.Rectangle2D;
 
 public class CellPositionToPixelConverter {

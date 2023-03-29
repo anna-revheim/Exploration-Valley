@@ -1,21 +1,9 @@
-package no.uib.inf101.tetris.controller;
-
-import no.uib.inf101.tetris.model.GameState;
-import no.uib.inf101.tetris.model.tetromino.Tetromino;
+package no.uib.inf101.sem2.ExploartionValley.controller;
 
 public interface ControllableTetrisModel {
     // Interface holder på metodene som blir overført ved implementasjon.
     public boolean moveTetromino(int deltaRow, int deltaCol);
-
-    public boolean rotateTetromino();
-
-    public void dropBrick();
-
-    public void stickTetromino();
-
-    public Tetromino getNextTetromino();
-
-    GameState getGameState();
+    // den over til move character
 
     public Integer milli();
 

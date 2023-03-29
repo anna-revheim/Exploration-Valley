@@ -1,8 +1,7 @@
-package no.uib.inf101.tetris.view;
+package no.uib.inf101.sem2.ExploartionValley.view;
 
-import no.uib.inf101.grid.GridCell;
-import no.uib.inf101.grid.GridDimension;
-import no.uib.inf101.tetris.model.GameState;
+import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
+import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
 
 public interface ViewableTetrisModel {
 
@@ -11,6 +10,4 @@ public interface ViewableTetrisModel {
     Iterable<GridCell<Character>> getTilesOnBoard();
 
     Iterable<GridCell<Character>> revealPieces();
-
-    GameState getGameState();
 }

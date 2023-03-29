@@ -1,8 +1,6 @@
-package no.uib.inf101.tetris.controller;
+package no.uib.inf101.sem2.ExploartionValley.controller;
 
-import no.uib.inf101.tetris.model.GameState;
-import no.uib.inf101.tetris.view.TetrisView;
-import no.uib.inf101.tetris.model.TetrisModel;
+import no.uib.inf101.sem2.ExploartionValley.view.TetrisView;
 import javax.swing.Timer;
 
 import java.awt.event.ActionEvent;
@@ -13,13 +11,12 @@ public class TetrisController implements KeyListener {
     ControllableTetrisModel controller;
     TetrisView tetrisView;
     Timer tick;
-    TetrisModel model;
 
     //Konstruktør til tetriscontroller. Tar inn parameter i type ControllableTetrismodel og tetrisview. Setter dette som innstansvariabler.
     public TetrisController(ControllableTetrisModel controller, TetrisView tetrisView) {
         this.controller = controller;
         this.tetrisView = tetrisView;
-        this.tick = new Timer(model.milli(), this::clockTick);
+        //this.tick = new Timer(model.milli(), this::clockTick);
         tetrisView.addKeyListener(this);
         tetrisView.setFocusable(true);
     }
@@ -27,9 +24,7 @@ public class TetrisController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent action) {
         // <-- Flytt Venstre
-        if (controller.getGameState() == GameState.GAME_OVER) {
-            return;
-        } else if (action.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (action.getKeyCode() == KeyEvent.VK_LEFT) {
             controller.moveTetromino(0, -1);
         }
         // --> Flytt Høgre
@@ -42,12 +37,10 @@ public class TetrisController implements KeyListener {
         }
         // <^> Roter
         else if (action.getKeyCode() == KeyEvent.VK_UP) {
-            controller.rotateTetromino();
         }
         // VVV Dropp ned
         if (action.getKeyCode() == KeyEvent.VK_SPACE) {
             //kaller metode dropBrick. 
-            controller.dropBrick();
         }
         //Bruker repaint() for å gi konstante oppdateringer til view.
         this.tetrisView.repaint();
