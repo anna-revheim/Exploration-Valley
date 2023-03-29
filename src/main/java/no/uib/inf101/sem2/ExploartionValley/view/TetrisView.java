@@ -16,7 +16,7 @@ public class TetrisView extends JPanel {
     private static final int OUTER_MARGIN = 1;
 
     // Konstruktør til TetrisView. Tar inn ViewableTetrisModel som paramter.
-    //Ønsker public sa. klassen er tilgjengelig overalt.
+    // Ønsker public sa. klassen er tilgjengelig overalt.
     public TetrisView(ViewableTetrisModel model) {
         this.model = model;
         this.setFocusable(true);
@@ -27,7 +27,7 @@ public class TetrisView extends JPanel {
     }
 
     @Override
-    //public ettersom vi ønsker at JComponent kan implementere denne
+    // public ettersom vi ønsker at JComponent kan implementere denne
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         super.paintComponent(g);
@@ -40,11 +40,12 @@ public class TetrisView extends JPanel {
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);
         g2.setColor(this.ct.getFrameColor());
         g2.fill(rektangel);
-        CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(), (double) 2);
+        CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),(double) 2);
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
     }
 
-    private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp, DefaultColorTheme ct) {
+    private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
+            DefaultColorTheme ct) {
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
             Color color = ct.getCellColor(cell.value());

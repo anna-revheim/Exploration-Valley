@@ -5,14 +5,13 @@ import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
 
 public class TetrisBoard extends Grid<Character> {
 
-    //The board is made by rows*cols and will be filled with '-'
+    // The board is made by rows*cols and will be filled with '-'
     public TetrisBoard(int rows, int cols) {
-        //Super method to get the constructor
+        // Super method to get the constructor
         super(rows, cols, '-');
     }
 
-
-    //To be able to test
+    // To be able to test
     public String prettyString() {
         StringBuilder stringOfBoard = new StringBuilder();
         for (int i = 0; i < this.rows(); i++) {
@@ -21,9 +20,9 @@ public class TetrisBoard extends Grid<Character> {
             }
             stringOfBoard.append('\n');
         }
-        //Returns form stringbuilder to a string, then trim any spaces to get correct format
+        // Returns form stringbuilder to a string, then trim any spaces to get correct
+        // format
         return stringOfBoard.toString().trim();
     }
 
 }
-

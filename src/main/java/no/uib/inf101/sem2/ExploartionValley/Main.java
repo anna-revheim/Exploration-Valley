@@ -7,16 +7,12 @@ import no.uib.inf101.sem2.ExploartionValley.view.TetrisView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableTetrisModel;
 import no.uib.inf101.sem2.ExploartionValley.model.TetrisModel;
 
-
-
-
-
-
 public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
+
     public static void main(String[] args) {
 
-        TetrisBoard board = new TetrisBoard(20, 10);
+        TetrisBoard board = new TetrisBoard(20, 30);
         ViewableTetrisModel model = new TetrisModel(board);
         TetrisView view = new TetrisView(model);
 
@@ -24,6 +20,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Exploation Valley");
         frame.setContentPane(view);
+        frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
     }
