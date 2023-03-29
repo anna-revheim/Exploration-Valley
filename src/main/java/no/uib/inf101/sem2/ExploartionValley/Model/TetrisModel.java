@@ -32,9 +32,8 @@ public class TetrisModel implements ViewableTetrisModel{
 
     @Override
     public Iterable<GridCell<Character>> getFallingPiece() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getFallingPiece'");
     }
 
-    
+
 }
