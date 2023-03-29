@@ -1,74 +1,40 @@
-package no.uib.inf101.sem2.ExploartionValley.Model;
+package no.uib.inf101.sem2.ExploartionValley.model;
 
-
+import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
-import no.uib.inf101.sem2.ExploartionValley.controller.ControllableTetrisModel;
+import no.uib.inf101.sem2.ExploartionValley.view.ViewableTetrisModel;
 
-public class TetrisModel implements ControllableTetrisModel {
+/*
+ * Parts of this code is inspired by #Loosen from discord
+ */
 
-    private GridDimension gd;
-    //private GameState gamestate;
+public class TetrisModel implements ViewableTetrisModel{
 
-    public void TetrisMode() {
-        //this.gamestate = GameState.ACTIVE_GAME;
+    //Instance variable
+    private TetrisBoard board;
+
+    //Constructor for the board and the first piece
+    public TetrisModel(TetrisBoard board) {
+        this.board = board;
+
+
+    }
+    
+    @Override
+    public GridDimension getDimensions() {
+        return this.board;
     }
 
-
-/* 
     @Override
-    public boolean moveTetromino(int deltaRow, int deltaCol) {
-        Tetromino movedtetro = this.tetromino.shiftedBy(deltaRow, deltaCol);
-        if (legalMove(movedtetro)) {
-            this.tetromino = this.tetromino.shiftedBy(deltaRow, deltaCol); // endrer tetrominoens posisjon.
-            return true;
-        } else {
-            return false;
-        }
-    }
-    */
-/* 
-    // Fått hjelp av Kristerffer_#5574 på discord - kjekt sammarbeid
-    private boolean legalMove(Tetromino tet) {
-        for (GridCell<Character> cell : tet) {
-            int row = cell.pos().row();
-            int col = cell.pos().col();
-            if (row < 0 || row >= board.rows()) {
-                return false;
-            }
-            if (col < 0 || col >= board.cols()) {
-                return false;
-            }
-            if (board.get(cell.pos()) != '-') {
-                return false;
-            }
-        }
-        return true;
-    }*/
-
-
-
-/* 
-    @Override
-    public GameState getGameState() {
-        return this.gamestate;
-    }*/
-
-    @Override
-    public Integer milli() {
-        return 1000;
+    public Iterable<GridCell<Character>> getTilesOnBoard() {
+        return this.board;
     }
 
-
     @Override
-    public boolean moveTetromino(int deltaRow, int deltaCol) {
+    public Iterable<GridCell<Character>> getFallingPiece() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'moveTetromino'");
+        throw new UnsupportedOperationException("Unimplemented method 'getFallingPiece'");
     }
 
-
-    @Override
-    public boolean clockTick() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clockTick'");
-    }
+    
 }
