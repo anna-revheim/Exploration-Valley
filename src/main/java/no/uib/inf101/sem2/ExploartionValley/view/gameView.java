@@ -8,6 +8,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.entity.player;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
 public class gameView extends JPanel implements Runnable {
@@ -23,6 +24,8 @@ public class gameView extends JPanel implements Runnable {
     int playerSpeed = 4;
     int fps = 60;
 
+    player player = new player(this, controller);
+
     public gameView(ViewableTetrisModel model) {
         this.model = model;
         this.addKeyListener(controller);
@@ -37,9 +40,8 @@ public class gameView extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        drawGame(g2);
-        g2.setColor(Color.white);
-        g2.fillRect(playerX, playerY, 40, 40);
+        drawGame(g2); // drawGame skal kunne drawe den notisboka.
+        player.draw(g2);
         g2.dispose();
     }
 
@@ -54,13 +56,11 @@ public class gameView extends JPanel implements Runnable {
         double drawInterval = 1000000000 / fps;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            long currentTime = System.nanoTime();
             // System.out.println("Current time")
             update();
-
             repaint();
 
-            //Bruker sleep metoden.
+            // Using sleep method to define a fps.
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
@@ -70,26 +70,18 @@ public class gameView extends JPanel implements Runnable {
                 }
 
                 Thread.sleep((long) remainingTime);
-
                 nextDrawTime += drawInterval;
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("The game loop is running");
+
+            // System.out.println("The game loop is running");
         }
     }
 
     public void update() {
-        if (controller.upPressed == true) {
-            playerY -= playerSpeed;
-        } else if (controller.downPressed) {
-            playerY += playerSpeed;
-        } else if (controller.leftPressed) {
-            playerX -= playerSpeed;
-        } else if (controller.rightPressed) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     private void drawGame(Graphics2D g2) {
@@ -112,5 +104,4 @@ public class gameView extends JPanel implements Runnable {
             g2.fill(bounds);
         }
     }
-
 }

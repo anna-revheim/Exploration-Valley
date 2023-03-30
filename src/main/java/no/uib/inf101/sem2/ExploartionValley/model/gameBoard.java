@@ -1,7 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.model;
+
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
-
 
 //tetrisboard
 
