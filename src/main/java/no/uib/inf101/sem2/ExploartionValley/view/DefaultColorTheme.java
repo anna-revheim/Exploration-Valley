@@ -6,19 +6,19 @@ public class DefaultColorTheme implements ColorTheme {
 
     @Override
     public Color getBackgroundColor() {
-        //Personlig utvalg av bakgrunnsfarge.
+        // Personlig utvalg av bakgrunnsfarge.
         return Color.BLACK;
     }
 
     @Override
     public Color getFrameColor() {
-        //Personlig utvalg av rammefarge.
+        // Personlig utvalg av rammefarge.
         return Color.LIGHT_GRAY;
     }
 
     @Override
     public Color getCellColor(char c) {
-        //Tar inn char c og sjekker kva farge den hører til.
+        // Tar inn char c og sjekker kva farge den hører til.
         Color color = switch (c) {
             case 'L' -> Color.cyan;
             case 'S' -> Color.GREEN;
@@ -36,13 +36,13 @@ public class DefaultColorTheme implements ColorTheme {
 
     @Override
     public Color GameOverColor() {
-        //Returnerer en sladdet bakgrunnsfarge.
+        // Returnerer en sladdet bakgrunnsfarge.
         return new Color(0, 0, 0, 128);
     }
 
     @Override
     public Color GameOverTextColor() {
-    //Returnerer ønsket tekstfarge.
+        // Returnerer ønsket tekstfarge.
         return Color.WHITE;
     }
 }

@@ -71,7 +71,8 @@ public class Grid<E> implements IGrid<E> {
 
     @Override
     public Iterator<GridCell<E>> iterator() {
-        //Metode til objektet som lager nye iteratorobjekt. Kan bla gjennom objektet flere ganger.
+        // Metode til objektet som lager nye iteratorobjekt. Kan bla gjennom objektet
+        // flere ganger.
         ArrayList<GridCell<E>> gridcell = new ArrayList<>();
         int colSize = cols();
         int rowSize = rows();

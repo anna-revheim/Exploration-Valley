@@ -1,12 +1,14 @@
 package no.uib.inf101.sem2.ExploartionValley.model;
-
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
 
-public class TetrisBoard extends Grid<Character> {
+
+//tetrisboard
+
+public class gameBoard extends Grid<Character> {
 
     // The board is made by rows*cols and will be filled with '-'
-    public TetrisBoard(int rows, int cols) {
+    public gameBoard(int rows, int cols) {
         // Super method to get the constructor
         super(rows, cols, '-');
     }
