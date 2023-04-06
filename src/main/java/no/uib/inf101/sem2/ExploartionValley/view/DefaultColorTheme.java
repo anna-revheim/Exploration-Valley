@@ -25,11 +25,20 @@ public class DefaultColorTheme implements ColorTheme {
         String imagePath;
         // Checking character and what tiles it should be
         switch (c) {
-            case '-':
+            case 'g':
             imagePath = "/tiles/grass/grass0.png";
                 break;
-            case 'g' :
+            case '1' :
             imagePath = "/tiles/grass/grass1.png";
+                break;
+            case '2' :
+            imagePath = "/tiles/grass/grass2.png";
+                break;
+            case '3' :
+            imagePath = "/tiles/grass/grass3.png";
+                break;
+            case '4' :
+            imagePath = "/tiles/grass/grass4.png";
                 break;
             default:
                 throw new IllegalArgumentException(

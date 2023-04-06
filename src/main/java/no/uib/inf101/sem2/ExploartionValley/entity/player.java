@@ -60,21 +60,29 @@ public class player extends entity {
     public void update() {
         boolean isMoving = false;
         if (controller.upPressed == true) {
+            if(this.y > 0) {
             direction = "up";
             y -= speed;
             isMoving = true;
+            }
+
         } else if (controller.downPressed) {
             direction = "down";
             y += speed;
             isMoving = true;
+
         } else if (controller.leftPressed) {
-            direction = "left";
-            x -= speed;
-            isMoving = true;
+            if(this.x > 0) {
+                direction = "left";
+                x -= speed;
+                isMoving = true;
+                }
+
         } else if (controller.rightPressed) {
             direction = "right";
             x += speed;
             isMoving = true;
+
         } else{
             isMoving = false;
         }

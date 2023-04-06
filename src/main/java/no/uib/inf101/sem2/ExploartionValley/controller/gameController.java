@@ -31,7 +31,6 @@ public class gameController implements KeyListener {
         // --> Flytt Høgre
         if (action.getKeyCode() == KeyEvent.VK_D) {
             rightPressed = true;
-
         }
         // vvv Flytt Ned
         if (action.getKeyCode() == KeyEvent.VK_S) {
@@ -42,12 +41,11 @@ public class gameController implements KeyListener {
             upPressed = true;
         }
         // VVV Dropp ned
+        if (action.getKeyCode() == KeyEvent.VK_SPACE) {
 
-        if (action.getKeyCode() == KeyEvent.VK_SPACE) { 
         }
-
         // Bruker repaint() for å gi konstante oppdateringer til view.
-        //gameView.repaint(); //Måtte fjernes(?)
+        //this.gameView.repaint();
     }
 
     public void clockTick(ActionEvent action) {

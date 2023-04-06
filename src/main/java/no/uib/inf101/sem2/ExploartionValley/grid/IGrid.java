@@ -41,5 +41,4 @@ public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
 
 
 
-
 }

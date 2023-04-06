@@ -1,17 +1,38 @@
 package no.uib.inf101.sem2.ExploartionValley.model;
 
+
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
 
-//tetrisboard
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.stream.Collectors;;
 
 public class gameBoard extends Grid<Character> {
 
+
     // The board is made by rows*cols and will be filled with '-'
-    public gameBoard(int rows, int cols) {
-        // Super method to get the constructor
+    public gameBoard(int rows, int cols, String filename) throws IOException {
         super(rows, cols, '-');
+    
+        // Read the content of the file
+        BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
+        List<String> lines = reader.lines().collect(Collectors.toList());
+    
+        // Loop over the lines and fill the board
+        for (int i = 0; i < rows && i < lines.size(); i++) {
+            String line = lines.get(i);
+            for (int j = 0; j < cols && j < line.length(); j++) {
+                char c = line.charAt(j);
+                set(new CellPosition(i, j), c);
+            }
+        }
     }
+    
+
 
     // To be able to test
     public String prettyString() {

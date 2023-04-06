@@ -14,9 +14,11 @@ import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
 public class gameView extends JPanel implements Runnable {
 
+    private boolean isLoaded = false;  // Game only needs to be painted once
+
     private DefaultColorTheme ct;
     private ViewableTetrisModel model;
-    private static final int OUTER_MARGIN = 1;
+    private static final int OUTER_MARGIN = 0;
     gameController controller = new gameController();
     Thread gameThread;
 
@@ -42,9 +44,12 @@ public class gameView extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+    
 
-        //tileM.draw(g2);
-        drawGame(g2); // drawGame skal kunne drawe den notisboka.
+        drawGame(g2);
+
+        player.draw(g2);
+    
         g2.dispose();
     }
 
@@ -60,11 +65,13 @@ public class gameView extends JPanel implements Runnable {
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
             // System.out.println("Current time")
-            update();
-            repaint();
 
             // Using sleep method to define a fps.
             try {
+
+                update();
+                repaint();
+
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
 
@@ -88,18 +95,15 @@ public class gameView extends JPanel implements Runnable {
     }
 
     private void drawGame(Graphics2D g2) {
-        double width = this.getWidth()-2*OUTER_MARGIN;
-        double height = this.getHeight()-2*OUTER_MARGIN;
+        double width = this.getWidth() - 2 * OUTER_MARGIN;
+        double height = this.getHeight() - 2 * OUTER_MARGIN;
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);
         g2.setColor(this.ct.getFrameColor());
         g2.fill(rektangel);
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
                 (double) 2);
-
-        //Draw board
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
-        // draw player
-        player.draw(g2);
+
     }
 
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
