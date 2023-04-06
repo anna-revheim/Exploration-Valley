@@ -14,7 +14,7 @@ public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
 
     public static void main(String[] args) {
-        gameBoard board = new gameBoard(20, 30);
+        gameBoard board = new gameBoard(2, 2);
         ViewableTetrisModel model = new gameModel(board);
         gameView view = new gameView(model);
 

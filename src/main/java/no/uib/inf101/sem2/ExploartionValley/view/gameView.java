@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
@@ -46,8 +45,6 @@ public class gameView extends JPanel implements Runnable {
 
         //tileM.draw(g2);
         drawGame(g2); // drawGame skal kunne drawe den notisboka.
-
-        player.draw(g2);
         g2.dispose();
     }
 
@@ -91,23 +88,26 @@ public class gameView extends JPanel implements Runnable {
     }
 
     private void drawGame(Graphics2D g2) {
-        double width = this.getWidth() - 2 * OUTER_MARGIN;
-        double height = this.getHeight() - 2 * OUTER_MARGIN;
+        double width = this.getWidth()-2*OUTER_MARGIN;
+        double height = this.getHeight()-2*OUTER_MARGIN;
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);
         g2.setColor(this.ct.getFrameColor());
         g2.fill(rektangel);
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
                 (double) 2);
+
+        //Draw board
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
+        // draw player
+        player.draw(g2);
     }
 
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
             DefaultColorTheme ct) {
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
-            Color color = ct.getCellColor(cell.value());
-            g2.setColor(color);
-            g2.fill(bounds);
+            Image image = ct.getCellImage(cell.value());
+            g2.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight(), null);
         }
     }
 }
