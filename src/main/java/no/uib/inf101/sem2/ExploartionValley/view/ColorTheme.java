@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.ExploartionValley.view;
 
 
 import java.awt.Color;
+import java.awt.Image;
 
 public interface ColorTheme {
 
@@ -9,7 +10,9 @@ public interface ColorTheme {
 
     Color getFrameColor();
 
-    Color getCellColor(char color);
+    Image getCellImage(char c);
+
+    Color getCellColor(char c);
 
     Color GameOverColor();
 

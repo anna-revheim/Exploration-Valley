@@ -13,7 +13,7 @@ public class CellPositionToPixelConverter {
     public CellPositionToPixelConverter(Rectangle2D box, GridDimension gd, Double margin) {
         this.box = box;
         this.gd = gd;
-        this.margin = margin;
+        this.margin = 0.0;
     }
 
     public Rectangle2D getBoundsForCell(CellPosition cp) {

@@ -1,5 +1,6 @@
 package no.uib.inf101.sem2.ExploartionValley.grid;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -8,6 +9,7 @@ public class Grid<E> implements IGrid<E> {
     // interfacet IGRID.
 
     private ArrayList<ArrayList<E>> grid;
+    private Image image;
 
     // Konstruktør dersom konstruktør blir talkalt med 2 parameter,.
     public Grid(int cols, int rows) {
@@ -33,6 +35,10 @@ public class Grid<E> implements IGrid<E> {
         }
     }
 
+    public void setImage(Image image){
+        this.image = image;
+    }
+
     @Override
     public int rows() {
         // Henter menger rader til grid
@@ -48,13 +54,18 @@ public class Grid<E> implements IGrid<E> {
 
     @Override
     public void set(CellPosition pos, E value) {
-        // Setter verdien i CellPosition pos til E value
-        grid.get(pos.row()).set(pos.col(), value);
+        if (positionIsOnGrid(pos)) {
+            grid.get(pos.row()).set(pos.col(), value);
+        } else {
+            // handle error or throw exception
+        }
     }
-
+    
     @Override
     public E get(CellPosition pos) {
-        // Henter verdi i cellPosition pos.
+        if (pos.row() < 0 || pos.row() >= this.rows() || pos.col() < 0 || pos.col() >= this.cols()) {
+            throw new IndexOutOfBoundsException("Position " + pos + " is out of bounds");
+        }
         return grid.get(pos.row()).get(pos.col());
     }
 
@@ -79,9 +90,15 @@ public class Grid<E> implements IGrid<E> {
         for (int i = 0; i < rowSize; i++) {
             for (int j = 0; j < colSize; j++) {
                 CellPosition pos = new CellPosition(i, j);
-                gridcell.add(new GridCell<E>(pos, get(pos)));
+                gridcell.add(new GridCell<E>(pos, get(pos), image));
             }
         }
         return gridcell.iterator();
     }
+
+    @Override
+    public Image image() {
+        return image;  
+    }
+
 }

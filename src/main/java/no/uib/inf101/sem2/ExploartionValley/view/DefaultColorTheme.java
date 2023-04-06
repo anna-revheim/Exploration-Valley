@@ -1,6 +1,10 @@
 package no.uib.inf101.sem2.ExploartionValley.view;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class DefaultColorTheme implements ColorTheme {
 
@@ -14,6 +18,28 @@ public class DefaultColorTheme implements ColorTheme {
     public Color getFrameColor() {
         // Personlig utvalg av rammefarge.
         return Color.LIGHT_GRAY;
+    }
+
+    @Override
+    public Image getCellImage(char c) {
+        String imagePath;
+        // Checking character and what tiles it should be
+        switch (c) {
+            case '-':
+            imagePath = "/tiles/grass/grass0.png";
+                break;
+            case 'g' :
+            imagePath = "/tiles/grass/grass1.png";
+                break;
+            default:
+                throw new IllegalArgumentException(
+                "No available image for '" + c + "'");
+        }
+        try {
+            return ImageIO.read(getClass().getResourceAsStream(imagePath));
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading image from " + imagePath, e);
+        }
     }
 
     @Override

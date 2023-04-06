@@ -1,15 +1,17 @@
 package no.uib.inf101.sem2.ExploartionValley.view;
 
-import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.player;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
+//import no.uib.inf101.sem2.ExploartionValley.model.tiles.tileManager;
 
 public class gameView extends JPanel implements Runnable {
 
@@ -24,6 +26,7 @@ public class gameView extends JPanel implements Runnable {
     int playerSpeed = 4;
     int fps = 60;
 
+    //tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
 
     public gameView(ViewableTetrisModel model) {
@@ -40,7 +43,10 @@ public class gameView extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
+        //tileM.draw(g2);
         drawGame(g2); // drawGame skal kunne drawe den notisboka.
+
         player.draw(g2);
         g2.dispose();
     }
@@ -105,3 +111,4 @@ public class gameView extends JPanel implements Runnable {
         }
     }
 }
+

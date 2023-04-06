@@ -43,8 +43,8 @@ public class gameController implements KeyListener {
         }
         // VVV Dropp ned
 
-        //if (action.getKeyCode() == KeyEvent.VK_SPACE) { NOT IMPLEMENTED
-        //}
+        if (action.getKeyCode() == KeyEvent.VK_SPACE) { 
+        }
 
         // Bruker repaint() for å gi konstante oppdateringer til view.
         //gameView.repaint(); //Måtte fjernes(?)

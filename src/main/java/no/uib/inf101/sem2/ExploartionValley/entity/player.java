@@ -98,10 +98,10 @@ public class player extends entity {
                 spriteCounter = 0;
             }
         }
-        //else {
-        //    spriteNum = 3;
-        //    spriteCounter = 0;
-        //}
+        else {
+            spriteNum = 3;
+            spriteCounter = 0;
+        }
     }
 
     public void draw(Graphics2D g2) {

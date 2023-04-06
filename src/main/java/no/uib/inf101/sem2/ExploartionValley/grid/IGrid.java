@@ -1,5 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.grid;
 
+import java.awt.Image;
+
 public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
   
   /**
@@ -29,4 +31,15 @@ public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
   * @return true if the coordinate is within bounds, false otherwise
   */
   boolean positionIsOnGrid(CellPosition pos);
+
+
+  /*
+   * Get images for the tiles
+   */
+
+  Image image();
+
+
+
+
 }
