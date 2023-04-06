@@ -13,6 +13,7 @@ public class player extends entity {
 
     gameView view;
     gameController controller;
+    String direction = "down";
 
     public player(gameView view, gameController controller) {
         this.view = view;
@@ -32,12 +33,16 @@ public class player extends entity {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/up/up1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/up/up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("/up/up3.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/down/down1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/down/down2.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/down/down3.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/left/left1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/left/left2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/left/left3.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/right/right1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/right/right2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/right/right3.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
