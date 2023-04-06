@@ -14,6 +14,7 @@ public class Main {
         gameBoard board = new gameBoard(20, 30);
         ViewableTetrisModel model = new gameModel(board);
         gameView view = new gameView(model);
+        
         JFrame frame = new JFrame(WINDOW_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Exploation Valley");
