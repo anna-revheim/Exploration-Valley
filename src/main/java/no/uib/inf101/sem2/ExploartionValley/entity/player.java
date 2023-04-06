@@ -71,11 +71,9 @@ public class player extends entity {
             direction = "left";
             x -= speed;
             isMoving = true;
-            System.out.println("moving left");
         } else if (controller.rightPressed) {
             direction = "right";
             x += speed;
-            System.out.println("moving right");
             isMoving = true;
         } else{
             isMoving = false;
@@ -83,7 +81,7 @@ public class player extends entity {
 
         if (isMoving == true) {
             spriteCounter++;
-            if (spriteCounter > 5) {
+            if (spriteCounter > 6) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -93,15 +91,17 @@ public class player extends entity {
                 } else if (spriteNum == 4) {
                     spriteNum = 5;
                 } else if (spriteNum == 5) {
-                    spriteNum = 1;
+                    spriteNum = 6;
+                } else if (spriteNum == 6) {
+                spriteNum = 1;
                 }
                 spriteCounter = 0;
             }
         }
-        else {
-            spriteNum = 3;
-            spriteCounter = 0;
-        }
+        //else {
+        //    spriteNum = 3;
+        //    spriteCounter = 0;
+        //}
     }
 
     public void draw(Graphics2D g2) {
@@ -118,7 +118,7 @@ public class player extends entity {
                 else if (spriteNum == 2) {
                     image = up2;
                 }
-                else if (spriteNum == 3) {
+                else if (spriteNum == 3 || spriteNum == 6) {
                     image = up3;
                 }
                 else if (spriteNum == 4) {
@@ -135,7 +135,7 @@ public class player extends entity {
                 else if (spriteNum == 2) {
                     image = down2;
                 }
-                else if (spriteNum == 3) {
+                else if (spriteNum == 3 || spriteNum == 6) {
                     image = down3;
                 }
                 else if (spriteNum == 4) {
@@ -152,7 +152,7 @@ public class player extends entity {
                 else if (spriteNum == 2) {
                     image = left2;
                 }
-                else if (spriteNum == 3) {
+                else if (spriteNum == 3 || spriteNum == 6) {
                     image = left3;
                 }
                 else if (spriteNum == 4) {
@@ -169,7 +169,7 @@ public class player extends entity {
                 if (spriteNum == 2) {
                     image = right2;
                 }
-                else if (spriteNum == 3) {
+                else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
                 }
                 if (spriteNum == 4) {
