@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
@@ -46,12 +45,16 @@ public class gameView extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
+        /* Coden blir kalt på, men oppdaterer ikke brettet? 
+        if (!isLoaded) {
+            drawGame(g2);
+        }*/
+
+        this.drawGame(g2); // Tegner brettet, men hvert sekund = meget tregt spill
+
         
-
-        drawGame(g2);
-
-
-        player.draw(g2); //Paint the player
+        this.player.draw(g2); //Paint the player
         g2.dispose();
 
     }
@@ -67,27 +70,23 @@ public class gameView extends JPanel implements Runnable {
         double drawInterval = 1000000000 / fps;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            // System.out.println("Current time")
+            //System.out.println("Current time");
 
             // Using sleep method to define a fps.
             try {
 
-                update();
 
+                update();
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
-
                 if (remainingTime < 0) {
                     remainingTime = 0;
                 }
-
                 Thread.sleep((long) remainingTime);
                 nextDrawTime += drawInterval;
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             //System.out.println("The game loop is running");
         }
     }
@@ -109,12 +108,12 @@ public class gameView extends JPanel implements Runnable {
 
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp, DefaultColorTheme ct) {
         System.out.println("drawCell called"); // add this line
-        
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
             Image image = ct.getCellImage(cell.value());
             g2.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight(), null);
-        }   
+        }
+        isLoaded = true;
     }
 }
 
