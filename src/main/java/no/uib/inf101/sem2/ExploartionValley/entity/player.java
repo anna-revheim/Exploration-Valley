@@ -189,5 +189,6 @@ public class player extends entity {
                 break;
         }
         g2.drawImage(image, x, y, 100, 100, null);
+        view.repaint();
     }
 }

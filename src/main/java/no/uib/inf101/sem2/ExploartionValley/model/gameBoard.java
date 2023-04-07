@@ -25,9 +25,13 @@ public class gameBoard extends Grid<Character> {
         // Loop over the lines and fill the board
         for (int i = 0; i < rows && i < lines.size(); i++) {
             String line = lines.get(i);
-            for (int j = 0; j < cols && j < line.length(); j++) {
-                char c = line.charAt(j);
-                set(new CellPosition(i, j), c);
+            String[] tokens = line.split("\\s+");
+            for (int j = 0; j < cols && j < tokens.length; j++) {
+                String token = tokens[j];
+                if (!token.isEmpty()) { //If ' '
+                    char c = token.charAt(0);
+                    set(new CellPosition(i, j), c);
+                }
             }
         }
     }

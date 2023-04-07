@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
@@ -14,10 +15,9 @@ import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
 public class gameView extends JPanel implements Runnable {
 
-    private boolean isLoaded = false;  // Game only needs to be painted once
 
     private DefaultColorTheme ct;
-    private ViewableTetrisModel model;
+    private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
     gameController controller = new gameController();
     Thread gameThread;
@@ -30,7 +30,7 @@ public class gameView extends JPanel implements Runnable {
     //tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
 
-    public gameView(ViewableTetrisModel model) {
+    public gameView(ViewableGame model) {
         this.model = model;
         this.addKeyListener(controller);
         this.setFocusable(true);
@@ -39,18 +39,21 @@ public class gameView extends JPanel implements Runnable {
         this.setBackground(ct.getBackgroundColor());
     }
 
+    public boolean isLoaded = false;  // Game only needs to be painted once
+
     @Override
     // public ettersom vi ønsker at JComponent kan implementere denne
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-    
+        
 
         drawGame(g2);
 
-        player.draw(g2);
-    
+
+        player.draw(g2); //Paint the player
         g2.dispose();
+
     }
 
     public void startGameThread() {
@@ -70,7 +73,6 @@ public class gameView extends JPanel implements Runnable {
             try {
 
                 update();
-                repaint();
 
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
@@ -86,7 +88,7 @@ public class gameView extends JPanel implements Runnable {
                 e.printStackTrace();
             }
 
-            // System.out.println("The game loop is running");
+            //System.out.println("The game loop is running");
         }
     }
 
@@ -103,16 +105,16 @@ public class gameView extends JPanel implements Runnable {
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
                 (double) 2);
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
-
     }
 
-    private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
-            DefaultColorTheme ct) {
+    private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp, DefaultColorTheme ct) {
+        System.out.println("drawCell called"); // add this line
+        
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
             Image image = ct.getCellImage(cell.value());
             g2.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight(), null);
-        }
+        }   
     }
 }
 

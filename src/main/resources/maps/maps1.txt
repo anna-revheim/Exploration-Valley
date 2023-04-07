@@ -1,5 +1,20 @@
-g22222222g
-3gggggggg4
-3gggggggg4
-3gggggggg4
-g11111111g
+g 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 g
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+3 g g g g g g g g g g g g g g g g g g g g g g g g g g g g 4
+g 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 g

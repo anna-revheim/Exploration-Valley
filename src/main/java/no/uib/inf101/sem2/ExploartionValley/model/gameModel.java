@@ -2,16 +2,17 @@ package no.uib.inf101.sem2.ExploartionValley.model;
 
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
-import no.uib.inf101.sem2.ExploartionValley.view.ViewableTetrisModel;
+import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 
 /*
  * Parts of this code is inspired by #Loosen from discord
  */
 
-public class gameModel implements ViewableTetrisModel {
+public class gameModel implements ViewableGame{
 
     // Instance variable
     private gameBoard board;
+
 
     // Constructor for the board and the first piece
     public gameModel(gameBoard board) {

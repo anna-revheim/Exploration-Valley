@@ -40,6 +40,19 @@ public class DefaultColorTheme implements ColorTheme {
             case '4' :
             imagePath = "/tiles/grass/grass4.png";
                 break;
+            case 'k' :
+            imagePath = "/tiles/grass/grassK1.png";
+                    break;
+            case 'l' :
+            imagePath = "/tiles/grass/grassK2.png";
+                    break;
+            case 'i' :
+            imagePath = "/tiles/grass/grassK3.png";
+                    break;            
+            case 'o' :
+            imagePath = "/tiles/grass/grassK4.png";
+                    break;
+
             default:
                 throw new IllegalArgumentException(
                 "No available image for '" + c + "'");

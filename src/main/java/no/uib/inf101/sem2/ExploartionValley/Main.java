@@ -1,16 +1,14 @@
 package no.uib.inf101.sem2.ExploartionValley;
 
-
-
 import java.io.IOException;
-import java.net.URISyntaxException;
+
 
 import javax.swing.JFrame;
 
 import no.uib.inf101.sem2.ExploartionValley.model.gameBoard;
 
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
-import no.uib.inf101.sem2.ExploartionValley.view.ViewableTetrisModel;
+import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
 
 public class Main {
@@ -19,8 +17,9 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            gameBoard board = new gameBoard(5,10, "maps1.txt");
-            ViewableTetrisModel model = new gameModel(board);
+            //gameBoard board = new gameBoard(20,30, "maps1.txt");
+            gameBoard board = new gameBoard(10,10, "maps2.txt");
+            ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
     
             JFrame frame = new JFrame(WINDOW_TITLE);

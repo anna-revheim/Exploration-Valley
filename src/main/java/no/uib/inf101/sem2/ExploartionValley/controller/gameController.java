@@ -1,7 +1,8 @@
 package no.uib.inf101.sem2.ExploartionValley.controller;
 
+import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
-import javax.swing.Timer;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -10,7 +11,7 @@ import java.awt.event.KeyListener;
 public class gameController implements KeyListener {
     controllableGameModel controller;
     gameView gameView;
-    Timer tick;
+    gameModel model;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
 
@@ -45,7 +46,7 @@ public class gameController implements KeyListener {
 
         }
         // Bruker repaint() for å gi konstante oppdateringer til view.
-        //this.gameView.repaint();
+        //gameView.repaint();
     }
 
     public void clockTick(ActionEvent action) {
