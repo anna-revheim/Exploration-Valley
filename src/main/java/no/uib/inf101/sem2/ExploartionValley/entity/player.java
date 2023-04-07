@@ -14,6 +14,7 @@ public class player extends entity {
     gameView view;
     gameController controller;
     String direction = "down";
+    private boolean isMoving;
 
     public player(gameView view, gameController controller) {
         this.view = view;
@@ -27,6 +28,7 @@ public class player extends entity {
         this.x = 100;
         this.y = 100;
         this.speed = 4;
+        this.isMoving = false;
     }
 
     public void getCharacterImage() {
@@ -57,8 +59,8 @@ public class player extends entity {
         }
     }
 
+
     public void update() {
-        boolean isMoving = false;
         if (controller.upPressed == true) {
             if(this.y > 0) {
             direction = "up";
@@ -110,6 +112,10 @@ public class player extends entity {
             spriteNum = 3;
             spriteCounter = 0;
         }
+    }
+
+    public boolean isMoving() {
+        return isMoving;
     }
 
     public void draw(Graphics2D g2) {
@@ -191,4 +197,6 @@ public class player extends entity {
         g2.drawImage(image, x, y, 100, 100, null);
         view.repaint();
     }
+
+
 }

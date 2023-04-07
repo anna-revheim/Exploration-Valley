@@ -18,14 +18,17 @@ public class gameView extends JPanel implements Runnable {
     private DefaultColorTheme ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
-    gameController controller = new gameController();
-    Thread gameThread;
+    public boolean isLoaded = false;  // Game only needs to be painted once
+    private Image buffer; // off-screen image
+    private Graphics2D bufferGraphics; // graphics object for off-screen image
+    private Thread gameThread;
 
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
     int fps = 60;
 
+    gameController controller = new gameController();
     //tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
 
@@ -38,25 +41,27 @@ public class gameView extends JPanel implements Runnable {
         this.setBackground(ct.getBackgroundColor());
     }
 
-    public boolean isLoaded = false;  // Game only needs to be painted once
-
     @Override
     // public ettersom vi ønsker at JComponent kan implementere denne
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        /* Coden blir kalt på, men oppdaterer ikke brettet? 
+        if (buffer == null) {
+            buffer = createImage(getWidth(), getHeight());
+            bufferGraphics = (Graphics2D) buffer.getGraphics();
+        }
+
         if (!isLoaded) {
-            drawGame(g2);
-        }*/
+            drawGame(bufferGraphics);
+            isLoaded = true;
+        }
+        g.drawImage(buffer, 0, 0, null);
 
-        this.drawGame(g2); // Tegner brettet, men hvert sekund = meget tregt spill
 
-        
         this.player.draw(g2); //Paint the player
         g2.dispose();
-
+        
     }
 
     public void startGameThread() {
@@ -74,8 +79,7 @@ public class gameView extends JPanel implements Runnable {
 
             // Using sleep method to define a fps.
             try {
-
-
+                repaint();
                 update();
                 double remainingTime = nextDrawTime - System.nanoTime();
                 remainingTime = remainingTime / 1000000;
@@ -96,6 +100,7 @@ public class gameView extends JPanel implements Runnable {
     }
 
     private void drawGame(Graphics2D g2) {
+
         double width = this.getWidth() - 2 * OUTER_MARGIN;
         double height = this.getHeight() - 2 * OUTER_MARGIN;
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);
@@ -104,16 +109,16 @@ public class gameView extends JPanel implements Runnable {
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
                 (double) 2);
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
+
     }
 
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp, DefaultColorTheme ct) {
-        System.out.println("drawCell called"); // add this line
+        //System.out.println("drawCell called"); // add this line
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
             Image image = ct.getCellImage(cell.value());
             g2.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight(), null);
         }
-        isLoaded = true;
     }
 }
 
