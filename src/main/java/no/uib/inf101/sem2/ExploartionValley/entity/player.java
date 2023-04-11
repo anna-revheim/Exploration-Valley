@@ -62,32 +62,32 @@ public class player extends entity {
 
     public void update() {
         if (controller.upPressed == true) {
-            if(this.y > -40) {
             direction = "up";
+            if(this.y > -40) {
             y -= speed;
             isMoving = true;
             System.out.println("X: " + this.x + "\tY: " + this.y);
             }
 
         } else if (controller.downPressed) {
-            if(this.y < this.view.h-100) {
             direction = "down";
+            if(this.y < this.view.h-100) {
             y += speed;
             isMoving = true;
             System.out.println("X: " + this.x + "\tY: " + this.y);
             }
 
         } else if (controller.leftPressed) {
+            direction = "left";
             if(this.x > -24) {
-                direction = "left";
                 x -= speed;
                 isMoving = true;
                 System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
 
         } else if (controller.rightPressed) {
-            if(this.x < this.view.w-80) {
             direction = "right";
+            if(this.x < this.view.w-80) {
             x += speed;
             isMoving = true;
             System.out.println("X: " + this.x + "\tY: " + this.y);
