@@ -22,11 +22,14 @@ public class gameView extends JPanel implements Runnable {
     private Image buffer; // off-screen image
     private Graphics2D bufferGraphics; // graphics object for off-screen image
     private Thread gameThread;
+    public Dimension dim;
 
     int playerX = 100;
     int playerY = 100;
-    int playerSpeed = 4;
+    int playerSpeed = 16;
     int fps = 60;
+    public int w = 1200;
+    public int h = 800;
 
     gameController controller = new gameController();
     //tileManager tileM = new tileManager(this);
@@ -36,7 +39,7 @@ public class gameView extends JPanel implements Runnable {
         this.model = model;
         this.addKeyListener(controller);
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(1200, 800));
+        this.setPreferredSize(new Dimension(w, h));
         ct = new DefaultColorTheme();
         this.setBackground(ct.getBackgroundColor());
     }
@@ -52,6 +55,7 @@ public class gameView extends JPanel implements Runnable {
             bufferGraphics = (Graphics2D) buffer.getGraphics();
         }
 
+        //Checks if the board is already loaded. Prevents overuse of rendering.
         if (!isLoaded) {
             drawGame(bufferGraphics);
             isLoaded = true;
@@ -106,14 +110,11 @@ public class gameView extends JPanel implements Runnable {
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);
         g2.setColor(this.ct.getFrameColor());
         g2.fill(rektangel);
-        CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
-                (double) 2);
+        CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(), (double) 2);
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
-
     }
 
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp, DefaultColorTheme ct) {
-        //System.out.println("drawCell called"); // add this line
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
             Image image = ct.getCellImage(cell.value());

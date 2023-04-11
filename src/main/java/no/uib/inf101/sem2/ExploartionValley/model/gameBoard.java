@@ -23,19 +23,37 @@ public class gameBoard extends Grid<Character> {
         List<String> lines = reader.lines().collect(Collectors.toList());
     
         // Loop over the lines and fill the board
-        for (int i = 0; i < rows && i < lines.size(); i++) {
-            String line = lines.get(i);
-            String[] tokens = line.split("\\s+");
-            for (int j = 0; j < cols && j < tokens.length; j++) {
-                String token = tokens[j];
-                if (!token.isEmpty()) { //If ' '
-                    char c = token.charAt(0);
-                    set(new CellPosition(i, j), c);
+
+        if (lines.size() != rows) {
+            for (int i = 0; i < rows && i < lines.size(); i++) {
+                String line = lines.get(i);
+                String[] tokens = line.split("\\s+");
+                for (int j = 0; j < cols && j < tokens.length; j++) {
+                    String token = tokens[j];
+                    if (!token.isEmpty()) { //If ' '
+                        char c = token.charAt(0);
+                        set(new CellPosition((rows/2)+i-(lines.size()/2), (cols/2)+j-(tokens.length/2)), c);
+                    }
                 }
             }
         }
+        else
+        {
+            for (int i = 0; i < rows && i < lines.size(); i++) {
+                String line = lines.get(i);
+                String[] tokens = line.split("\\s+");
+                for (int j = 0; j < cols && j < tokens.length; j++) {
+                    String token = tokens[j];
+                    if (!token.isEmpty()) { //If ' '
+                        char c = token.charAt(0);
+                        set(new CellPosition(i, j), c);
+                    }
+                }
+            }
+        }
+        
+        
     }
-    
 
 
     // To be able to test

@@ -1,5 +1,6 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,13 +21,15 @@ public class player extends entity {
         this.view = view;
         this.controller = controller;
 
+        System.out.println();
         setDefaultValues();
         getCharacterImage();
+        //System.out.println(h);
     }
 
     public void setDefaultValues() {
-        this.x = 100;
-        this.y = 100;
+        this.x = this.view.w/2-56;
+        this.y = this.view.h/2-60;
         this.speed = 4;
         this.isMoving = false;
     }
@@ -62,28 +65,36 @@ public class player extends entity {
 
     public void update() {
         if (controller.upPressed == true) {
-            if(this.y > 0) {
+            if(this.y > -40) {
             direction = "up";
             y -= speed;
             isMoving = true;
+            System.out.println("X: " + this.x + "\tY: " + this.y);
             }
 
         } else if (controller.downPressed) {
+            if(this.y < this.view.h-100) {
             direction = "down";
             y += speed;
             isMoving = true;
+            System.out.println("X: " + this.x + "\tY: " + this.y);
+            }
 
         } else if (controller.leftPressed) {
-            if(this.x > 0) {
+            if(this.x > -24) {
                 direction = "left";
                 x -= speed;
                 isMoving = true;
+                System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
 
         } else if (controller.rightPressed) {
+            if(this.x < this.view.w-80) {
             direction = "right";
             x += speed;
             isMoving = true;
+            System.out.println("X: " + this.x + "\tY: " + this.y);
+            }
 
         } else{
             isMoving = false;
@@ -196,6 +207,7 @@ public class player extends entity {
         }
         g2.drawImage(image, x, y, 100, 100, null);
         view.repaint();
+        
     }
 
 

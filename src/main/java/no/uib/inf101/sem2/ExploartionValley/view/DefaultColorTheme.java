@@ -17,7 +17,7 @@ public class DefaultColorTheme implements ColorTheme {
     @Override
     public Color getFrameColor() {
         // Personlig utvalg av rammefarge.
-        return Color.LIGHT_GRAY;
+        return Color.BLACK;
     }
 
     @Override
@@ -25,6 +25,9 @@ public class DefaultColorTheme implements ColorTheme {
         String imagePath;
         // Checking character and what tiles it should be
         switch (c) {
+            case '-':
+            imagePath = "/tiles/background/blank.png";
+                break;
             case 'g':
             imagePath = "/tiles/grass/grass0.png";
                 break;
