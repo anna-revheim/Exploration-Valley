@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            gameBoard board = new gameBoard(40,60, "maps2.txt");
+            gameBoard board = new gameBoard(40,60, "maps1.txt");
             //gameBoard board = new gameBoard(10,10, "maps2.txt");
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);

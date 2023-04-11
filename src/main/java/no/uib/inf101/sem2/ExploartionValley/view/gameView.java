@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Dimension;
 
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
-import no.uib.inf101.sem2.ExploartionValley.entity.player;
+import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 //import no.uib.inf101.sem2.ExploartionValley.model.tiles.tileManager;
 
@@ -24,9 +24,6 @@ public class gameView extends JPanel implements Runnable {
     private Thread gameThread;
     public Dimension dim;
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 16;
     int fps = 60;
     public int w = 1200;
     public int h = 800;
@@ -34,6 +31,7 @@ public class gameView extends JPanel implements Runnable {
     gameController controller = new gameController();
     //tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
+    item item = new item(this);
 
     public gameView(ViewableGame model) {
         this.model = model;
@@ -58,6 +56,7 @@ public class gameView extends JPanel implements Runnable {
         //Checks if the board is already loaded. Prevents overuse of rendering.
         if (!isLoaded) {
             drawGame(bufferGraphics);
+            this.item.drawItem(bufferGraphics);
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);

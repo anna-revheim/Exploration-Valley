@@ -20,11 +20,8 @@ public class player extends entity {
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
-
-        System.out.println();
         setDefaultValues();
         getCharacterImage();
-        //System.out.println(h);
     }
 
     public void setDefaultValues() {
@@ -36,26 +33,26 @@ public class player extends entity {
 
     public void getCharacterImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/up/up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/up/up2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/up/up3.png"));
-            up4 = ImageIO.read(getClass().getResourceAsStream("/up/up4.png"));
-            up5 = ImageIO.read(getClass().getResourceAsStream("/up/up5.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/down/down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/down/down2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/down/down3.png"));
-            down4 = ImageIO.read(getClass().getResourceAsStream("/down/down4.png"));
-            down5 = ImageIO.read(getClass().getResourceAsStream("/down/down5.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/left/left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/left/left2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/left/left3.png"));
-            left4 = ImageIO.read(getClass().getResourceAsStream("/left/left4.png"));
-            left5 = ImageIO.read(getClass().getResourceAsStream("/left/left5.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/right/right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/right/right2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/right/right3.png"));
-            right4 = ImageIO.read(getClass().getResourceAsStream("/right/right4.png"));
-            right5 = ImageIO.read(getClass().getResourceAsStream("/right/right5.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/player/up/up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/player/up/up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("/player/up/up3.png"));
+            up4 = ImageIO.read(getClass().getResourceAsStream("/player/up/up4.png"));
+            up5 = ImageIO.read(getClass().getResourceAsStream("/player/up/up5.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/player/down/down1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/player/down/down2.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/player/down/down3.png"));
+            down4 = ImageIO.read(getClass().getResourceAsStream("/player/down/down4.png"));
+            down5 = ImageIO.read(getClass().getResourceAsStream("/player/down/down5.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/player/left/left1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/player/left/left2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/player/left/left3.png"));
+            left4 = ImageIO.read(getClass().getResourceAsStream("/player/left/left4.png"));
+            left5 = ImageIO.read(getClass().getResourceAsStream("/player/left/left5.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/player/right/right1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/player/right/right2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/player/right/right3.png"));
+            right4 = ImageIO.read(getClass().getResourceAsStream("/player/right/right4.png"));
+            right5 = ImageIO.read(getClass().getResourceAsStream("/player/right/right5.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,6 +97,7 @@ public class player extends entity {
             isMoving = false;
         }
 
+        //If the character is moving start counting
         if (isMoving == true) {
             spriteCounter++;
             if (spriteCounter > 6) {
