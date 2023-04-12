@@ -56,13 +56,14 @@ public class gameView extends JPanel implements Runnable {
         //Checks if the board is already loaded. Prevents overuse of rendering.
         if (!isLoaded) {
             drawGame(bufferGraphics);
-            this.item.drawItem(bufferGraphics);
+            //this.item.drawItem(bufferGraphics);
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
 
-
+        
         this.player.draw(g2); //Paint the player
+        this.item.drawItem(g2);
         g2.dispose();
         
     }
