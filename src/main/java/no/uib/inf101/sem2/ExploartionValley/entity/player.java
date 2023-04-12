@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -126,6 +125,15 @@ public class player extends entity {
     public boolean isMoving() {
         return isMoving;
     }
+/* 
+    public void tileLegalMove(){
+
+        for(int i = 0; )
+
+
+    }
+*/
+
 
     public void draw(Graphics2D g2) {
         // g2.setColor(Color.white);
@@ -204,8 +212,6 @@ public class player extends entity {
                 break;
         }
         g2.drawImage(image, x, y, 100, 100, null);
-        view.repaint();
-        
     }
 
 

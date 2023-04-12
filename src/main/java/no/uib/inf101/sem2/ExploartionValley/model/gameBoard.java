@@ -22,9 +22,8 @@ public class gameBoard extends Grid<Character> {
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
         List<String> lines = reader.lines().collect(Collectors.toList());
     
-        // Loop over the lines and fill the board
-
-        if (lines.size() != rows) {
+        // Loop over the lines and fill the board 
+        if (lines.size() != rows) { 
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] tokens = line.split("\\s+");
@@ -37,7 +36,7 @@ public class gameBoard extends Grid<Character> {
                 }
             }
         }
-        else
+        else 
         {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);

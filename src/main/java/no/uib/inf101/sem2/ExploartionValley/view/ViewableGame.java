@@ -11,7 +11,4 @@ public interface ViewableGame {
     // Get all of the cells on the board
     Iterable<GridCell<Character>> getTilesOnBoard();
 
-    // Gets the occupied cells on the board
-    Iterable<GridCell<Character>> getFallingPiece();
-
 }

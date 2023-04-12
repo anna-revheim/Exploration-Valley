@@ -28,10 +28,4 @@ public class gameModel implements ViewableGame{
     public Iterable<GridCell<Character>> getTilesOnBoard() {
         return this.board;
     }
-
-    @Override
-    public Iterable<GridCell<Character>> getFallingPiece() {
-        throw new UnsupportedOperationException("Unimplemented method 'getFallingPiece'");
-    }
-
 }

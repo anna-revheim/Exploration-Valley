@@ -1,8 +1,13 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Graphics2D;
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
@@ -16,8 +21,6 @@ public class item extends entity {
         getItemImage();
     }
 
-
-
     public void getItemImage() {
         try {
             tree = ImageIO.read(getClass().getResourceAsStream("/item/tree.png"));
@@ -26,15 +29,21 @@ public class item extends entity {
         }
     }
 
-    public void drawItem(Graphics2D g2) {
-        g2.drawImage(tree, 20, 20, 100, 100, null);
-        g2.drawImage(tree, 150, 20, 100, 100, null);
-        g2.drawImage(tree, 280, 20, 100, 100, null);
-        g2.drawImage(tree, 410, 20, 100, 100, null);
-        g2.drawImage(tree, 540, 20, 100, 100, null);
-        g2.drawImage(tree, 670, 20, 100, 100, null);
-        g2.drawImage(tree, 800, 20, 100, 100, null);
-        g2.drawImage(tree, 930, 20, 100, 100, null);
-        g2.drawImage(tree, 1060, 20, 100, 100, null);
-    }
+    public void drawItem(Graphics2D g2, String FileName) throws FileNotFoundException {
+        try {
+            Scanner scanner = new Scanner(new File(FileName));
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+                ArrayList<String> item = new ArrayList<>();
+
+                List<String> result;
+                try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+                    result = lines.collect(Collectors.toList());
+            }
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 }
+    }

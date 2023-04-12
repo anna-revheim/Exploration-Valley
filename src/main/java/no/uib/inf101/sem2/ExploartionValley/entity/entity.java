@@ -7,6 +7,7 @@ public class entity {
     // all beings need a position, and a speed.
     public int x, y;
     public int speed;
+    public int health;
 
     //player
     public BufferedImage up1, up2, up3, up4, up5, down1, down2, down3, down4, down5, left1, left2, left3, left4, left5, right1, right2, right3, right4, right5;

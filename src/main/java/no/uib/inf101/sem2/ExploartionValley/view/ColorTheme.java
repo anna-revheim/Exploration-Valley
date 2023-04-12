@@ -12,9 +12,4 @@ public interface ColorTheme {
 
     Image getCellImage(char c);
 
-    Color getCellColor(char c);
-
-    Color GameOverColor();
-
-    Color GameOverTextColor();
 }
