@@ -23,7 +23,6 @@ public class gameBoard extends Grid<Character> {
         List<String> lines = reader.lines().collect(Collectors.toList());
     
         // Loop over the lines and fill the board
-
         if (lines.size() != rows) {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);

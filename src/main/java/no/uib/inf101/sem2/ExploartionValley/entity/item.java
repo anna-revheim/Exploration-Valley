@@ -10,13 +10,12 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 public class item extends entity {
 
     gameView view;
+    public boolean collision = false;
 
     public item(gameView view) {
         this.view = view;
         getItemImage();
     }
-
-
 
     public void getItemImage() {
         try {
