@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -17,6 +16,9 @@ public class player extends entity {
     String direction = "down";
     private boolean isMoving;
 
+    private int screenX;
+    private int screenY;
+
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
@@ -29,6 +31,9 @@ public class player extends entity {
         this.y = this.view.h/2-60;
         this.speed = 4;
         this.isMoving = false;
+
+        screenX = this.view.w/2-56;
+        screenY = this.view.h/2-60;
     }
 
     public void getCharacterImage() {
@@ -203,7 +208,7 @@ public class player extends entity {
                 }
                 break;
         }
-        g2.drawImage(image, x, y, 100, 100, null);
+        g2.drawImage(image, screenX, screenY, 100, 100, null);
         view.repaint();
         
     }

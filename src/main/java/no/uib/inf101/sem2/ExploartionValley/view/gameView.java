@@ -10,21 +10,30 @@ import java.awt.Dimension;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
-//import no.uib.inf101.sem2.ExploartionValley.model.tiles.tileManager;
+import no.uib.inf101.sem2.ExploartionValley.grid.Dimension;
 
-public class gameView extends JPanel implements Runnable {
+public class gameView extends JPanel implements Runnable{
 
 
     private DefaultColorTheme ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
+
+
     public boolean isLoaded = false;  // Game only needs to be painted once
     private Image buffer; // off-screen image
     private Graphics2D bufferGraphics; // graphics object for off-screen image
+
+
     private Thread gameThread;
     public Dimension dim;
 
     int fps = 60;
+
+
+    int row = getRows();
+    int cols = getCols();
+
     public int w = 1200;
     public int h = 800;
 
