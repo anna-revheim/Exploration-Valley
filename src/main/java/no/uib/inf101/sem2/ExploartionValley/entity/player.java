@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -14,7 +15,8 @@ public class player extends entity {
     gameView view;
     gameController controller;
     String direction = "down";
-    private boolean isMoving;
+    public boolean isMoving;
+    private boolean hasCollided = false;
 
     private int screenX;
     private int screenY;
@@ -66,41 +68,67 @@ public class player extends entity {
 
 
     public void update() {
-        if (controller.upPressed == true) {
-            direction = "up";
-            if(this.y > -40) {
-            y -= speed;
-            isMoving = true;
-            System.out.println("X: " + this.x + "\tY: " + this.y);
-            }
-
-        } else if (controller.downPressed) {
-            direction = "down";
-            if(this.y < this.view.h-100) {
-            y += speed;
-            isMoving = true;
-            System.out.println("X: " + this.x + "\tY: " + this.y);
-            }
-
-        } else if (controller.leftPressed) {
-            direction = "left";
-            if(this.x > -24) {
-                x -= speed;
-                isMoving = true;
-                System.out.println("X: " + this.x + "\tY: " + this.y);
-                }
-
-        } else if (controller.rightPressed) {
-            direction = "right";
-            if(this.x < this.view.w-80) {
-            x += speed;
-            isMoving = true;
-            System.out.println("X: " + this.x + "\tY: " + this.y);
-            }
-
-        } else{
+        item currentItem = new item(view); // create an instance of item
+        Rectangle playerBounds = new Rectangle(x, y, view.w, view.h); // create player bounds
+    
+        // check collision with item
+        if (currentItem.checkCollision(playerBounds)) {
+            // player collided with item, so stop moving
             isMoving = false;
+            hasCollided = true;
+
+            // move player away from item
+            if (direction == "up") {
+                y += speed;
+            } else if (direction == "down") {
+                y -= speed;
+            } else if (direction == "left") {
+                x += speed;
+            } else if (direction == "right") {
+                x -= speed;
+            }
+
+        } else {
+            // player did not collide with item, so continue moving
+            if (controller.upPressed == true) {
+                direction = "up";
+                if(this.y > -40) {
+                    y -= speed;
+                    isMoving = true;
+                    System.out.println("X: " + this.x + "\tY: " + this.y);
+                }
+            } else if (controller.downPressed) {
+                direction = "down";
+                if(this.y < this.view.h-100) {
+                    y += speed;
+                    isMoving = true;
+                    System.out.println("X: " + this.x + "\tY: " + this.y);
+                }
+            } else if (controller.leftPressed) {
+                direction = "left";
+                if(this.x > -24) {
+                    x -= speed;
+                    isMoving = true;
+                    System.out.println("X: " + this.x + "\tY: " + this.y);
+                }
+            } else if (controller.rightPressed) {
+                direction = "right";
+                if(this.x < this.view.w-80) {
+                    x += speed;
+                    isMoving = true;
+                    System.out.println("X: " + this.x + "\tY: " + this.y);
+                }
+            } else{
+                isMoving = false;
+            }
+
+                // if the player has collided with the item and is not colliding anymore, allow movement
+            if (hasCollided && !currentItem.checkCollision(playerBounds)) {
+                hasCollided = false;
+                isMoving = true;
+            }
         }
+    
 
         //If the character is moving start counting
         if (isMoving == true) {
@@ -208,10 +236,8 @@ public class player extends entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, 100, 100, null);
-        view.repaint();
-        
+        //g2.drawImage(image, screenX, screenY, 100, 100, null);
+        g2.drawImage(image, x, y, 100, 100, null);
     }
-
 
 }

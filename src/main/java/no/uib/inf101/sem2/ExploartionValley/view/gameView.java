@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
-import no.uib.inf101.sem2.ExploartionValley.grid.Dimension;
 
 public class gameView extends JPanel implements Runnable{
 
@@ -29,10 +28,6 @@ public class gameView extends JPanel implements Runnable{
     public Dimension dim;
 
     int fps = 60;
-
-
-    int row = getRows();
-    int cols = getCols();
 
     public int w = 1200;
     public int h = 800;
@@ -68,11 +63,13 @@ public class gameView extends JPanel implements Runnable{
             //this.item.drawItem(bufferGraphics);
             isLoaded = true;
         }
-        g.drawImage(buffer, 0, 0, null);
 
+        g.drawImage(buffer, 0, 0, null);
+        
+        //Draw the items
+        this.item.drawItem(g2);
         
         this.player.draw(g2); //Paint the player
-        this.item.drawItem(g2);
         g2.dispose();
         
     }
@@ -108,6 +105,7 @@ public class gameView extends JPanel implements Runnable{
         }
     }
 
+
     public void update() {
         player.update();
     }
@@ -131,4 +129,3 @@ public class gameView extends JPanel implements Runnable{
         }
     }
 }
-
