@@ -15,18 +15,24 @@ public class item extends entity {
     public boolean collision = false;
 
     ArrayList<Rectangle> itemBounds;
+    ArrayList<Rectangle> treeBounds;
     Rectangle houseBound;
 
     public item(gameView view) {
         this.view = view;
         getItemImage();
         
-        itemBounds = new ArrayList<Rectangle>();
+        treeBounds = new ArrayList<Rectangle>();
+        
 
-        itemBounds.add(new Rectangle(300, 500, 100, 100));
-        itemBounds.add(new Rectangle(20, 20, 100, 100));
+        treeBounds.add(new Rectangle(300, 500, 100, 100));
+        treeBounds.add(new Rectangle(20, 20, 100, 100));
 
         houseBound = new Rectangle(500, 200, 200, 200);
+
+        itemBounds = new ArrayList<Rectangle>();
+        itemBounds.addAll(treeBounds);
+        itemBounds.add(houseBound);
     }
 
     public void getItemImage() {
@@ -39,11 +45,10 @@ public class item extends entity {
     }
 
     public void drawItem(Graphics2D g2) {
-        for (Rectangle itemBound : itemBounds) {
+        for (Rectangle itemBound : treeBounds) {
             g2.drawImage(tree, itemBound.x, itemBound.y,itemBound.width, itemBound.height, null);       
-            g2.drawImage(house, 500, 200, 200, 200, null);   
-            g2.draw(houseBound);     
-            g2.draw(itemBound);
+            g2.drawImage(house, 500, 200, 200, 200, null);       
+            //g2.draw(itemBound);
         }
     }
 
