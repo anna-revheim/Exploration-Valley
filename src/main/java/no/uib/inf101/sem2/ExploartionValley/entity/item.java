@@ -12,6 +12,7 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 public class item extends entity {
 
     gameView view;
+    public boolean collision = false;
 
     ArrayList<Rectangle> itemBounds;
 

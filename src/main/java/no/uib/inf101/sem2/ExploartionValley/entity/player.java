@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,8 +12,9 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 public class player extends entity {
 
-    gameView view;
-    gameController controller;
+    gameView view; //gp
+    gameController controller; //keyh
+
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
@@ -29,7 +29,14 @@ public class player extends entity {
         this.controller = controller;
         setDefaultValues();
         getCharacterImage();
+
+        collisionArea = new Rectangle();
+        collisionArea.x = 0;
+        collisionArea.y = 0;
+        collisionArea.width = 30;
+        collisionArea.height = 30;
     }
+
 
     public void setDefaultValues() {
         this.x = this.view.w/2-56;
@@ -125,7 +132,21 @@ public class player extends entity {
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
+                System.out.println("X: " + this.x + "\tY: " + this.y);
+                }
+
+        } else if (controller.rightPressed) {
+            direction = "right";
+            if(this.x < this.view.w-80) {
+            x += speed;
+            isMoving = true;
+            System.out.println("X: " + this.x + "\tY: " + this.y);
+            
             }
+        this.collisionOn = false;
+        view.collisionCheck.tileCheck(this);
+        } else{
+            isMoving = false;
         }
     
 
