@@ -32,7 +32,7 @@ public class DefaultColorTheme implements ColorTheme {
             imagePath = "/tiles/grass/grass0.png";
                 break;
             case '1' :
-            imagePath = "/tiles/grass/grass1.png";
+            imagePath = "/tiles//grass/grass1.png";
                 break;
             case '2' :
             imagePath = "/tiles/grass/grass2.png";
@@ -55,6 +55,12 @@ public class DefaultColorTheme implements ColorTheme {
             case 'o' :
             imagePath = "/tiles/grass/grassK4.png";
                     break;
+            case 'w' :
+            imagePath = "/tiles/water/water.png";
+                    break;
+            case 'e' :
+            imagePath = "/tiles/water/bottom.png";
+                break;
 
             default:
                 throw new IllegalArgumentException(
