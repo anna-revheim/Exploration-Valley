@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class entity {
     // this class is the parentclass to all things player, monster, npc related.
@@ -21,5 +22,16 @@ public class entity {
     public int spriteNum = 1;
     public Rectangle collisionArea;
     public boolean collisionOn = false;
+
+    public boolean checkCollision(Rectangle playerBounds, ArrayList<Rectangle> gameBounds) {
+        for (Rectangle gameBound : gameBounds) {
+            boolean collision = playerBounds.intersects(gameBound);
+            if (collision) {
+                System.out.println("Collision detected!");
+                return true; // return true on the first collision
+            }
+        }
+        return false; // return false if no collision is detected
+    }
 
 }

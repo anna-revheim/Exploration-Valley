@@ -15,6 +15,7 @@ public class item extends entity {
     public boolean collision = false;
 
     ArrayList<Rectangle> itemBounds;
+    Rectangle houseBound;
 
     public item(gameView view) {
         this.view = view;
@@ -24,6 +25,8 @@ public class item extends entity {
 
         itemBounds.add(new Rectangle(300, 500, 100, 100));
         itemBounds.add(new Rectangle(20, 20, 100, 100));
+
+        houseBound = new Rectangle(500, 200, 200, 200);
     }
 
     public void getItemImage() {
@@ -38,7 +41,8 @@ public class item extends entity {
     public void drawItem(Graphics2D g2) {
         for (Rectangle itemBound : itemBounds) {
             g2.drawImage(tree, itemBound.x, itemBound.y,itemBound.width, itemBound.height, null);       
-            g2.drawImage(house, 500, 200, 200, 200, null);        
+            g2.drawImage(house, 500, 200, 200, 200, null);   
+            g2.draw(houseBound);     
             g2.draw(itemBound);
         }
     }
