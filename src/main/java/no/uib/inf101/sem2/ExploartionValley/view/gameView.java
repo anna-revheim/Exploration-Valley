@@ -26,7 +26,7 @@ public class gameView extends JPanel implements Runnable{
     private Thread gameThread;
     public Dimension dim;
     public int tilesize;
-    public collisionCheck collisionCheck = new collisionCheck(this);
+
 
     int fps = 60;
 

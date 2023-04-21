@@ -81,6 +81,7 @@ public class player extends entity {
     public void update() {
         item currentItem = new item(view); // create an instance of item
         playerBounds.setLocation(x+45, y+60);
+
         // check collision with item
         if (currentItem.checkCollision(playerBounds)) {
             // player collided with item, so stop moving
@@ -97,8 +98,9 @@ public class player extends entity {
             } else if (direction == "right") {
                 x -= speed;
             }
-
-        } else {
+        }
+        
+        else{
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
                 direction = "up";
@@ -133,19 +135,9 @@ public class player extends entity {
                 hasCollided = false;
                 isMoving = true;
                 System.out.println("X: " + this.x + "\tY: " + this.y);
-                }
-
-        } else if (controller.rightPressed) {
-            direction = "right";
-            if(this.x < this.view.w-80) {
-            x += speed;
-            isMoving = true;
-            System.out.println("X: " + this.x + "\tY: " + this.y);
-            
             }
-        this.collisionOn = false;
-        view.collisionCheck.tileCheck(this);
-        } else{
+        }
+        {
             isMoving = false;
         }
     
@@ -175,6 +167,7 @@ public class player extends entity {
             spriteCounter = 0;
         }
     }
+    
 
     public boolean isMoving() {
         return isMoving;
