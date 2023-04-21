@@ -15,7 +15,7 @@ public class entity {
     public String direction;
 
     //
-    public BufferedImage tree;
+    public BufferedImage tree, house;
 
     public int spriteCounter = 0;
     public int spriteNum = 1;

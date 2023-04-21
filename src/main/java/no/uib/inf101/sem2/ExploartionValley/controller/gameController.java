@@ -12,7 +12,7 @@ public class gameController implements KeyListener {
     controllableGameModel controller;
     gameView gameView;
     gameModel model;
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, actionPressed;
 
 
     // Konstruktør til tetriscontroller. Tar inn parameter i type
@@ -45,6 +45,10 @@ public class gameController implements KeyListener {
         if (action.getKeyCode() == KeyEvent.VK_SPACE) {
 
         }
+
+        if (action.getKeyCode() == KeyEvent.VK_E) {
+            actionPressed = true;
+        }
         // Bruker repaint() for å gi konstante oppdateringer til view.
         //gameView.repaint();
     }
@@ -73,6 +77,10 @@ public class gameController implements KeyListener {
         // VVV Dropp ned
         if (action.getKeyCode() == KeyEvent.VK_SPACE) {
 
+        }
+
+        if (action.getKeyCode() == KeyEvent.VK_E) {
+            actionPressed = false;
         }
     }
 

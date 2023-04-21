@@ -10,23 +10,26 @@ import java.awt.Dimension;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
-//import no.uib.inf101.sem2.ExploartionValley.model.tiles.tileManager;
-import no.uib.inf101.sem2.ExploartionValley.model.collisionCheck;
 
-public class gameView extends JPanel implements Runnable {
+public class gameView extends JPanel implements Runnable{
 
     private DefaultColorTheme ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
     public boolean isLoaded = false; // Game only needs to be painted once
+
+ 
     private Image buffer; // off-screen image
     private Graphics2D bufferGraphics; // graphics object for off-screen image
+
+
     private Thread gameThread;
     public Dimension dim;
     public int tilesize;
     public collisionCheck collisionCheck = new collisionCheck(this);
 
     int fps = 60;
+
     public int w = 1200;
     public int h = 800;
 
@@ -66,7 +69,6 @@ public class gameView extends JPanel implements Runnable {
         this.player.draw(g2); // Paint the player
         this.item.drawItem(g2);
         g2.dispose();
-
     }
 
     public void startGameThread() {
@@ -99,6 +101,7 @@ public class gameView extends JPanel implements Runnable {
             // System.out.println("The game loop is running");
         }
     }
+
 
     public void update() {
         player.update();

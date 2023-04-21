@@ -10,11 +10,10 @@ import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
-public class player extends entity {
+public class npc extends entity {
 
-    gameView view; //gp
-    gameController controller; //keyh
-
+    gameView view;
+    gameController controller;
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
@@ -24,19 +23,12 @@ public class player extends entity {
     private int screenX;
     private int screenY;
 
-    public player(gameView view, gameController controller) {
+    public npc(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
         setDefaultValues();
         getCharacterImage();
-
-        collisionArea = new Rectangle();
-        collisionArea.x = 0;
-        collisionArea.y = 0;
-        collisionArea.width = 30;
-        collisionArea.height = 30;
     }
-
 
     public void setDefaultValues() {
         this.x = this.view.w/2-56;
@@ -50,7 +42,7 @@ public class player extends entity {
         playerBounds = new Rectangle(x, y, 16, 16);
     }
 
-    public void getCharacterImage() {
+    private void getCharacterImage() {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/up/up1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/up/up2.png"));
@@ -132,21 +124,7 @@ public class player extends entity {
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
-                System.out.println("X: " + this.x + "\tY: " + this.y);
-                }
-
-        } else if (controller.rightPressed) {
-            direction = "right";
-            if(this.x < this.view.w-80) {
-            x += speed;
-            isMoving = true;
-            System.out.println("X: " + this.x + "\tY: " + this.y);
-            
             }
-        this.collisionOn = false;
-        view.collisionCheck.tileCheck(this);
-        } else{
-            isMoving = false;
         }
     
 
