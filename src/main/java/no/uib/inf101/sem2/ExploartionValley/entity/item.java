@@ -26,9 +26,6 @@ public class item extends entity {
         treeBounds.add(tree1Bounds);
         treeBounds.add(tree2Bounds);
     }
-    
-
-
 
     public void getItemImage() {
         try {

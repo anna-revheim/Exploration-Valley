@@ -98,28 +98,24 @@ public class player extends entity {
                 if(this.y > -40) {
                     y -= speed;
                     isMoving = true;
-                    System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
             } else if (controller.downPressed) {
                 direction = "down";
                 if(this.y < this.view.h-100) {
                     y += speed;
                     isMoving = true;
-                    System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
                 if(this.x > -24) {
                     x -= speed;
                     isMoving = true;
-                    System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
                 if(this.x < this.view.w-80) {
                     x += speed;
                     isMoving = true;
-                    System.out.println("X: " + this.x + "\tY: " + this.y);
                 }
             } else{
                 isMoving = false;
