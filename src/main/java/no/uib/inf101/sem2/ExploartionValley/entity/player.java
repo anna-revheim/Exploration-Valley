@@ -47,7 +47,7 @@ public class player extends entity {
         //screenX = this.view.w/2-56;
         //screenY = this.view.h/2-60;
 
-        playerBounds = new Rectangle(x, y, 16, 16);
+        playerBounds = new Rectangle(x, y, 32, 32);
     }
 
     public void getCharacterImage() {
@@ -80,7 +80,7 @@ public class player extends entity {
 
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        playerBounds.setLocation(x+45, y+60);
+        playerBounds.setLocation(x+35, y+60);
 
         // check collision with item
         if (currentItem.checkCollision(playerBounds)) {

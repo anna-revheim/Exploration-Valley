@@ -66,8 +66,9 @@ public class gameView extends JPanel implements Runnable{
         }
         g.drawImage(buffer, 0, 0, null);
 
+        this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
-        this.item.drawItem(g2);
+        //this.item.drawItem(g2); 
         g2.dispose();
     }
 
