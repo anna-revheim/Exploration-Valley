@@ -12,14 +12,13 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 public class player extends entity {
 
-    gameView view; //gp
-    gameController controller; //keyh
+    gameView view; // gp
+    gameController controller; // keyh
 
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
     private Rectangle playerBounds;
-    
 
     private int screenX;
     private int screenY;
@@ -37,15 +36,14 @@ public class player extends entity {
         collisionArea.height = 30;
     }
 
-
     public void setDefaultValues() {
-        this.x = this.view.w/2-56;
-        this.y = this.view.h/2-60;
+        this.x = this.view.w / 2 - 56;
+        this.y = this.view.h / 2 - 60;
         this.speed = 4;
         this.isMoving = false;
 
-        //screenX = this.view.w/2-56;
-        //screenY = this.view.h/2-60;
+        // screenX = this.view.w/2-56;
+        // screenY = this.view.h/2-60;
 
         playerBounds = new Rectangle(x, y, 32, 32);
     }
@@ -80,7 +78,7 @@ public class player extends entity {
 
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        playerBounds.setLocation(x+35, y+60);
+        playerBounds.setLocation(x + 35, y + 60);
 
         // check collision with item
         if (currentItem.checkCollision(playerBounds)) {
@@ -99,37 +97,38 @@ public class player extends entity {
                 x -= speed;
             }
         }
-        
-        else{
+
+        else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
                 direction = "up";
-                if(this.y > -40) {
+                if (this.y > -40) {
                     y -= speed;
                     isMoving = true;
                 }
             } else if (controller.downPressed) {
                 direction = "down";
-                if(this.y < this.view.h-100) {
+                if (this.y < this.view.h - 100) {
                     y += speed;
                     isMoving = true;
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
-                if(this.x > -24) {
+                if (this.x > -24) {
                     x -= speed;
                     isMoving = true;
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if(this.x < this.view.w-80) {
+                if (this.x < this.view.w - 80) {
                     x += speed;
                     isMoving = true;
                 }
             } else {
                 isMoving = false;
             }
-                // if the player has collided with the item and is not colliding anymore, allow movement
+            // if the player has collided with the item and is not colliding anymore, allow
+            // movement
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
@@ -137,7 +136,7 @@ public class player extends entity {
             }
         }
 
-        //If the character is moving start counting
+        // If the character is moving start counting
         if (isMoving == true) {
             spriteCounter++;
             if (spriteCounter > 6) {
@@ -152,17 +151,15 @@ public class player extends entity {
                 } else if (spriteNum == 5) {
                     spriteNum = 6;
                 } else if (spriteNum == 6) {
-                spriteNum = 1;
+                    spriteNum = 1;
                 }
                 spriteCounter = 0;
             }
-        }
-        else {
+        } else {
             spriteNum = 3;
             spriteCounter = 0;
         }
     }
-    
 
     public boolean isMoving() {
         return isMoving;
@@ -178,51 +175,39 @@ public class player extends entity {
             case "up":
                 if (spriteNum == 1) {
                     image = up1;
-                }
-                else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = up2;
-                }
-                else if (spriteNum == 3 || spriteNum == 6) {
+                } else if (spriteNum == 3 || spriteNum == 6) {
                     image = up3;
-                }
-                else if (spriteNum == 4) {
+                } else if (spriteNum == 4) {
                     image = up4;
-                }
-                else if (spriteNum == 5) {
+                } else if (spriteNum == 5) {
                     image = up5;
                 }
                 break;
             case "down":
                 if (spriteNum == 1) {
                     image = down1;
-                }
-                else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = down2;
-                }
-                else if (spriteNum == 3 || spriteNum == 6) {
+                } else if (spriteNum == 3 || spriteNum == 6) {
                     image = down3;
-                }
-                else if (spriteNum == 4) {
+                } else if (spriteNum == 4) {
                     image = down4;
-                }
-                else if (spriteNum == 5) {
+                } else if (spriteNum == 5) {
                     image = down5;
                 }
                 break;
             case "left":
                 if (spriteNum == 1) {
                     image = left1;
-                }
-                else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = left2;
-                }
-                else if (spriteNum == 3 || spriteNum == 6) {
+                } else if (spriteNum == 3 || spriteNum == 6) {
                     image = left3;
-                }
-                else if (spriteNum == 4) {
+                } else if (spriteNum == 4) {
                     image = left4;
-                }
-                else if (spriteNum == 5) {
+                } else if (spriteNum == 5) {
                     image = left5;
                 }
                 break;
@@ -232,19 +217,17 @@ public class player extends entity {
                 }
                 if (spriteNum == 2) {
                     image = right2;
-                }
-                else if (spriteNum == 3 || spriteNum == 6) {
+                } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
                 }
                 if (spriteNum == 4) {
                     image = right4;
-                }
-                else if (spriteNum == 5) {
+                } else if (spriteNum == 5) {
                     image = right5;
                 }
                 break;
         }
-        //g2.drawImage(image, screenX, screenY, 100, 100, null);
+        // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, x, y, 100, 100, null);
         g2.draw(playerBounds);
     }
