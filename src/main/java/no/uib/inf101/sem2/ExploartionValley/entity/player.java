@@ -126,10 +126,9 @@ public class player extends entity {
                     x += speed;
                     isMoving = true;
                 }
-            } else{
+            } else {
                 isMoving = false;
             }
-
                 // if the player has collided with the item and is not colliding anymore, allow movement
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
                 hasCollided = false;
@@ -137,10 +136,6 @@ public class player extends entity {
                 System.out.println("X: " + this.x + "\tY: " + this.y);
             }
         }
-        {
-            isMoving = false;
-        }
-    
 
         //If the character is moving start counting
         if (isMoving == true) {
