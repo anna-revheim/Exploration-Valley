@@ -1,5 +1,6 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,8 @@ public class player extends entity {
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
+    private Rectangle playerBounds;
+    
 
     private int screenX;
     private int screenY;
@@ -34,8 +37,10 @@ public class player extends entity {
         this.speed = 4;
         this.isMoving = false;
 
-        screenX = this.view.w/2-56;
-        screenY = this.view.h/2-60;
+        //screenX = this.view.w/2-56;
+        //screenY = this.view.h/2-60;
+
+        playerBounds = new Rectangle(x, y, 16, 16);
     }
 
     public void getCharacterImage() {
@@ -66,11 +71,9 @@ public class player extends entity {
         }
     }
 
-
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        Rectangle playerBounds = new Rectangle(x, y, view.w, view.h); // create player bounds
-    
+        playerBounds.setLocation(x+45, y+60);
         // check collision with item
         if (currentItem.checkCollision(playerBounds)) {
             // player collided with item, so stop moving
@@ -238,6 +241,7 @@ public class player extends entity {
         }
         //g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, x, y, 100, 100, null);
+        g2.draw(playerBounds);
     }
 
 }

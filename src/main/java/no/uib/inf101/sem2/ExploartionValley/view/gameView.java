@@ -70,6 +70,7 @@ public class gameView extends JPanel implements Runnable{
         this.item.drawItem(g2);
         
         this.player.draw(g2); //Paint the player
+        //this.item.drawItem(g2); // Draw Items
         g2.dispose();
         
     }
