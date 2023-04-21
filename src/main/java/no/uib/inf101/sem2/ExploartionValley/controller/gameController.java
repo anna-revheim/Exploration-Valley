@@ -2,8 +2,6 @@ package no.uib.inf101.sem2.ExploartionValley.controller;
 
 import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,9 +12,6 @@ public class gameController implements KeyListener {
     gameModel model;
     public boolean upPressed, downPressed, leftPressed, rightPressed, actionPressed;
 
-
-    // Konstruktør til tetriscontroller. Tar inn parameter i type
-    // ControllableTetrismodel og tetrisview. Setter dette som innstansvariabler.
     public gameController() {
         //this.controller = controller;
         //this.gameView = gameView;
@@ -54,7 +49,6 @@ public class gameController implements KeyListener {
     }
 
     public void clockTick(ActionEvent action) {
-
     }
 
     @Override

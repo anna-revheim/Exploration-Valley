@@ -2,14 +2,12 @@ package no.uib.inf101.sem2.ExploartionValley.view;
 
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
-
 import java.awt.geom.Rectangle2D;
 
 public class CellPositionToPixelConverter {
     public Rectangle2D box;
     private GridDimension gd;
     private double margin;
-
 
     public CellPositionToPixelConverter(Rectangle2D box, GridDimension gd, double margin){
         this.box = box;
@@ -22,7 +20,6 @@ public class CellPositionToPixelConverter {
             double cellHeight = ( box.getHeight() - (margin * (gd.rows() + 1)))/ gd.rows();
             double x = box.getX() + margin + (pos.col() * (cellWidth + margin));
             double y = box.getY() + margin + (pos.row() * (cellHeight + margin));
-            
             Rectangle2D cellbox =  new Rectangle2D.Double(x,y,cellWidth,cellHeight);
             return cellbox;
     }

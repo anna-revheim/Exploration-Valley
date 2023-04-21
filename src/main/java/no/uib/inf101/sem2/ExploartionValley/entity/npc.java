@@ -19,10 +19,6 @@ public class npc extends entity {
     private boolean hasCollided = false;
     private Rectangle playerBounds;
     
-
-    private int screenX;
-    private int screenY;
-
     public npc(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;

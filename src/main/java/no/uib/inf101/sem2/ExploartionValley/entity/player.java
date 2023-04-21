@@ -4,31 +4,25 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.model.gamePlay;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 public class player extends entity {
-
     gameView view; // gp
     gameController controller; // keyh
-
-    String direction = "down";
+    gamePlay gameplay;
+    String direction = "down"; 
     public boolean isMoving;
     private boolean hasCollided = false;
     private Rectangle playerBounds;
-
-    private int screenX;
-    private int screenY;
 
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
         setDefaultValues();
         getCharacterImage();
-
         collisionArea = new Rectangle();
         collisionArea.x = 0;
         collisionArea.y = 0;
@@ -36,19 +30,18 @@ public class player extends entity {
         collisionArea.height = 30;
     }
 
-    public void setDefaultValues() {
+    //er dinna nødvendig? kan bruke konstruktøren
+    private void setDefaultValues() {
         this.x = this.view.w / 2 - 56;
         this.y = this.view.h / 2 - 60;
         this.speed = 4;
         this.isMoving = false;
-
         // screenX = this.view.w/2-56;
         // screenY = this.view.h/2-60;
-
         playerBounds = new Rectangle(x, y, 32, 32);
     }
 
-    public void getCharacterImage() {
+    private void getCharacterImage() {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/up/up1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/up/up2.png"));
@@ -70,42 +63,64 @@ public class player extends entity {
             right3 = ImageIO.read(getClass().getResourceAsStream("/player/right/right3.png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/player/right/right4.png"));
             right5 = ImageIO.read(getClass().getResourceAsStream("/player/right/right5.png"));
-
+            downatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk1.png"));
+            downatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk2.png"));
+            downatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk3.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /*public void interact(){
+        BufferedImage image = null;
+        item currentItem = new item(view); // create an instance of item
+        playerBounds.setLocation(x + 35, y + 60);
+
+        if(controller.actionPressed){ //When pressed. (It will need to be held)
+            if(!hasCollided && !isMoving){ //this will happen if it has no 
+                //For now only animations. Will need to be still for something meaningful to happen. ish
+
+
+                spriteCounter++;
+            if (spriteCounter > 3) {
+                else if (spriteNum == 1) {
+                    image = right1;
+                }
+                else if (spriteNum == 2) {
+                    image = right2;}
+                spriteCounter = 0;
+        }
+    }
+}*/
     public void update() {
         item currentItem = new item(view); // create an instance of item
         playerBounds.setLocation(x + 35, y + 60);
 
+        //To do collisions. First check when collision happens, then when not.
         // check collision with item
+
         if (currentItem.checkCollision(playerBounds)) {
             // player collided with item, so stop moving
-            isMoving = false;
+            isMoving = true;
             hasCollided = true;
-
             // move player away from item
-            if (direction == "up") {
-                y += speed;
+            if (direction == "up" ) {
+                y+=5;
             } else if (direction == "down") {
-                y -= speed;
+                y -= 5;
             } else if (direction == "left") {
-                x += speed;
+                x += 5;
             } else if (direction == "right") {
-                x -= speed;
-            }
-        }
+                x -= 5;
+            }}
 
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
                 direction = "up";
-                if (this.y > -40) {
+                if ((this.y > -40)) {
                     y -= speed;
-                    isMoving = true;
-                }
+                    isMoving = true;}
             } else if (controller.downPressed) {
                 direction = "down";
                 if (this.y < this.view.h - 100) {
@@ -114,6 +129,7 @@ public class player extends entity {
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
+                int border = gameplay.getXBorder();
                 if (this.x > -24) {
                     x -= speed;
                     isMoving = true;
@@ -124,9 +140,13 @@ public class player extends entity {
                     x += speed;
                     isMoving = true;
                 }
-            } else {
+            } else if(controller.actionPressed){
+                direction = "interact"; 
+            }
+            else {
                 isMoving = false;
             }
+
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
@@ -136,8 +156,8 @@ public class player extends entity {
             }
         }
 
-        // If the character is moving start counting
-        if (isMoving == true) {
+        // If the character is moving start counting. Count is for character movement.
+        if (isMoving == true || controller.actionPressed) {
             spriteCounter++;
             if (spriteCounter > 6) {
                 if (spriteNum == 1) {
@@ -166,10 +186,6 @@ public class player extends entity {
     }
 
     public void draw(Graphics2D g2) {
-        // g2.setColor(Color.white);
-        // g2.fillRect(this.x, this.y, 40, 40); //Når vi veit tilesize, så kan vi hente
-        // det fra view. 40 for no.
-
         BufferedImage image = null;
         switch (direction) {
             case "up":
@@ -215,21 +231,35 @@ public class player extends entity {
                 if (spriteNum == 1) {
                     image = right1;
                 }
-                if (spriteNum == 2) {
+                else if (spriteNum == 2) {
                     image = right2;
                 } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
                 }
-                if (spriteNum == 4) {
+                else if (spriteNum == 4) {
                     image = right4;
                 } else if (spriteNum == 5) {
                     image = right5;
                 }
                 break;
+            case "interact":
+            if (spriteNum == 1) {
+                image = downatk1;
+            }
+            else if (spriteNum == 2) {
+                image = downatk2;
+            } else if (spriteNum == 3 || spriteNum == 6) {
+                image = downatk3;
+            }
+            else if (spriteNum == 4) {
+                image = downatk3;
+            } else if (spriteNum == 5) {
+                image = down1;
+            }
+            break;
         }
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, x, y, 100, 100, null);
         g2.draw(playerBounds);
     }
-
 }

@@ -1,10 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.model;
 
-
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,8 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;;
 
 public class gameBoard extends Grid<Character> {
-
-
     // The board is made by rows*cols and will be filled with '-'
     public gameBoard(int rows, int cols, String filename) throws IOException {
         super(rows, cols, '-');
@@ -36,6 +31,7 @@ public class gameBoard extends Grid<Character> {
                 }
             }
         }
+        
         else
         {
             for (int i = 0; i < rows && i < lines.size(); i++) {
@@ -49,11 +45,8 @@ public class gameBoard extends Grid<Character> {
                     }
                 }
             }
-        }
-        
-        
+        }   
     }
-
 
     // To be able to test
     public String prettyString() {
@@ -68,5 +61,4 @@ public class gameBoard extends Grid<Character> {
         // format
         return stringOfBoard.toString().trim();
     }
-
 }

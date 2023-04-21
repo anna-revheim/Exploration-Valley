@@ -17,19 +17,12 @@ public class gameView extends JPanel implements Runnable{
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
     public boolean isLoaded = false; // Game only needs to be painted once
-
- 
     private Image buffer; // off-screen image
     private Graphics2D bufferGraphics; // graphics object for off-screen image
-
-
     private Thread gameThread;
     public Dimension dim;
     public int tilesize;
-
-
-    int fps = 60;
-
+    private int fps = 60;
     public int w = 1200;
     public int h = 800;
 
@@ -53,12 +46,10 @@ public class gameView extends JPanel implements Runnable{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
         if (buffer == null) {
             buffer = createImage(getWidth(), getHeight());
             bufferGraphics = (Graphics2D) buffer.getGraphics();
         }
-
         // Checks if the board is already loaded. Prevents overuse of rendering.
         if (!isLoaded) {
             drawGame(bufferGraphics);
@@ -79,12 +70,10 @@ public class gameView extends JPanel implements Runnable{
 
     @Override
     public void run() {
-
         double drawInterval = 1000000000 / fps;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
             // System.out.println("Current time");
-
             // Using sleep method to define a fps.
             try {
                 repaint();
@@ -102,7 +91,6 @@ public class gameView extends JPanel implements Runnable{
             // System.out.println("The game loop is running");
         }
     }
-
 
     public void update() {
         player.update();
