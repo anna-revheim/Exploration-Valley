@@ -13,45 +13,43 @@ public class item extends entity {
 
     gameView view;
 
-    ArrayList<Rectangle> treeBounds;
+    ArrayList<Rectangle> itemBounds;
 
     public item(gameView view) {
         this.view = view;
         getItemImage();
-        treeBounds = new ArrayList<Rectangle>();
+        
+        itemBounds = new ArrayList<Rectangle>();
 
-        Rectangle tree1Bounds = new Rectangle(300, 500, 100, 100);
-        tree1Bounds.translate(-16, -16);
-        Rectangle tree2Bounds = new Rectangle(20, 20, 100, 100);
-        treeBounds.add(tree1Bounds);
-        treeBounds.add(tree2Bounds);
+        itemBounds.add(new Rectangle(300, 500, 100, 100));
+        itemBounds.add(new Rectangle(20, 20, 100, 100));
     }
 
     public void getItemImage() {
         try {
             tree = ImageIO.read(getClass().getResourceAsStream("/item/tree.png"));
+            house = ImageIO.read(getClass().getResourceAsStream("/item/buildings/house.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void drawItem(Graphics2D g2) {
-        for (Rectangle treeBound : treeBounds) {
-            g2.drawImage(tree, treeBound.x, treeBound.y,treeBound.width, treeBound.height, null);
-            g2.draw(treeBound);
+        for (Rectangle itemBound : itemBounds) {
+            g2.drawImage(tree, itemBound.x, itemBound.y,itemBound.width, itemBound.height, null);       
+            g2.drawImage(house, 500, 200, 200, 200, null);        
+            g2.draw(itemBound);
         }
     }
 
     public boolean checkCollision(Rectangle playerBounds) {
-        for (Rectangle treeBound : treeBounds) {
-            boolean collision = playerBounds.intersects(treeBound);
+        for (Rectangle itemBound : itemBounds) {
+            boolean collision = playerBounds.intersects(itemBound);
             if (collision) {
                 System.out.println("Collision detected!");
-                System.out.println("treeBound: " + treeBound.toString());
                 return true; // return true on the first collision
             }
         }
         return false; // return false if no collision is detected
     }
-    
 }
