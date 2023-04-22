@@ -11,8 +11,6 @@ public class gamePlay {
     }
 
 
-
-
     public String getMap() {
         return this.mapname;
     }
@@ -21,7 +19,7 @@ public class gamePlay {
         if (this.mapname == "maps3.txt") {
             return 60;
         } else {
-            return 0;
+            return 60;
         }
     }
 
@@ -29,7 +27,7 @@ public class gamePlay {
         if (this.mapname == "maps3.txt") {
             return 40;
         } else {
-            return 0;
+            return 40;
         }
     }
 
@@ -38,7 +36,7 @@ public class gamePlay {
             return 160;
         }
         else{
-            return 0; //example.
+            return 160; //example.
         }
     }
 

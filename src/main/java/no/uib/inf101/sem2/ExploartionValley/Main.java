@@ -11,7 +11,6 @@ import no.uib.inf101.sem2.ExploartionValley.model.gameTextBox;
 
 public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
-
     public static void main(String[] args) {
         try {
             gamePlay gameplay = new gamePlay();

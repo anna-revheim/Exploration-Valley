@@ -17,6 +17,7 @@ public class player extends entity {
     public boolean isMoving;
     private boolean hasCollided = false;
     private Rectangle playerBounds;
+    private Rectangle interactRange;
 
     public player(gameView view, gameController controller) {
         this.view = view;
@@ -28,8 +29,8 @@ public class player extends entity {
         collisionArea.y = 0;
         collisionArea.width = 30;
         collisionArea.height = 30;
+        this.interactRange = new Rectangle(0, 0, 40, 40);
     }
-
     //er dinna nødvendig? kan bruke konstruktøren
     private void setDefaultValues() {
         this.x = this.view.w / 2 - 56;
@@ -63,9 +64,14 @@ public class player extends entity {
             right3 = ImageIO.read(getClass().getResourceAsStream("/player/right/right3.png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/player/right/right4.png"));
             right5 = ImageIO.read(getClass().getResourceAsStream("/player/right/right5.png"));
-            downatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk1.png"));
-            downatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk2.png"));
-            downatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk3.png"));
+            downatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk1.png"));
+            downatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk2.png"));
+            downatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk3.png"));
+            upatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk1.png"));
+            upatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk2.png"));
+            upatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk3.png"));
+            upatk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk4.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,17 +84,17 @@ public class player extends entity {
         if(controller.actionPressed){ //When pressed. (It will need to be held)
             if(hasCollided){ //this will happen if it has no 
                 //For now only animations. Will need to be still for something meaningful to happen. ish
-                System.out.println("For collision");
+                System.out.println("Collision + E");
             }
             else{
-                System.out.println("Good eh");
+                System.out.println("No collision but E" + this.x +" "+ this.y);
             }
         }
     }
-
+    
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        playerBounds.setLocation(x + 35, y + 60);
+        playerBounds.setLocation(x + 36, y + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
@@ -98,13 +104,13 @@ public class player extends entity {
             hasCollided = true;
             // move player away from item
             if (direction == "up" ) {
-                y+=5;
+                y +=4;
             } else if (direction == "down") {
-                y -= 5;
+                y -= 4;
             } else if (direction == "left") {
-                x += 5;
+                x += 4;
             } else if (direction == "right") {
-                x -= 5;
+                x -= 4;
             }}
         else {
             // player did not collide with item, so continue moving
