@@ -45,23 +45,45 @@ public class DefaultColorTheme implements ColorTheme {
                 break;
             case 'k' :
             imagePath = "/tiles/grass/grassK1.png";
-                    break;
+                break;
             case 'l' :
             imagePath = "/tiles/grass/grassK2.png";
-                    break;
+                break;
             case 'i' :
             imagePath = "/tiles/grass/grassK3.png";
-                    break;            
+                break;            
             case 'o' :
             imagePath = "/tiles/grass/grassK4.png";
-                    break;
-            case 'w' :
-            imagePath = "/tiles/water/water.png";
-                    break;
-            case 'e' :
-            imagePath = "/tiles/water/bottom.png";
                 break;
 
+
+            case 'w' :
+            imagePath = "/tiles/water/water.png";
+                break;
+            case 'b' :
+            imagePath = "/tiles/water/bottom.png";
+                break;
+            case 't' :
+            imagePath = "/tiles/water/top.png";
+                break;
+            case 'x' :
+            imagePath = "/tiles/water/lTop.png";
+                break;
+            case 'v' :
+            imagePath = "/tiles/water/rTop.png";
+                break;
+            case 'd' :
+            imagePath = "/tiles/water/lBottom.png";
+                break;
+            case 'f' :
+            imagePath = "/tiles/water/rBottom.png";
+                break;
+            case '5' :
+            imagePath = "/tiles/water/left.png";
+                break;
+            case '6' :
+            imagePath = "/tiles/water/right.png";
+                break;
             default:
                 throw new IllegalArgumentException(
                 "No available image for '" + c + "'");
@@ -71,24 +93,6 @@ public class DefaultColorTheme implements ColorTheme {
         } catch (IOException e) {
             throw new RuntimeException("Error loading image from " + imagePath, e);
         }
-    }
-
-    @Override
-    public Color getCellColor(char c) {
-        // Tar inn char c og sjekker kva farge den hører til.
-        Color color = switch (c) {
-            case 'L' -> Color.cyan;
-            case 'S' -> Color.GREEN;
-            case 'Z' -> Color.BLUE;
-            case 'J' -> Color.YELLOW;
-            case '-' -> Color.BLACK;
-            case 'T' -> Color.PINK;
-            case 'O' -> Color.WHITE;
-            case 'I' -> Color.ORANGE;
-            default -> throw new IllegalArgumentException(
-                    "No available color for '" + c + "'");
-        };
-        return color;
     }
 
     @Override
