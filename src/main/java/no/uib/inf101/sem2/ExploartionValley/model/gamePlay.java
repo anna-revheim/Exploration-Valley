@@ -10,23 +10,26 @@ public class gamePlay {
         this.mapname = "maps3.txt";
     }
 
+
+
+
     public String getMap() {
         return this.mapname;
     }
 
     public int getCols() {
-        if (this.mapname == "maps1.txt") {
+        if (this.mapname == "maps3.txt") {
             return 60;
         } else {
-            return 60;
+            return 0;
         }
     }
 
     public int getRows() {
-        if (this.mapname == "maps1.txt") {
+        if (this.mapname == "maps3.txt") {
             return 40;
         } else {
-            return 40;
+            return 0;
         }
     }
 
@@ -35,7 +38,16 @@ public class gamePlay {
             return 160;
         }
         else{
-            return 160; //example.
+            return 0; //example.
+        }
+    }
+
+    public int getYBorder(){
+        if(this.mapname == "maps3.txt"){
+            return 160;
+        }
+        else{
+            return 0;
         }
     }
 }

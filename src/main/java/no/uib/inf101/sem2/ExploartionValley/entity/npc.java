@@ -4,9 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
@@ -60,7 +58,6 @@ public class npc extends entity {
             right3 = ImageIO.read(getClass().getResourceAsStream("/player/right/right3.png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/player/right/right4.png"));
             right5 = ImageIO.read(getClass().getResourceAsStream("/player/right/right5.png"));
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,8 +119,7 @@ public class npc extends entity {
                 isMoving = true;
             }
         }
-    
-
+        
         //If the character is moving start counting
         if (isMoving == true) {
             spriteCounter++;
@@ -158,7 +154,6 @@ public class npc extends entity {
         // g2.setColor(Color.white);
         // g2.fillRect(this.x, this.y, 40, 40); //Når vi veit tilesize, så kan vi hente
         // det fra view. 40 for no.
-
         BufferedImage image = null;
         switch (direction) {
             case "up":
@@ -234,5 +229,4 @@ public class npc extends entity {
         g2.drawImage(image, x, y, 100, 100, null);
         g2.draw(playerBounds);
     }
-
 }

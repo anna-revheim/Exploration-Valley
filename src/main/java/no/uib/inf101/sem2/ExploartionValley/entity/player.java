@@ -71,31 +71,24 @@ public class player extends entity {
         }
     }
 
-    /*public void interact(){
+    public void interact(){
         BufferedImage image = null;
         item currentItem = new item(view); // create an instance of item
         playerBounds.setLocation(x + 35, y + 60);
-
         if(controller.actionPressed){ //When pressed. (It will need to be held)
-            if(!hasCollided && !isMoving){ //this will happen if it has no 
+            if(hasCollided){ //this will happen if it has no 
                 //For now only animations. Will need to be still for something meaningful to happen. ish
-
-
-                spriteCounter++;
-            if (spriteCounter > 3) {
-                else if (spriteNum == 1) {
-                    image = right1;
-                }
-                else if (spriteNum == 2) {
-                    image = right2;}
-                spriteCounter = 0;
+                System.out.println("For collision");
+            }
+            else{
+                System.out.println("Good eh");
+            }
         }
     }
-}*/
+
     public void update() {
         item currentItem = new item(view); // create an instance of item
         playerBounds.setLocation(x + 35, y + 60);
-
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
@@ -113,7 +106,6 @@ public class player extends entity {
             } else if (direction == "right") {
                 x -= 5;
             }}
-
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
@@ -129,7 +121,7 @@ public class player extends entity {
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
-                int border = gameplay.getXBorder();
+                //int border = gameplay.getXBorder();
                 if (this.x > -24) {
                     x -= speed;
                     isMoving = true;
@@ -142,11 +134,11 @@ public class player extends entity {
                 }
             } else if(controller.actionPressed){
                 direction = "interact"; 
+                interact();
             }
             else {
                 isMoving = false;
             }
-
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {

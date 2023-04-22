@@ -13,8 +13,7 @@ public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
 
     public static void main(String[] args) {
-        try 
-        {
+        try {
             gamePlay gameplay = new gamePlay();
             gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap()); // Original map
             ViewableGame model = new gameModel(board);
@@ -29,12 +28,8 @@ public class Main {
             frame.setLocationRelativeTo(null);
             view.startGameThread();
             gameTextBox textBox = new gameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");
-        } 
-        
-        catch (IOException e) 
-        {
-            System.out.print("Error couldn't find:" + e.getMessage());
-        }
+            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");} 
+            catch (IOException e) {
+            System.out.print("Error couldn't find:" + e.getMessage());}
     }
 }   
