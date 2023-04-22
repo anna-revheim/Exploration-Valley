@@ -14,10 +14,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             gamePlay gameplay = new gamePlay();
-            gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap()); // Original map
+            //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
+            gameBoard board = new gameBoard(40 ,60, "maps4.txt"); // Original map
+            // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
             JFrame frame = new JFrame(WINDOW_TITLE);
+
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setTitle("Exploation Valley");
             frame.setContentPane(view);
@@ -26,6 +29,8 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
+
+
             gameTextBox textBox = new gameTextBox();
             textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");} 
             catch (IOException e) {
