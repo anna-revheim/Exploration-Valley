@@ -28,10 +28,11 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
-
+            
             gameTextBox textBox = new gameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");} 
-            catch (IOException e) {
-            System.out.print("Error couldn't find:" + e.getMessage());}
+            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");
+        }catch (IOException e) {
+                System.out.print("Error couldn't find:" + e.getMessage());
+            }
     }
-}   
+}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class entity {
     // this class is the parentclass to all things player, monster, npc related.
     // all beings need a position, and a speed.
-    public int x, y;
+    public int worldX, worldY;
     public int speed;
 
     //player 

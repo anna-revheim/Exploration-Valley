@@ -98,8 +98,8 @@ public class gameView extends JPanel implements Runnable{
     public void update() {
         if(this.npcDrawCounter % 5 == 0){
             player.update();
-            bat.update(player.playerBounds);
-            System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
+            bat.update(player.playerBounds, this.w, this.h);
+            //System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
         }
         else{
             player.update();

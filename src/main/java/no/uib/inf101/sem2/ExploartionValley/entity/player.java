@@ -19,6 +19,10 @@ public class player extends entity {
     public Rectangle playerBounds;
     private Rectangle interactRange;
 
+    //Where we place the player
+    public final int screenX;
+    public final int screenY;
+
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
@@ -30,16 +34,17 @@ public class player extends entity {
         collisionArea.width = 30;
         collisionArea.height = 30;
         this.interactRange = new Rectangle(0, 0, 40, 40);
+
+        screenX = this.view.w / 2 - 56;
+        screenY = this.view.h / 2 - 60;
     }
     //er dinna nødvendig? kan bruke konstruktøren
     private void setDefaultValues() {
-        this.x = this.view.w / 2 - 56;
-        this.y = this.view.h / 2 - 60;
+        worldX  = this.view.w / 2 - 56;
+        worldY = this.view.h / 2 - 60;
         this.speed = 4;
         this.isMoving = false;
-        // screenX = this.view.w/2-56;
-        // screenY = this.view.h/2-60;
-        playerBounds = new Rectangle(x, y, 32, 32);
+        playerBounds = new Rectangle(worldX, worldY, 32, 32);
     }
 
     private void getCharacterImage() {
@@ -78,62 +83,64 @@ public class player extends entity {
     }
 
     public void interact(){
-        playerBounds.setLocation(x + 35, y + 60);
-        if(controller.actionPressed){ //When pressed. (It will need to be held)
-            if(hasCollided){ //this will happen if it has no 
-                //For now only animations. Will need to be still for something meaningful to happen. ish
-                System.out.println("Collision + E");
-            }
-            else{
-                System.out.println("No collision but E" + this.x +" "+ this.y);
+        playerBounds.setLocation(worldX + 36, worldY + 60);
+        npc currentBat = new npc(100, 100, 3, 40, 40);
+
+        if(controller.actionPressed){ // When pressed. (It will need to be held)
+            // Bat hit logic
+            if (currentBat != null && currentBat.checkCollision(playerBounds)) {
+                currentBat.hit(); // Call the hit method in the Bat class
             }
         }
     }
     
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        playerBounds.setLocation(x + 36, y + 60);
+
+        playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (currentItem.checkCollision(playerBounds)) {
-            // player collided with item, so stop moving
+        if (currentItem.checkCollision(playerBounds)) { 
+            // player collided with item, so stop moving 
             isMoving = true;
             hasCollided = true;
             // move player away from item
             if (direction == "up" ) {
-                y +=4;
+                worldY +=4;
             } else if (direction == "down") {
-                y -= 4;
+                worldY -= 4;
             } else if (direction == "left") {
-                x += 4;
+                worldX  += 4;
             } else if (direction == "right") {
-                x -= 4;
-            }}
+                worldX  -= 4;
+            }
+        }
+
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
                 direction = "up";
-                if ((this.y > -40)) {
-                    y -= speed;
+                if ((this.worldY > -40)) {
+                    worldY -= speed;
                     isMoving = true;}
             } else if (controller.downPressed) {
                 direction = "down";
-                if (this.y < this.view.h - 100) {
-                    y += speed;
+                if (this.worldY < this.view.h - 100) {
+                    worldY += speed;
                     isMoving = true;
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
                 //int border = gameplay.getXBorder();
-                if (this.x > -24) {
-                    x -= speed;
+                if (this.worldX > -24) {
+                    worldX  -= speed;
                     isMoving = true;
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if (this.x < this.view.w - 80) {
-                    x += speed;
+                if (this.worldX  < this.view.w - 80) {
+                    worldX  += speed;
                     isMoving = true;
                 }
             } else if(controller.actionPressed){
@@ -148,7 +155,7 @@ public class player extends entity {
             if (hasCollided && !currentItem.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
-                System.out.println("X: " + this.x + "\tY: " + this.y);
+                //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
             }
         }
 
@@ -254,8 +261,8 @@ public class player extends entity {
             }
             break;
         }
-        // g2.drawImage(image, screenX, screenY, 100, 100, null);
-        g2.drawImage(image, x, y, 100, 100, null);
+        //g2.drawImage(image, screenX, screenY, 100, 100, null);
+        g2.drawImage(image, worldX, worldY, 100, 100, null);
         g2.draw(playerBounds);
     }
 }
