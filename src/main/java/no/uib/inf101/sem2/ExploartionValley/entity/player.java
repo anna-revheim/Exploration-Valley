@@ -38,8 +38,9 @@ public class player extends entity {
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
     }
+    
     //er dinna nødvendig? kan bruke konstruktøren
-    private void setDefaultValues() {
+    public void setDefaultValues() {
         worldX  = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;
@@ -83,19 +84,12 @@ public class player extends entity {
     }
 
     public void interact(){
-        playerBounds.setLocation(worldX + 36, worldY + 60);
-        npc currentBat = new npc(100, 100, 3, 40, 40);
-
-        if(controller.actionPressed){ // When pressed. (It will need to be held)
-            // Bat hit logic
-            if (currentBat != null && currentBat.checkCollision(playerBounds)) {
-                currentBat.hit(); // Call the hit method in the Bat class
-            }
-        }
+        if(controller.actionPressed == true);
     }
     
     public void update() {
         item currentItem = new item(view); // create an instance of item
+        //view.bat = new npc(view); // Create an instance of a npc
 
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
@@ -103,7 +97,6 @@ public class player extends entity {
 
         if (currentItem.checkCollision(playerBounds)) { 
             // player collided with item, so stop moving 
-            isMoving = true;
             hasCollided = true;
             // move player away from item
             if (direction == "up" ) {
@@ -115,6 +108,12 @@ public class player extends entity {
             } else if (direction == "right") {
                 worldX  -= 4;
             }
+        }
+
+        else if (view.bat.checkCollision(playerBounds)){
+            System.out.println("We are now colliding with the bat, reset should happen");
+            worldX  = this.view.w / 2 - 56;
+            worldY = this.view.h / 2 - 60;
         }
 
         else {

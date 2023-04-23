@@ -30,8 +30,8 @@ public class gameView extends JPanel implements Runnable{
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
-    npc bat = new npc(880, 300, 4, 40, 40);
     item item = new item(this);
+    public npc bat = new npc(this);
 
     public gameView(ViewableGame model) {
         this.model = model;
@@ -98,7 +98,7 @@ public class gameView extends JPanel implements Runnable{
     public void update() {
         if(this.npcDrawCounter % 5 == 0){
             player.update();
-            bat.update(player.playerBounds, this.w, this.h);
+            bat.update();
             //System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
         }
         else{

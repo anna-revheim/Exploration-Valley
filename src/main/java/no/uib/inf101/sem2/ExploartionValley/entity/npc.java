@@ -8,32 +8,42 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
+import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+
 public class npc extends entity {
-    private int x, y; // NPC's current position
+    private int x, y, startX, startY; // NPC's current position
     private int speed; // NPC's movement speed
     private int moveTimer; // Timer for NPC's movement
     private Random rand; // Random number generator for NPC's movement
     private Rectangle npcRect; // Rectangle for NPC's collision detection
-    private BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
+    BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
 
-    private ArrayList<Rectangle> npcBounds; //Boundaries to check for
-    private ArrayList<npc> npcList; //To be able to remove the npc
+    ArrayList<Rectangle> npcBounds;
+    gameView view; // gp
+    gameController controller; // keyh
+    
+    //Where we place the player
 
-
-    public npc(int startX, int startY, int npcSpeed, int npcWidth, int npcHeight) {
-        x = startX;
-        y = startY;
-        speed = npcSpeed;
-        moveTimer = 0;
+    public npc(gameView view) {
+        this.view = view;
         rand = new Random();
-        this.npcList = npcList;
+        //startX = rand.nextInt(this.view.w);
+        //startY = rand.nextInt(this.view.h);
 
-        npcBounds = new ArrayList<Rectangle>();
-        npcRect = new Rectangle(x, y, 20, 20);
+        x = 300;
+        y = 400;
+        moveTimer = 0;
+        
+        speed = 4;
+    
+        npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
+        npcRect = new Rectangle(x, y, 40, 40);
         npcBounds.add(npcRect);
         getNPCimage();
         
+        // Print out the random starting position for testing purposes
     }
 
     public void getNPCimage() {
@@ -61,17 +71,19 @@ public class npc extends entity {
         }
     }
 
-    public void update(Rectangle playerRect, int gameWidth, int gameHeight) {
-        // Decrease move timer and move NPC if timer reaches 0
+    public void update() {
+        // Update NPC's collision rectangle
+        npcRect.setLocation(x + 10, y + 16);
+    
         moveTimer--;
         if (moveTimer <= 0) {
             direction = rand.nextInt(4); // Randomly choose a direction
-            moveTimer = rand.nextInt(20) + 30; // Wait 2-6 seconds before moving again
+            moveTimer = 60;  // Wait 2-6 seconds before moving again
         }
-        
+    
         int newX = x;
         int newY = y;
-        
+    
         switch (direction) {
             case 0: // Move up
                 newY -= speed;
@@ -86,41 +98,22 @@ public class npc extends entity {
                 newX += speed;
                 break;
         }
-        
-        // Check if the new position is within the game boundaries
-        if (newX >= 0 && newX + npcRect.width <= gameWidth) {
+    
+        if (newX >= -24 && newX <= view.w - 80 && newY >= -40 && newY <= view.h - 100) {
             x = newX;
-        }
-        if (newY >= 0 && newY + npcRect.height <= gameHeight) {
             y = newY;
         }
-        
+    
         this.spriteCounter++;
         if (this.spriteCounter > 4) {
             this.spriteCounter = 0;
         }
-        
-        // Update NPC's collision rectangle
-        npcRect.setLocation(x+10, y+16);
     
-     // Check for collision with player rectangle
-        if (npcRect.intersects(playerRect)) {
-
-            /*
-            // Move NPC back to previous position to avoid collision
-            x = npcRect.x;
-            y = npcRect.y;
-            */
-            } 
-            
+        System.out.println("NPC position: (" + x + ", " + y + ")");
     }
 
-    public void hit() {
-        // Remove this bat from the list of NPCs
-        int npcIndex = npcList.indexOf(this);
-        npcList.remove(npcIndex);
-        npcBounds.remove(npcBounds.indexOf(npcRect));
-    }
+    
+    
 
     public void draw(Graphics2D g2d, int spriteCounter) {
         BufferedImage image = null;
@@ -139,8 +132,8 @@ public class npc extends entity {
             image = up1;
             System.out.println("FAKK feil i batsprite.");
         }
-        for (Rectangle npcBound : npcBounds){
-            g2d.drawImage(image, npcBound.x, npcBound.y, 40, 40, null);
+        for (Rectangle npcBound : npcBounds) {
+            g2d.drawImage(image, npcBound.x, npcBound.y, npcBound.width, npcBound.height, null);
             g2d.draw(npcRect);
         }
     }
@@ -166,15 +159,15 @@ public class npc extends entity {
         y = newY;
     }
 
-    
     public boolean checkCollision(Rectangle playerBounds) {
         for (Rectangle npcBound : npcBounds) {
             boolean collision = playerBounds.intersects(npcBound);
             while (collision) {
-                System.out.println("Collision detected!");
+                System.out.println("Collision detected! with an item");
                 return true; // return true on the first collision
             }
         }
         return false; // return false if no collision is detected
     }
+    
 }
