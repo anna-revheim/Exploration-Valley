@@ -12,11 +12,11 @@ public class gameBoard extends Grid<Character> {
     // The board is made by rows*cols and will be filled with '-'
     public gameBoard(int rows, int cols, String filename) throws IOException {
         super(rows, cols, '-');
-    
+
         // Read the content of the file
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
         List<String> lines = reader.lines().collect(Collectors.toList());
-    
+
         // Loop over the lines and fill the board
         if (lines.size() != rows) {
             for (int i = 0; i < rows && i < lines.size(); i++) {
@@ -24,28 +24,28 @@ public class gameBoard extends Grid<Character> {
                 String[] tokens = line.split("\\s+");
                 for (int j = 0; j < cols && j < tokens.length; j++) {
                     String token = tokens[j];
-                    if (!token.isEmpty()) { //If ' '
+                    if (!token.isEmpty()) { // If ' '
                         char c = token.charAt(0);
-                        set(new CellPosition((rows/2)+i-(lines.size()/2), (cols/2)+j-(tokens.length/2)), c);
+                        set(new CellPosition((rows / 2) + i - (lines.size() / 2), (cols / 2) + j - (tokens.length / 2)),
+                                c);
                     }
                 }
             }
         }
-        
-        else
-        {
+
+        else {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);
                 String[] tokens = line.split("\\s+");
                 for (int j = 0; j < cols && j < tokens.length; j++) {
                     String token = tokens[j];
-                    if (!token.isEmpty()) { //If ' '
+                    if (!token.isEmpty()) { // If ' '
                         char c = token.charAt(0);
                         set(new CellPosition(i, j), c);
                     }
                 }
             }
-        }   
+        }
     }
 
     // To be able to test

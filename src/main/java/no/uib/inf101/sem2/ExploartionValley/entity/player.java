@@ -16,7 +16,7 @@ public class player extends entity {
     String direction = "down"; 
     public boolean isMoving;
     private boolean hasCollided = false;
-    private Rectangle playerBounds;
+    public Rectangle playerBounds;
     private Rectangle interactRange;
 
     public player(gameView view, gameController controller) {
@@ -78,8 +78,6 @@ public class player extends entity {
     }
 
     public void interact(){
-        BufferedImage image = null;
-        item currentItem = new item(view); // create an instance of item
         playerBounds.setLocation(x + 35, y + 60);
         if(controller.actionPressed){ //When pressed. (It will need to be held)
             if(hasCollided){ //this will happen if it has no 

@@ -25,10 +25,12 @@ public class gameView extends JPanel implements Runnable{
     private int fps = 60;
     public int w = 1200;
     public int h = 800;
+    public int npcDrawCounter = 0;
 
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
     player player = new player(this, controller);
+    npc bat = new npc(880, 300, 4, 40, 40);
     item item = new item(this);
 
     public gameView(ViewableGame model) {
@@ -59,6 +61,7 @@ public class gameView extends JPanel implements Runnable{
 
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
+        this.bat.draw(g2, bat.getSpriteCounter());
         //this.item.drawItem(g2); 
         g2.dispose();
     }
@@ -93,7 +96,15 @@ public class gameView extends JPanel implements Runnable{
     }
 
     public void update() {
-        player.update();
+        if(this.npcDrawCounter % 5 == 0){
+            player.update();
+            bat.update(player.playerBounds);
+            System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
+        }
+        else{
+            player.update();
+        }
+        this.npcDrawCounter++;
     }
 
     private void drawGame(Graphics2D g2) {

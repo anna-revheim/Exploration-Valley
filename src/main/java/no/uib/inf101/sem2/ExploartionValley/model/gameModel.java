@@ -28,5 +28,7 @@ public class gameModel implements ViewableGame{
     public Iterable<GridCell<Character>> getFallingPiece() {
         throw new UnsupportedOperationException("Unimplemented method 'getFallingPiece'");
     }
-
 }
+
+
+//TROR DINNA KAN FJERNAST=

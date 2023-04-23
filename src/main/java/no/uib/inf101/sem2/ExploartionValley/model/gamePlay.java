@@ -1,5 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.model;
 
+import no.uib.inf101.sem2.ExploartionValley.entity.npc;
+
 //This class is made to keep the gamestory  going. We will achieve this with a bunch of boolean variables.
 
 public class gamePlay {
@@ -8,6 +10,14 @@ public class gamePlay {
 
     public gamePlay() {
         this.mapname = "maps3.txt";
+        summonEnemies();
+    }  
+
+    public void summonEnemies(){
+        if(this.mapname == "maps3.txt"){
+            npc bat = new npc(100, 100, 3, 40, 40);
+        }
+        
     }
 
 

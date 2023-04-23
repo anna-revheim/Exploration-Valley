@@ -7,7 +7,6 @@ import java.util.Iterator;
 public class Grid<E> implements IGrid<E> {
     // Grid er en klasse som inneholder en generisk type E og implementerer
     // interfacet IGRID.
-
     private ArrayList<ArrayList<E>> grid;
     private Image image;
 
@@ -43,7 +42,6 @@ public class Grid<E> implements IGrid<E> {
     public int rows() {
         // Henter menger rader til grid
         return this.grid.size();
-
     }
 
     @Override
@@ -100,5 +98,4 @@ public class Grid<E> implements IGrid<E> {
     public Image image() {
         return image;  
     }
-
 }
