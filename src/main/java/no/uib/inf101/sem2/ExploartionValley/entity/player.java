@@ -129,7 +129,7 @@ public class player extends entity {
                 Rectangle item = iterator.next();
                 if (item.intersects(hitBox)) {
                     int index = view.item.itemBounds.indexOf(item);
-                    //view.item.removeItem(index, view.item.itemBounds, view.item.itemImages);
+                    view.item.removeItem(index, view.item.itemBounds, view.item.itemImages);
                     break;
                 }
             }
@@ -141,13 +141,13 @@ public class player extends entity {
                 Rectangle item = iterator.next();
                 if (item.intersects(hitBox)) {
                     int index = view.bat.npcBounds.indexOf(item);
-                    //view.bat.removeItem(index, view.bat.npcBounds, view.bat.npcImages);
+                    view.bat.removeItem(index, view.bat.npcBounds, view.bat.npcImages);
                     break;
                 }
             }
         }
     }
-    
+
 
     /**
      * Updates the player's position and checks for collisions.

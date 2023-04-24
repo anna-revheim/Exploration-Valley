@@ -3,6 +3,7 @@ package no.uib.inf101.sem2.ExploartionValley.entity;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -18,7 +19,7 @@ public class item extends entity {
     public boolean collision = false;
     public ArrayList<Rectangle> itemBounds; //ArrayList of Rectangles for collisions
     public ArrayList<Rectangle> treeBounds; //ArrayList of Rectangles for collisions
-    public ArrayList<Image> itemImages;
+    public ArrayList<BufferedImage> itemImages;
     Rectangle houseBound;
 
 
@@ -30,7 +31,7 @@ public class item extends entity {
 
     public item(gameView view) {
         this.view = view;
-        itemImages = new ArrayList<Image>();
+        itemImages = new ArrayList<BufferedImage>();
         getItemImage();
         
         treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
