@@ -28,9 +28,7 @@ public class player extends entity {
     public Rectangle interactRange;
     private Rectangle hitBox;
     private int StepCounter;
-    private int SwordCounter;
-    private Random Soundrand;
-
+    
     // Where we place the player
     public final int screenX;
     public final int screenY;
@@ -433,7 +431,6 @@ public class player extends entity {
     }}
 
 public void PlayerSword(){
-    SwordCounter++;
     AudioPlayer audio = new AudioPlayer();
     int index = rand.nextInt(4);
     switch(index){

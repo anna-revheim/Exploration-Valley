@@ -26,13 +26,11 @@ public class npc extends entity {
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
     public ArrayList<BufferedImage> npcImages;
-
     public int hitNumber;
-
     ArrayList<Rectangle> npcBounds;
-    gameView view; // gp
-    gameController controller; // keyh
-    
+    gameView view; 
+    gameController controller;
+
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -55,7 +53,6 @@ public class npc extends entity {
 
         // Print out the random starting position for testing purposes
     }
-
 
     /* 
     * Tries to find and place the sprites in a BufferedImage[], if fail gives exception.
@@ -100,8 +97,6 @@ public class npc extends entity {
             e.printStackTrace();
         }
     }
-
-    
 
     /*
      * NPC method that is called in gameview. It has a movementpattern that is randomized.
