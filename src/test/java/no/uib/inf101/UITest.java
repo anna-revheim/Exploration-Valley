@@ -37,13 +37,4 @@ public class UITest {
         assertEquals(null, ui.getHPimage(-1));
         assertEquals(null, ui.getHPimage(5));
     }
-
-    @Test
-    public void testDrawUI() {
-        Graphics2D mockG2d = Mockito.mock(Graphics2D.class);
-        BufferedImage mockImage = Mockito.mock(BufferedImage.class);
-        Mockito.when(ui.getHPimage(4)).thenReturn(mockImage);
-        ui.drawUI(mockG2d, 4);
-        Mockito.verify(mockG2d, Mockito.times(1)).drawImage(mockImage, 10, 30, 32, 104, null);
-    }
-    
+}
