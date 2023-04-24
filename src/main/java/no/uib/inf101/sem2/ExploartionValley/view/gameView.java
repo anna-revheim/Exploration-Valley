@@ -85,7 +85,7 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
-        ui.drawUI(g2, player.hitNumber);
+        ui.drawUI(g2, player.getHitPoints());
 
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
@@ -141,11 +141,9 @@ public class gameView extends JPanel implements Runnable{
         if(this.npcDrawCounter % 5 == 0){
             player.update();
             bat.update();
-            ui.update(player.hitNumber);
         } else{
             player.update();
         }
-
         this.npcDrawCounter++;
     }
 

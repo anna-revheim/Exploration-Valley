@@ -29,6 +29,7 @@ public class player extends entity {
     private Rectangle hitBox;
     private int StepCounter;
     public int KillCount;
+    public int hitPoints;
     
     // Where we place the player
     public final int screenX;
@@ -58,7 +59,7 @@ public class player extends entity {
      * be able to reset the players values midgame.
      */
     public void setDefaultValues() {
-        this.hitNumber = 3;
+        this.hitPoints = 3;
         worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;
@@ -185,12 +186,12 @@ public class player extends entity {
             } else if (direction == "right") {
                 worldX  -= 35;
             }
-            hitNumber --;
-            if (hitNumber > 0) {
+            hitPoints --;
+            if (hitPoints > 0) {
                 
                 System.out.println("Bat is attacking");
             }
-            while (hitNumber == 0) {
+            while (hitPoints == 0) {
                 try {
                     Thread.sleep(1000); // add a delay of 1 second
                 } catch (InterruptedException e) {
@@ -290,6 +291,10 @@ public class player extends entity {
 
     public boolean isMoving() {
         return isMoving;
+    }
+
+    public int getHitPoints(){
+        return this.hitPoints;
     }
 
     public void draw(Graphics2D g2) {

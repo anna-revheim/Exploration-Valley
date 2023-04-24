@@ -28,29 +28,30 @@ public class UI {
             e.printStackTrace();
         }
     }
-    public void update(int health) {
+    public BufferedImage getHPimage(int health) {
         switch (health) {
             case 0:
                 healthBar = hp0;
-                break;
+                return healthBar;
             case 1:
                 healthBar = hp2;
-                break;
+                return healthBar;
             case 2:
                 healthBar = hp4;
-                break;
+                return healthBar;
             case 3:
                 healthBar = hp6;
-                break;
+                return healthBar;
             case 4:
                 healthBar = hp8;
-                break;
+                return healthBar;
             default:
-                break;
+                return null;
         }
     }
 
     public void drawUI(Graphics2D g2d, int health) {
+        healthBar = getHPimage(health);
         g2d.drawImage(healthBar, 10, 30, 32, 104, null);
     }
     
