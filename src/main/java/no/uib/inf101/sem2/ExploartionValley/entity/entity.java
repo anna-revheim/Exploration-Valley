@@ -4,13 +4,13 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 
 /*
  * Entity class is the parentclass to all things player, enemy and item related. 
  * It gives all classes containing entity a x, y position on the worldmap and its own speed. 
  */
-public class entity {
+public class Entity {
     // this class is the parentclass to all things player, monster, npc related.
     // all beings need a position, and a speed.
     public int worldX, worldY;
@@ -25,7 +25,7 @@ public class entity {
     public int hitPoints = 4;
     public Rectangle collisionArea;
     public boolean collisionOn = false;
-    public gameView view;
+    public GameView view;
 
 
 /**

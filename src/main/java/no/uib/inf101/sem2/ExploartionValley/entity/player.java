@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.controller.GameController;
 import no.uib.inf101.sem2.ExploartionValley.model.AudioPlayer;
-import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 
 /**
  * The player class represents the player in a game. It extends the entity
@@ -18,9 +18,9 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
  * interaction range.
  */
 
-public class player extends entity {
-    gameView view; // gp
-    gameController controller; // keyh
+public class Player extends Entity {
+    GameView view; // gp
+    GameController controller; // keyh
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
@@ -42,7 +42,7 @@ public class player extends entity {
      * @param view       The 'gameView' instance for displaying the game.
      * @param controller The 'gameController' instance for controlling the game.
      */
-    public player(gameView view, gameController controller) {
+    public Player(GameView view, GameController controller) {
         this.view = view;
         this.controller = controller;
         setDefaultValues();
@@ -59,7 +59,7 @@ public class player extends entity {
      * be able to reset the players values midgame.
      */
     public void setDefaultValues() {
-        this.hitPoints = 3;
+        this.hitPoints = 4;
         worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;

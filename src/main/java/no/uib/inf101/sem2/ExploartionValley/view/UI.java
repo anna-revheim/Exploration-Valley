@@ -9,10 +9,10 @@ import javax.imageio.ImageIO;
 public class UI {
     public BufferedImage hp0, hp2, hp4, hp6, hp8;
     BufferedImage healthBar = null;
-    private gameView view;
+    private GameView view;
 
 
-    public UI(gameView view) {
+    public UI(GameView view) {
         this.view = view;
         getUIImage();
     }
@@ -20,10 +20,10 @@ public class UI {
     public void getUIImage() {
         try {
             hp0 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp2 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp4 =  ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp6 =  ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp8 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
+            hp2 = ImageIO.read(getClass().getResourceAsStream("/UI/2.png"));
+            hp4 =  ImageIO.read(getClass().getResourceAsStream("/UI/4.png"));
+            hp6 =  ImageIO.read(getClass().getResourceAsStream("/UI/6.png"));
+            hp8 = ImageIO.read(getClass().getResourceAsStream("/UI/8.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

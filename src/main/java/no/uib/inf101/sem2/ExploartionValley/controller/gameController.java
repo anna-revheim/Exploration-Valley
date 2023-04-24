@@ -1,7 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.controller;
 
-import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
-import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+import no.uib.inf101.sem2.ExploartionValley.model.GameModel;
+import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,13 +11,13 @@ This class serves as the controller for the Exploration Valley game. It implemen
 It interacts with the controllableGameModel, gameView, and gameModel classes to manage the game's state and user interactions.
 */
 
-public class gameController implements KeyListener {
-    controllableGameModel controller;
-    gameView gameView;
-    gameModel model;
+public class GameController implements KeyListener {
+    ControllableGameModel controller;
+    GameView gameView;
+    GameModel model;
     public boolean upPressed, downPressed, leftPressed, rightPressed, actionPressed;
 
-    public gameController() {
+    public GameController() {
     }
 
     @Override

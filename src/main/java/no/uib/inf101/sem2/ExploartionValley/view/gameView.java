@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.controller.GameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
@@ -23,7 +23,7 @@ import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
  */
 
 
-public class gameView extends JPanel implements Runnable{
+public class GameView extends JPanel implements Runnable{
     private TileDirectory ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
@@ -37,11 +37,11 @@ public class gameView extends JPanel implements Runnable{
     public int w = 1200;
     public int h = 800;
     public int npcDrawCounter = 0;
-    gameController controller = new gameController();
+    GameController controller = new GameController();
 
-    public player player = new player(this, controller);
-    public item item = new item(this);
-    public npc bat = new npc(this);
+    public Player player = new Player(this, controller);
+    public Item item = new Item(this);
+    public Npc bat = new Npc(this);
     public UI ui  = new UI(this);
 
 
@@ -53,7 +53,7 @@ public class gameView extends JPanel implements Runnable{
     * Initializes the color theme to DefaultColorTheme and sets the background color to the theme's background color.
     * @param model the ViewableGame model to be used
     */
-    public gameView(ViewableGame model) {
+    public GameView(ViewableGame model) {
         this.model = model;
         this.tilesize = 48; 
         this.addKeyListener(controller);

@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
-import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
-import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+import no.uib.inf101.sem2.ExploartionValley.controller.GameController;
+import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 
 /*
  * This class represents a non-playable character (npc) in the game.
@@ -16,7 +16,7 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
  * from the resources folder. The class extends the entity class.
  */
 
-public class npc extends entity {
+public class Npc extends Entity {
     int x; // NPC's current position
     int y;
     private int speed;     // NPC's movement speed
@@ -28,15 +28,15 @@ public class npc extends entity {
     public ArrayList<BufferedImage> npcImages;
     public int hitNumber;
     ArrayList<Rectangle> npcBounds;
-    gameView view; 
-    gameController controller;
+    GameView view; 
+    GameController controller;
 
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
 * @param view the gameView in which the npc will be displayed
 */
-    public npc(gameView view) {
+    public Npc(GameView view) {
         this.view = view;
         rand = new Random();
         x = rand.nextInt(this.view.w-200);
