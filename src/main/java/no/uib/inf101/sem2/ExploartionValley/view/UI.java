@@ -12,6 +12,7 @@ public class UI {
     private GameView view;
 
 
+
     public UI(GameView view) {
         this.view = view;
         getUIImage();

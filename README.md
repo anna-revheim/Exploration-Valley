@@ -17,4 +17,6 @@ Oppgaven er utført av Elias Vaardal og Anna Revheim.
 Oppgaven var svært kompleks, og vi har på nokon områder tatt inspirasjon fra https://www.youtube.com/@RyiSnow sine videoer.
 Regel for at vi brukte @RyiSnow sin guide var at stor tid skal ha vært putta i bruk før vi tar inspirasjon.
 I tillegg har vi full forståelse for all kode som er brukt i dette programmet. Vi kan begge trygyt si at vi har
-puttet rundt 40 timer kvær i prosjektet. 
+puttet rundt 40 timer kvær i prosjektet.
+
+For å spare tid er deler av Tetris coden resirkulert for å kunne ta i bruk grid. 
