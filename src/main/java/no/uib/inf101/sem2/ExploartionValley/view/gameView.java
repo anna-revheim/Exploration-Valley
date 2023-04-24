@@ -6,22 +6,31 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.Dimension;
-
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
-public class gameView extends JPanel implements Runnable{
+/*
+ *  This class represents the view for the Exploration Valley game. It extends JPanel and implements Runnable, 
+ *  and is responsible for painting the game graphics on the screen. It creates a buffer image for rendering and
+ *  a game thread for updating the game state and drawing the graphics at a fixed frame rate. The paintComponent
+ *  method is called when the screen needs to be updated, and it draws the game graphics using the buffer image. 
+ *  The run method runs the game loop, which regulates the frame rate using Thread.sleep(). The update method updates 
+ *  the game state, and the drawGame and drawCell methods draw the game graphics.
+ */
 
+
+public class gameView extends JPanel implements Runnable{
     private DefaultColorTheme ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
-    public boolean isLoaded = false; // Game only needs to be painted once
-    private Image buffer; // off-screen image
-    private Graphics2D bufferGraphics; // graphics object for off-screen image
-    private Thread gameThread;
+    private boolean isLoaded = false;  // Game only needs to be painted once
+    private Image buffer;             // off-screen image
+    private Graphics2D bufferGraphics;// graphics object for off-screen images
+    private Thread gameThread;       
     public Dimension dim;
     public int tilesize;
+
     private int fps = 60;
     public int w = 1200;
     public int h = 800;
@@ -29,13 +38,20 @@ public class gameView extends JPanel implements Runnable{
 
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
-    player player = new player(this, controller);
-    npc bat = new npc(880, 300, 4, 40, 40);
+    public player player = new player(this, controller);
     item item = new item(this);
+    public npc bat = new npc(this);
 
+    /*
+    * Constructs a new game view with the given ViewableGame model.
+    * Sets the tile size to 48 and adds a key listener for the controller.
+    * Sets the focusable property to true and the preferred size to w x h.
+    * Initializes the color theme to DefaultColorTheme and sets the background color to the theme's background color.
+    * @param model the ViewableGame model to be used
+    */
     public gameView(ViewableGame model) {
         this.model = model;
-        this.tilesize = 20; //KOR STOR E VÅR TILESIZE
+        this.tilesize = 48; 
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
@@ -58,7 +74,6 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
-
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());
@@ -71,12 +86,20 @@ public class gameView extends JPanel implements Runnable{
         gameThread.start();
     }
 
+/**
+ * This method runs the game loop, which updates the game state and repaints
+ * the screen at a fixed frame rate per second. It uses the 'repaint()'
+ * and 'update()' methods to draw the game, and the 'Thread.sleep()' method to
+ * regulate the frame rate.
+ *
+ * @override The 'run()' method of the 'Thread' class.
+ */
+
     @Override
     public void run() {
         double drawInterval = 1000000000 / fps;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while (gameThread != null) {
-            // System.out.println("Current time");
             // Using sleep method to define a fps.
             try {
                 repaint();
@@ -91,24 +114,23 @@ public class gameView extends JPanel implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // System.out.println("The game loop is running");
         }
     }
 
     public void update() {
         if(this.npcDrawCounter % 5 == 0){
             player.update();
-            bat.update(player.playerBounds);
-            System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
+            bat.update();
+            //System.out.println("X: "+bat.getX()+", Y: "+bat.getY()); Bat tracking for testing purposes.
         }
         else{
             player.update();
         }
         this.npcDrawCounter++;
     }
+    
 
     private void drawGame(Graphics2D g2) {
-
         double width = this.getWidth() - 2 * OUTER_MARGIN;
         double height = this.getHeight() - 2 * OUTER_MARGIN;
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);

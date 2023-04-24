@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+This class serves as the controller for the Exploration Valley game. It implements the KeyListener interface to handle keyboard input from the user.
+It interacts with the controllableGameModel, gameView, and gameModel classes to manage the game's state and user interactions.
+*/
+
 public class gameController implements KeyListener {
     controllableGameModel controller;
     gameView gameView;
@@ -13,9 +18,6 @@ public class gameController implements KeyListener {
     public boolean upPressed, downPressed, leftPressed, rightPressed, actionPressed;
 
     public gameController() {
-        //this.controller = controller;
-        //this.gameView = gameView;
-        // this.tick = new Timer(model.milli(), this::clockTick);
     }
 
     @Override
@@ -36,23 +38,14 @@ public class gameController implements KeyListener {
         if (action.getKeyCode() == KeyEvent.VK_W) {
             upPressed = true;
         }
-        // VVV Dropp ned
-        if (action.getKeyCode() == KeyEvent.VK_SPACE) {
-
-        }
-
         if (action.getKeyCode() == KeyEvent.VK_E) {
             actionPressed = true;
         }
-        // Bruker repaint() for å gi konstante oppdateringer til view.
-        //gameView.repaint();
-    }
-
-    public void clockTick(ActionEvent action) {
     }
 
     @Override
     public void keyReleased(KeyEvent action) {
+        // <-- Flytt venstre
         if (action.getKeyCode() == KeyEvent.VK_A) {
             leftPressed = false;
         }
@@ -68,16 +61,14 @@ public class gameController implements KeyListener {
         if (action.getKeyCode() == KeyEvent.VK_W) {
             upPressed = false;
         }
-        // VVV Dropp ned
-        if (action.getKeyCode() == KeyEvent.VK_SPACE) {
-
-        }
-
+        // Interact | action
         if (action.getKeyCode() == KeyEvent.VK_E) {
             actionPressed = false;
         }
     }
 
+    public void clockTick(ActionEvent action) {
+    }
     @Override
     public void keyTyped(KeyEvent arg0) {
     }
