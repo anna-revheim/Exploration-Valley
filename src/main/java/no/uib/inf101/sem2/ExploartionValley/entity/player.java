@@ -37,10 +37,9 @@ public class player extends entity {
     
 
     /**
-     * Constructor for the `player` class.
-     * 
-     * @param view       The `gameView` instance for displaying the game.
-     * @param controller The `gameController` instance for controlling the game.
+     * Constructor for the 'player' class.
+     * @param view       The 'gameView' instance for displaying the game.
+     * @param controller The 'gameController' instance for controlling the game.
      */
     public player(gameView view, gameController controller) {
         this.view = view;
@@ -66,7 +65,6 @@ public class player extends entity {
         this.isMoving = false;
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
-        
     }
 
     private void getCharacterImage() {
@@ -152,8 +150,7 @@ public class player extends entity {
      * This code is quite long due to its complexity. First checks for collision, if
      * no move.
      * After it checks for directions and inputs. Also keeps track for spritecounter
-     * that is
-     * used for drawing.
+     * that is used for drawing. Code inspiration from: @RyiSnow
      */
     
     public void update() {

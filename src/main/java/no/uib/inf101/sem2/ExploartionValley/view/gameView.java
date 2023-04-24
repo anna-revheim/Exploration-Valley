@@ -61,12 +61,12 @@ public class gameView extends JPanel implements Runnable{
         ct = new TileDirectory();
         this.setBackground(ct.getBackgroundColor());
     }
-
+    //Draws killcounter.
     public void drawCounter(Graphics2D g2) {
         Font font = new Font("Arial", Font.BOLD, 24);
         g2.setFont(font);
         g2.setColor(Color.WHITE);
-        g2.drawString("Killcount: " + player.getKillCount(), 10, 30);
+        g2.drawString("Killcount: " + player.getKillCount(), 10, 20);
     }
     
     @Override
@@ -94,7 +94,7 @@ public class gameView extends JPanel implements Runnable{
     }
 
     public void startGameThread() {
-        gameThread = new Thread(this); // this = gameview
+        gameThread = new Thread(this);
         gameThread.start();
     }
 
@@ -105,6 +105,7 @@ public class gameView extends JPanel implements Runnable{
  * and 'update()' methods to draw the game, and the 'Thread.sleep()' method to
  * regulate the frame rate.
  *
+ * Code inspiration: @RyiSnow  - https://www.youtube.com/watch?v=VpH33Uw-_0E sleep fps timer.
  * @override The 'run()' method of the 'Thread' class.
  */
     @Override
@@ -145,7 +146,6 @@ public class gameView extends JPanel implements Runnable{
         this.npcDrawCounter++;
     }
 
-
     /**
     * Draws the game board, given a graphics context.
     * @param Graphics2D g2 The graphics context to use for drawing.
@@ -161,7 +161,6 @@ public class gameView extends JPanel implements Runnable{
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
 
     }
-
 
     /**
     * Draws the cells on the game board by iterating over them and drawing each
