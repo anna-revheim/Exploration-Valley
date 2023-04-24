@@ -141,6 +141,7 @@ public class player extends entity {
                 view.bat.x = rand.nextInt(this.view.w-200);
                 view.bat.y = rand.nextInt(this.view.h-200);
                 System.out.println("Bat Dead");
+                view.bat.hitNumber = 2;
                 this.KillCount++;
             }
         }
@@ -179,13 +180,13 @@ public class player extends entity {
         else if (checkCollision(playerBounds, view.bat.npcBounds)){
             hasCollided = true;
             if (direction == "up" ) {
-                worldY +=20;
+                worldY +=35;
             } else if (direction == "down") {
-                worldY -= 20;
+                worldY -= 35;
             } else if (direction == "left") {
-                worldX  += 20;
+                worldX  += 35;
             } else if (direction == "right") {
-                worldX  -= 20;
+                worldX  -= 35;
             }
             hitNumber --;
             if (hitNumber > 0) {
