@@ -91,8 +91,6 @@ public class npc extends entity {
             npcImages.add(batSprites[13]);
             npcImages.add(batSprites[15]);
             npcImages.add(batSprites[15]);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,8 +138,6 @@ public class npc extends entity {
         }
     }
 
-    
-    
 
     /*
      * Draws the batSprites based on direction and current spriteCounter.  
