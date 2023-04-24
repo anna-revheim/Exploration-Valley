@@ -19,7 +19,6 @@ public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
     public static void main(String[] args) {
         try {
-            //GameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
             GameBoard board = new GameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
@@ -35,7 +34,7 @@ public class Main {
             AudioPlayer musicplayer = new AudioPlayer();
             musicplayer.play("src/main/resources/sound/music/GC8bit.wav", 0.05);
             gameTextBox textBox = new gameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\nThose darn bats have been violating your backyard for way too long.\n\nPress || hold E to eliminate them!\n\nPress escape to close.");
+            textBox.appendText("Welcome to Exploration Valley!\nThose darn bats have been violating your backyard for way too long.\n\nPress or hold E to eliminate them!\n\nPress escape to close.");
         }catch (IOException e) {
                 System.out.print("Error couldn't find:" + e.getMessage());
             }

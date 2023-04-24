@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.view;
 
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,10 +7,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class UI {
-
     public BufferedImage hp0, hp2, hp4, hp6, hp8;
+    BufferedImage healthBar = null;
     private gameView view;
     BufferedImage healthBar = null;
+
 
     public UI(gameView view) {
         this.view = view;
@@ -29,7 +29,6 @@ public class UI {
             e.printStackTrace();
         }
     }
-
     public void update(int health) {
         switch (health) {
             case 0:
@@ -50,7 +49,6 @@ public class UI {
             default:
                 break;
         }
-        
     }
 
     public void drawUI(Graphics2D g2d, int health) {

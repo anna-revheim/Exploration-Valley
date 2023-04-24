@@ -61,7 +61,7 @@ public class npc extends entity {
             batSprites[0] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright1.png"));
             batSprites[1] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright2.png"));
             batSprites[2] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright3.png"));
-            batSprites[3] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright4.png"));
+            batSprites[3] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batup/batup1.png"));
             batSprites[4] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batup/batup1.png"));
             batSprites[5] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batup/batup2.png"));
             batSprites[6] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batup/batup3.png"));
@@ -74,22 +74,6 @@ public class npc extends entity {
             batSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft2.png"));
             batSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft3.png"));
             batSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft4.png"));
-
-            npcImages.add(batSprites[0]);
-            npcImages.add(batSprites[1]);
-            npcImages.add(batSprites[2]);
-            npcImages.add(batSprites[3]);
-            npcImages.add(batSprites[4]);
-            npcImages.add(batSprites[5]);
-            npcImages.add(batSprites[6]);
-            npcImages.add(batSprites[7]);
-            npcImages.add(batSprites[8]);
-            npcImages.add(batSprites[9]);
-            npcImages.add(batSprites[10]);
-            npcImages.add(batSprites[11]);
-            npcImages.add(batSprites[13]);
-            npcImages.add(batSprites[15]);
-            npcImages.add(batSprites[15]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,9 +89,7 @@ public class npc extends entity {
         if (moveTimer <= 0) {
             direction = rand.nextInt(4); // Randomly choose a direction
             moveTimer = 60;  // Wait 2-6 seconds before moving again
-            moveTimer = 60;  // Wait 2-6 seconds before moving again
         }
-    
         int newX = x;
         int newY = y;
     
@@ -125,7 +107,6 @@ public class npc extends entity {
                 newX += speed;
                 break;
         }
-    
         if (newX >= 0 && newX <= view.w - 100 && newY >= -40 && newY <= view.h - 128) {
             x = newX;
             y = newY;
@@ -137,7 +118,6 @@ public class npc extends entity {
         }
     }
 
-
     /*
      * Draws the batSprites based on direction and current spriteCounter.  
      * @param g2d the Graphics2D context to draw in
@@ -148,12 +128,9 @@ public class npc extends entity {
         int count = spriteCounter;
         if (this.direction == 0) {// if the bat moves upwards
             image = batSprites[Math.max(7 - count, 0)];
-            image = batSprites[Math.max(7 - count, 0)];
         } else if (this.direction == 1) {// if the bat moves down
             image = batSprites[Math.max(11 - count, 0)];
-            image = batSprites[Math.max(11 - count, 0)];
         } else if (this.direction == 2) {// if the bat moves left
-            image = batSprites[Math.max(15 - count, 0)];
             image = batSprites[Math.max(15 - count, 0)];
         } else if (this.direction == 3) {// if the bat moves right
             image = batSprites[Math.max(3 - count, 0)];
@@ -168,7 +145,7 @@ public class npc extends entity {
         }
         for (Rectangle npcBound : npcBounds) {
             g2d.drawImage(image, npcBound.x, npcBound.y, npcBound.width, npcBound.height, null);
-            //g2d.draw(npcRect);
+            g2d.draw(npcRect);
         }
     }
 

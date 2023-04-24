@@ -56,22 +56,18 @@ public class gameView extends JPanel implements Runnable{
     public gameView(ViewableGame model) {
         this.model = model;
         this.tilesize = 48; 
-<<<<<<< HEAD
-=======
-        this.tilesize = 48;
->>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
         ct = new TileDirectory();
         this.setBackground(ct.getBackgroundColor());
     }
-
+    //Draws killcounter.
     public void drawCounter(Graphics2D g2) {
         Font font = new Font("Arial", Font.BOLD, 24);
         g2.setFont(font);
         g2.setColor(Color.WHITE);
-        g2.drawString("Killcount: " + player.getKillCount(), 10, 30);
+        g2.drawString("Killcount: " + player.getKillCount(), 10, 20);
     }
     
     @Override
@@ -89,7 +85,7 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
-        this.ui.drawUI(g2, player.hitNumber);
+        ui.drawUI(g2, player.hitNumber);
 
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
@@ -100,7 +96,7 @@ public class gameView extends JPanel implements Runnable{
     }
 
     public void startGameThread() {
-        gameThread = new Thread(this); // this = gameview
+        gameThread = new Thread(this);
         gameThread.start();
     }
 
@@ -111,6 +107,7 @@ public class gameView extends JPanel implements Runnable{
  * and 'update()' methods to draw the game, and the 'Thread.sleep()' method to
  * regulate the frame rate.
  *
+ * Code inspiration: @RyiSnow  - https://www.youtube.com/watch?v=VpH33Uw-_0E sleep fps timer.
  * @override The 'run()' method of the 'Thread' class.
  */
     @Override
@@ -144,12 +141,13 @@ public class gameView extends JPanel implements Runnable{
         if(this.npcDrawCounter % 5 == 0){
             player.update();
             bat.update();
+            ui.update(player.hitNumber);
         } else{
             player.update();
         }
+
         this.npcDrawCounter++;
     }
-
 
     /**
     * Draws the game board, given a graphics context.
@@ -166,7 +164,6 @@ public class gameView extends JPanel implements Runnable{
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
 
     }
-
 
     /**
     * Draws the cells on the game board by iterating over them and drawing each
