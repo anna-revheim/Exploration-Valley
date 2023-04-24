@@ -8,8 +8,9 @@ import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
  * Represents a model for a game with a game board
  */
 
-public class gameModel implements ViewableGame{
-    public GameBoard board; 
+ public class gameModel implements ViewableGame{
+
+    private GameBoard board; 
 
     /**
     *Constructs a game model with the given game board.

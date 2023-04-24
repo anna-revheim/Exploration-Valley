@@ -334,11 +334,9 @@ public class player extends entity {
                 if (spriteNum == 1) {
                     image = right1;
                 } else if (spriteNum == 2) {
-                } else if (spriteNum == 2) {
                     image = right2;
                 } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
-                } else if (spriteNum == 4) {
                 } else if (spriteNum == 4) {
                     image = right4;
                 } else if (spriteNum == 5) {
