@@ -6,14 +6,18 @@ import no.uib.inf101.sem2.ExploartionValley.model.gameBoard;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
-import no.uib.inf101.sem2.ExploartionValley.model.gamePlay;
 import no.uib.inf101.sem2.ExploartionValley.model.gameTextBox;
+
+/**
+The Main class is the entry point for the Exploration Valley game.
+It creates a gameBoard, a model and a view, and starts the game thread.
+It also sets up a text box with a welcome message for the player.
+*/
 
 public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
     public static void main(String[] args) {
         try {
-            //gamePlay gameplay = new gamePlay();
             //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
 
             gameBoard board = new gameBoard(40 ,60, "maps4.txt"); // Original map

@@ -3,25 +3,27 @@ package no.uib.inf101.sem2.ExploartionValley.view;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
-public class DefaultColorTheme implements ColorTheme {
+public class TileDirectory implements TileTheme {
 
     @Override
     public Color getBackgroundColor() {
-        // Personlig utvalg av bakgrunnsfarge.
+        // Returns black - for backgroundcolor
         return Color.BLACK;
     }
 
-    @Override
     public Color getFrameColor() {
-        // Personlig utvalg av rammefarge.
+        // Returns black - for framecolor
         return Color.BLACK;
     }
 
+    /* This class provides a way to retrieve the image associated with a given character on the gamemap.
+     * 
+     * @param c - Takes in char from map
+     */
     @Override
-    public Image getCellImage(char c) {
+    public Image getTileImage(char c) {
         String imagePath;
         // Checking character and what tiles it should be
         switch (c) {
@@ -91,17 +93,5 @@ public class DefaultColorTheme implements ColorTheme {
         } catch (IOException e) {
             throw new RuntimeException("Error loading image from " + imagePath, e);
         }
-    }
-
-    @Override
-    public Color GameOverColor() {
-        // Returnerer en sladdet bakgrunnsfarge.
-        return new Color(0, 0, 0, 128);
-    }
-
-    @Override
-    public Color GameOverTextColor() {
-        // Returnerer ønsket tekstfarge.
-        return Color.WHITE;
     }
 }
