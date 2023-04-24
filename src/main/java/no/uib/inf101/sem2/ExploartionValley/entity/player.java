@@ -124,9 +124,18 @@ public class player extends entity {
         }
 
         else if (view.bat.checkCollision(playerBounds)){
-            System.out.println("We are now colliding with the bat, reset should happen");
-            worldX  = this.view.w / 2 - 56;
-            worldY = this.view.h / 2 - 60;
+            hitNumber --;
+            if (hitNumber > 0) {
+                System.out.println("We are now colliding with the bat, reset should happen");
+            }
+            if (hitNumber == 0) {
+                worldX  = this.view.w / 2 - 56;
+                worldY = this.view.h / 2 - 60;
+                hitNumber = 3;
+            }
+            
+
+
         }
 
         else {
@@ -204,10 +213,6 @@ public class player extends entity {
                 }
                 spriteCounter = 0;
             }
-        } 
-        else if (controller.actionPressed = false) {
-            spriteNum = 6;
-            spriteCounter = 0;
         }
         else {
             spriteNum = 3;

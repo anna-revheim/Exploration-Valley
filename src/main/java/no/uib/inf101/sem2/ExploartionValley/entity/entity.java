@@ -17,6 +17,7 @@ public class entity {
     public BufferedImage tree, house;
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    public int hitNumber = 3;
     public Rectangle collisionArea;
     public boolean collisionOn = false;
 
