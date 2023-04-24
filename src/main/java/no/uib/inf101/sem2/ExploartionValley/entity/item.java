@@ -17,13 +17,15 @@ public class item extends entity {
     public item(gameView view) {
         this.view = view;
         getItemImage();
-        treeBounds = new ArrayList<Rectangle>();
-        treeBounds.add(new Rectangle(300, 500, 100, 100));
-        treeBounds.add(new Rectangle(20, 20, 100, 100));
-        houseBound = new Rectangle(500, 200, 200, 200);
-        itemBounds = new ArrayList<Rectangle>();
-        itemBounds.addAll(treeBounds);
-        itemBounds.add(houseBound);
+        
+        treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
+        treeBounds.add(new Rectangle(300, 500, 100, 100)); // a tree
+        treeBounds.add(new Rectangle(200, 100, 100, 100)); // Second tree
+        houseBound = new Rectangle(500, 200, 200, 200); // A house
+
+        itemBounds = new ArrayList<Rectangle>(); // One list for all of the items
+        itemBounds.addAll(treeBounds); //Add the trees
+        itemBounds.add(houseBound); // Add the houses
     }
 
     public void getItemImage() {
@@ -47,7 +49,7 @@ public class item extends entity {
         for (Rectangle itemBound : itemBounds) {
             boolean collision = playerBounds.intersects(itemBound);
             while (collision) {
-                System.out.println("Collision detected!");
+                System.out.println("Collision detected! with an item");
                 return true; // return true on the first collision
             }
         }

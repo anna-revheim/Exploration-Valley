@@ -15,7 +15,7 @@ public class gamePlay {
 
     public void summonEnemies(){
         if(this.mapname == "maps3.txt"){
-            npc bat = new npc(100, 100, 3, 40, 40);
+            
         }
         
     }
