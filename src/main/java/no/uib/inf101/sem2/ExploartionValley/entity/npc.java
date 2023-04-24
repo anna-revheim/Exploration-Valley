@@ -25,23 +25,12 @@ public class npc extends entity {
     private Rectangle npcRect; // Rectangle for NPC's collision detection
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
-<<<<<<< HEAD
-    ArrayList<Rectangle> npcBounds;
-
-    public int hitNumber;
-
-    
-    gameView view; // gp
-    gameController controller; // keyh
-    
-=======
     public ArrayList<BufferedImage> npcImages;
     public int hitNumber;
     ArrayList<Rectangle> npcBounds;
     gameView view; 
     gameController controller;
 
->>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -85,8 +74,6 @@ public class npc extends entity {
             batSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft2.png"));
             batSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft3.png"));
             batSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft4.png"));
-<<<<<<< HEAD
-=======
 
             npcImages.add(batSprites[0]);
             npcImages.add(batSprites[1]);
@@ -103,7 +90,6 @@ public class npc extends entity {
             npcImages.add(batSprites[13]);
             npcImages.add(batSprites[15]);
             npcImages.add(batSprites[15]);
->>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
         } catch (IOException e) {
             e.printStackTrace();
         }
