@@ -25,11 +25,11 @@ public class npc extends entity {
     private Rectangle npcRect; // Rectangle for NPC's collision detection
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
-    public ArrayList<BufferedImage> npcImages;
+    ArrayList<Rectangle> npcBounds;
 
     public int hitNumber;
 
-    ArrayList<Rectangle> npcBounds;
+    
     gameView view; // gp
     gameController controller; // keyh
     
@@ -40,7 +40,6 @@ public class npc extends entity {
 */
     public npc(gameView view) {
         this.view = view;
-        npcImages = new ArrayList<BufferedImage>();
         rand = new Random();
         x = rand.nextInt(this.view.w-200);
         y = rand.nextInt(this.view.h-200);
@@ -50,9 +49,9 @@ public class npc extends entity {
 
         npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
         npcRect = new Rectangle(x, y, 40, 40);
+
         npcBounds.add(npcRect);
         getNPCimage();
-
         // Print out the random starting position for testing purposes
     }
 
@@ -78,24 +77,6 @@ public class npc extends entity {
             batSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft2.png"));
             batSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft3.png"));
             batSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft4.png"));
-
-            npcImages.add(batSprites[0]);
-            npcImages.add(batSprites[1]);
-            npcImages.add(batSprites[2]);
-            npcImages.add(batSprites[3]);
-            npcImages.add(batSprites[4]);
-            npcImages.add(batSprites[5]);
-            npcImages.add(batSprites[6]);
-            npcImages.add(batSprites[7]);
-            npcImages.add(batSprites[8]);
-            npcImages.add(batSprites[9]);
-            npcImages.add(batSprites[10]);
-            npcImages.add(batSprites[11]);
-            npcImages.add(batSprites[13]);
-            npcImages.add(batSprites[15]);
-            npcImages.add(batSprites[15]);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -189,14 +170,12 @@ public class npc extends entity {
         return this.x;
     }
 
-
     /*
      * @return npc y position
     */
     public int getY() {
         return y;
     }
-
 
     /*
      * Made for easier retrival of the 
