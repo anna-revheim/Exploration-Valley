@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;;
 
 public class GameBoard extends Grid<Character> {
-
     /**
      * Constructs a game board with the given number of rows and columns, initialized with '-'. The board can also be read from a text file, with each character representing a tile in the board.
      * @param rows The number of rows in the game board.
