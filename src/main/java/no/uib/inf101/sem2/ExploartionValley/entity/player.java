@@ -413,7 +413,7 @@ public class player extends entity {
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
-        g2.draw(playerBounds);
-        g2.draw(hitBox);
+        //g2.draw(playerBounds);
+        //g2.draw(hitBox);
     }
 }

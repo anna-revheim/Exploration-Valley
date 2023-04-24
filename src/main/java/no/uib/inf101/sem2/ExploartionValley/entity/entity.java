@@ -42,7 +42,6 @@ public class entity {
         for (Rectangle gameBound : gameBounds) {
             boolean collision = playerBounds.intersects(gameBound);
             if (collision) {
-                System.out.println("Collision detected!");
                 return true; // return true on the first collision
             }
         }
