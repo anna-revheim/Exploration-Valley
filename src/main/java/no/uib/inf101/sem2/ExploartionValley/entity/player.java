@@ -154,7 +154,7 @@ public class player extends entity {
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (checkCollision(hitBox, view.item.itemBounds)) { // 
+        if (checkCollision(playerBounds, view.item.itemBounds)) { // 
             hasCollided = true;
 
             // move player away from item
@@ -169,7 +169,7 @@ public class player extends entity {
             }
         }
 
-        else if (checkCollision(hitBox, view.bat.npcBounds)){
+        else if (checkCollision(playerBounds, view.bat.npcBounds)){
             hasCollided = true;
             if (direction == "up" ) {
                 worldY +=8;
