@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class UI {
     public BufferedImage hp0, hp2, hp4, hp6, hp8;
     BufferedImage healthBar = null;
-    private GameView view;
+    public GameView view;
 
     public UI(GameView view) {
         this.view = view;
