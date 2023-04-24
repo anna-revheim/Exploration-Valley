@@ -19,7 +19,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
-
             gameBoard board = new gameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);

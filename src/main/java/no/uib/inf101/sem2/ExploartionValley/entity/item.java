@@ -71,10 +71,4 @@ public class item extends entity {
             //g2.draw(itemBound);
         }
     }
-
-    /*
-     * Checks if there is a collision between the player and any of the items (trees or houses).
-     * @param playerBounds the bounds of the player
-     * @return true if there is a collision between the player and any of the items, false otherwise
-     */
 }
