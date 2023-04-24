@@ -208,13 +208,13 @@ public class player extends entity {
                     isMoving = true;}
             } else if (controller.downPressed) {
                 direction = "down";
-                if (this.worldY < this.view.h - 100) {
+                if (this.worldY < this.view.h - 128) {
                     worldY += speed;
                     isMoving = true;
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
-                if (this.worldX > -24) {
+                if (this.worldX > 0) {
                     worldX -= speed;
                     isMoving = true;
                 }
