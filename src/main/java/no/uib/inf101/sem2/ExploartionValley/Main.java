@@ -6,7 +6,6 @@ import no.uib.inf101.sem2.ExploartionValley.model.gameBoard;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
-import no.uib.inf101.sem2.ExploartionValley.model.gamePlay;
 import no.uib.inf101.sem2.ExploartionValley.model.gameTextBox;
 
 public class Main {

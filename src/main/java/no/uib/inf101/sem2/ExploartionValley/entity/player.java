@@ -8,23 +8,35 @@ import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
-import no.uib.inf101.sem2.ExploartionValley.model.gamePlay;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+
+/**
+ * The player class represents the player in a game. It extends the entity
+ * class.
+ * It contains information about the player's position, speed, direction, and
+ * interaction range.
+ */
 
 public class player extends entity {
     gameView view; // gp
     gameController controller; // keyh
-    gamePlay gameplay;
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
     public Rectangle playerBounds;
+    public Rectangle interactRange;
     private Rectangle hitBox;
 
     // Where we place the player
     public final int screenX;
     public final int screenY;
 
+    /**
+     * Constructor for the `player` class.
+     * 
+     * @param view       The `gameView` instance for displaying the game.
+     * @param controller The `gameController` instance for controlling the game.
+     */
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
@@ -32,10 +44,13 @@ public class player extends entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(-70, -70, 70, 70);
+        
     }
 
-    // er dinna nødvendig? kan bruke konstruktøren
+    /*
+     * Sets players default values. Not in constructor as we want to
+     * be able to reset the players values midgame.
+     */
     public void setDefaultValues() {
         this.hitNumber = 3;
         worldX = this.view.w / 2 - 56;
@@ -43,6 +58,8 @@ public class player extends entity {
         this.speed = 4;
         this.isMoving = false;
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
+        playerBounds = new Rectangle(worldX, worldY, 32, 32);
+        hitBox = new Rectangle(0, 0, 70, 70);
     }
 
     private void getCharacterImage() {
@@ -84,8 +101,16 @@ public class player extends entity {
             ratk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk2.png"));
             ratk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk3.png"));
             ratk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk4.png"));
+            latk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk1.png"));
+            latk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk2.png"));
+            latk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk3.png"));
+            latk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk4.png"));
+            ratk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk1.png"));
+            ratk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk2.png"));
+            ratk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk3.png"));
+            ratk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk4.png"));
 
-            //laying
+            // laying
             lay1 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay1.png"));
             lay2 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay2.png"));
             lay3 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay3.png"));
@@ -95,7 +120,6 @@ public class player extends entity {
         }
     }
 
-    //When action on certain objects, remove them
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
         if (view.item.checkCollision(hitBox) || view.bat.checkCollision(hitBox)) {
@@ -111,8 +135,15 @@ public class player extends entity {
             }
         }
     }
-    
 
+    /**
+     * Updates the player's position and checks for collisions.
+     * This code is quite long due to its complexity. First checks for collision, if
+     * no move.
+     * After it checks for directions and inputs. Also keeps track for spritecounter
+     * that is
+     * used for drawing.
+     */
 
     public void update() {
         playerBounds.setLocation(worldX + 36, worldY + 60);
@@ -298,16 +329,17 @@ public class player extends entity {
                 if (spriteNum == 1) {
                     image = right1;
                 } else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = right2;
                 } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
+                } else if (spriteNum == 4) {
                 } else if (spriteNum == 4) {
                     image = right4;
                 } else if (spriteNum == 5) {
                     image = right5;
                 }
                 break;
-
             // Interaction for attack
 
             case "up_atk":
@@ -373,6 +405,8 @@ public class player extends entity {
                 }
                 break;
         }
+
+        g2.drawImage(image, worldX, worldY, 100, 100, null);
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
