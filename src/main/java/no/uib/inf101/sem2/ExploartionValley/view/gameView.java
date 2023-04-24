@@ -5,7 +5,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.entity.*;
 import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
@@ -53,6 +56,10 @@ public class gameView extends JPanel implements Runnable{
     public gameView(ViewableGame model) {
         this.model = model;
         this.tilesize = 48; 
+<<<<<<< HEAD
+=======
+        this.tilesize = 48;
+>>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
@@ -60,6 +67,13 @@ public class gameView extends JPanel implements Runnable{
         this.setBackground(ct.getBackgroundColor());
     }
 
+    public void drawCounter(Graphics2D g2) {
+        Font font = new Font("Arial", Font.BOLD, 24);
+        g2.setFont(font);
+        g2.setColor(Color.WHITE);
+        g2.drawString("Killcount: " + player.getKillCount(), 10, 30);
+    }
+    
     @Override
     // public ettersom vi ønsker at JComponent kan implementere denne
     public void paintComponent(Graphics g) {
@@ -80,6 +94,7 @@ public class gameView extends JPanel implements Runnable{
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());
+        drawCounter(g2);
         //this.item.drawItem(g2); 
         g2.dispose();
     }
@@ -134,10 +149,7 @@ public class gameView extends JPanel implements Runnable{
         }
         this.npcDrawCounter++;
     }
-    
-    
 
-    
 
     /**
     * Draws the game board, given a graphics context.
@@ -152,6 +164,7 @@ public class gameView extends JPanel implements Runnable{
         CellPositionToPixelConverter cp = new CellPositionToPixelConverter(rektangel, model.getDimensions(),
                 (double) 2);
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
+
     }
 
 

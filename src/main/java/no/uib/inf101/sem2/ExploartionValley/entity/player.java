@@ -28,9 +28,8 @@ public class player extends entity {
     public Rectangle interactRange;
     private Rectangle hitBox;
     private int StepCounter;
-    private int SwordCounter;
-    private Random Soundrand;
-
+    public int KillCount;
+    
     // Where we place the player
     public final int screenX;
     public final int screenY;
@@ -50,8 +49,9 @@ public class player extends entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(-70, -70, 70, 70);
+        hitBox = new Rectangle(-100, -100, 100, 100);
         rand = new Random();
+        KillCount = 0;
     }
 
     /*
@@ -127,6 +127,10 @@ public class player extends entity {
         }
     }
 
+    public int getKillCount(){
+        return this.KillCount;
+    }
+
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
         PlayerSword();
@@ -138,6 +142,7 @@ public class player extends entity {
                 view.bat.y = rand.nextInt(this.view.h-200);
                 System.out.println("Bat Dead");
                 view.bat.hitNumber = 2;
+                this.KillCount++;
             }
         }
     }
@@ -175,13 +180,13 @@ public class player extends entity {
         else if (checkCollision(playerBounds, view.bat.npcBounds)){
             hasCollided = true;
             if (direction == "up" ) {
-                worldY +=8;
+                worldY +=35;
             } else if (direction == "down") {
-                worldY -= 8;
+                worldY -= 35;
             } else if (direction == "left") {
-                worldX  += 8;
+                worldX  += 35;
             } else if (direction == "right") {
-                worldX  -= 8;
+                worldX  -= 35;
             }
             hitNumber --;
             if (hitNumber > 0) {
@@ -198,6 +203,7 @@ public class player extends entity {
                 isMoving = false;
                 setDefaultValues();
                 System.out.println("We got respawned");
+                this.KillCount = 0;
                 }
             }
         else {
@@ -432,7 +438,6 @@ public class player extends entity {
     }}
 
 public void PlayerSword(){
-    SwordCounter++;
     AudioPlayer audio = new AudioPlayer();
     int index = rand.nextInt(4);
     switch(index){

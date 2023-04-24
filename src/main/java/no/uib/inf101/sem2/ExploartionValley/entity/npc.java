@@ -25,6 +25,7 @@ public class npc extends entity {
     private Rectangle npcRect; // Rectangle for NPC's collision detection
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
+<<<<<<< HEAD
     ArrayList<Rectangle> npcBounds;
 
     public int hitNumber;
@@ -33,6 +34,14 @@ public class npc extends entity {
     gameView view; // gp
     gameController controller; // keyh
     
+=======
+    public ArrayList<BufferedImage> npcImages;
+    public int hitNumber;
+    ArrayList<Rectangle> npcBounds;
+    gameView view; 
+    gameController controller;
+
+>>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -55,7 +64,6 @@ public class npc extends entity {
         // Print out the random starting position for testing purposes
     }
 
-
     /* 
     * Tries to find and place the sprites in a BufferedImage[], if fail gives exception.
     */
@@ -77,12 +85,29 @@ public class npc extends entity {
             batSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft2.png"));
             batSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft3.png"));
             batSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft4.png"));
+<<<<<<< HEAD
+=======
+
+            npcImages.add(batSprites[0]);
+            npcImages.add(batSprites[1]);
+            npcImages.add(batSprites[2]);
+            npcImages.add(batSprites[3]);
+            npcImages.add(batSprites[4]);
+            npcImages.add(batSprites[5]);
+            npcImages.add(batSprites[6]);
+            npcImages.add(batSprites[7]);
+            npcImages.add(batSprites[8]);
+            npcImages.add(batSprites[9]);
+            npcImages.add(batSprites[10]);
+            npcImages.add(batSprites[11]);
+            npcImages.add(batSprites[13]);
+            npcImages.add(batSprites[15]);
+            npcImages.add(batSprites[15]);
+>>>>>>> b4fef4a92f7938bc8da67905324ccc20bff0cffc
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    
 
     /*
      * NPC method that is called in gameview. It has a movementpattern that is randomized.
@@ -126,8 +151,6 @@ public class npc extends entity {
         }
     }
 
-    
-    
 
     /*
      * Draws the batSprites based on direction and current spriteCounter.  

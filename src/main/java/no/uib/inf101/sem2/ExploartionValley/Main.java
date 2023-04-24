@@ -20,7 +20,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             //GameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
-
             GameBoard board = new GameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
@@ -33,11 +32,10 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
-            //audiowarning.
             AudioPlayer musicplayer = new AudioPlayer();
-            musicplayer.play("src/main/resources/sound/music/GC8bit.wav", 0.1);
+            musicplayer.play("src/main/resources/sound/music/GC8bit.wav", 0.05);
             gameTextBox textBox = new gameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");
+            textBox.appendText("Welcome to Exploration Valley!\nThose darn bats have been violating your backyard for way too long.\n\nPress || hold E to eliminate them!\n\nPress escape to close.");
         }catch (IOException e) {
                 System.out.print("Error couldn't find:" + e.getMessage());
             }
