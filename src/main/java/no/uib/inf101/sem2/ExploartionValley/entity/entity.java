@@ -48,19 +48,6 @@ public class entity {
         }
         return false; // return false if no collision is detected
     }
-
-    public void removeItem(int index, ArrayList<Rectangle> gameBounds, ArrayList<BufferedImage> npcImages) {
-        if (index >= 0 && index < gameBounds.size()) {
-            Rectangle itemToRemove = gameBounds.get(index);
-            gameBounds.remove(index);
-            if (itemToRemove.equals(gameBounds.get(index))) {
-                npcImages.set(index, stump);
-                gameBounds.add(index, new Rectangle(itemToRemove.x, itemToRemove.y, 16, 16));
-            } else {
-                npcImages.remove(index);
-            }
-        }
-    }
     
     
 }

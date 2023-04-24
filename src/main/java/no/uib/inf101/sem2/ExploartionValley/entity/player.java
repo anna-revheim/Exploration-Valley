@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
@@ -30,6 +31,8 @@ public class player extends entity {
     // Where we place the player
     public final int screenX;
     public final int screenY;
+    private Random rand; 
+    
 
     /**
      * Constructor for the `player` class.
@@ -45,6 +48,7 @@ public class player extends entity {
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
         hitBox = new Rectangle(-70, -70, 70, 70);
+        rand = new Random();
     }
 
     /*
@@ -122,32 +126,19 @@ public class player extends entity {
 
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
-        if (checkCollision(hitBox, view.item.itemBounds)) {
-            System.out.println("Attack item");
-            Iterator<Rectangle> iterator = view.item.itemBounds.iterator();
-            while (iterator.hasNext()) {
-                Rectangle item = iterator.next();
-                if (item.intersects(hitBox)) {
-                    int index = view.item.itemBounds.indexOf(item);
-                    view.item.removeItem(index, view.item.itemBounds, view.item.itemImages);
-                    break;
-                }
-            }
-        }
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
-            Iterator<Rectangle> iterator = view.bat.npcBounds.iterator();
-            while (iterator.hasNext()) {
-                Rectangle item = iterator.next();
-                if (item.intersects(hitBox)) {
-                    int index = view.bat.npcBounds.indexOf(item);
-                    view.bat.removeItem(index, view.bat.npcBounds, view.bat.npcImages);
-                    break;
-                }
+            view.bat.hitNumber --;
+            if(view.bat.hitNumber == 0){
+                view.bat.x = rand.nextInt(this.view.w-200);
+                view.bat.y = rand.nextInt(this.view.h-200);
+                System.out.println("Bat Dead");
             }
         }
     }
-
+        
+    
+    
 
     /**
      * Updates the player's position and checks for collisions.
