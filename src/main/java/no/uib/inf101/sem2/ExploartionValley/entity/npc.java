@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.Random;
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
@@ -93,9 +92,6 @@ public class npc extends entity {
         }
     }
 
-    public void update() {
-        // Update NPC's collision rectangle
-        npcRect.setLocation(x + 10, y + 16);
     
 
     /*
@@ -134,31 +130,6 @@ public class npc extends entity {
             y = newY;
         }
     
-        this.spriteCounter++;
-        if (this.spriteCounter > 4) {
-            this.spriteCounter = 0;
-        }
-        int newX = x;
-        int newY = y;
-    
-        switch (direction) {
-            case 0: // Move up
-                newY -= speed;
-                break;
-            case 1: // Move down
-                newY += speed;
-                break;
-            case 2: // Move left
-                newX -= speed;
-                break;
-            case 3: // Move right
-                newX += speed;
-                break;
-        }
-        if (newX >= -24 && newX <= view.w - 80 && newY >= -40 && newY <= view.h - 100) {
-            x = newX;
-            y = newY;
-        }
         this.spriteCounter++;
         if (this.spriteCounter > 4) {
             this.spriteCounter = 0;

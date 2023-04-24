@@ -35,14 +35,11 @@ public class gameView extends JPanel implements Runnable{
     public int h = 800;
     public int npcDrawCounter = 0;
     gameController controller = new gameController();
-    // tileManager tileM = new tileManager(this);
-    public player player = new player(this, controller);
-    item item = new item(this);
-    public npc bat = new npc(this);
 
     public player player = new player(this, controller);
     public item item = new item(this);
     public npc bat = new npc(this);
+
 
     /*
     * Constructs a new game view with the given ViewableGame model.
@@ -132,14 +129,11 @@ public class gameView extends JPanel implements Runnable{
             bat.update();
             //System.out.println("X: "+bat.getX()+", Y: "+bat.getY()); Bat tracking for testing purposes.
         } else{
-            bat.update();
-            //System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
-        }
-        else{
             player.update();
         }
         this.npcDrawCounter++;
     }
+    
     
 
     
