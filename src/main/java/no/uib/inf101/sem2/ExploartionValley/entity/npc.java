@@ -26,7 +26,7 @@ public class npc extends entity {
     private Rectangle npcRect; // Rectangle for NPC's collision detection
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
-    public ArrayList<Image> itemImages;
+    public ArrayList<BufferedImage> npcImages;
 
     ArrayList<Rectangle> npcBounds;
     gameView view; // gp
@@ -40,6 +40,9 @@ public class npc extends entity {
 */
     public npc(gameView view) {
         this.view = view;
+        
+        npcImages = new ArrayList<BufferedImage>();
+
         rand = new Random();
         x = rand.nextInt(this.view.w-200);
         y = rand.nextInt(this.view.h-200);
@@ -51,7 +54,6 @@ public class npc extends entity {
         npcBounds.add(npcRect);
         getNPCimage();
 
-        itemImages = new ArrayList<Image>();
         
         
         // Print out the random starting position for testing purposes
@@ -63,7 +65,6 @@ public class npc extends entity {
     */
     public void getNPCimage() {
         try {
-            
             batSprites[0] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright1.png"));
             batSprites[1] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright2.png"));
             batSprites[2] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright3.png"));
@@ -80,6 +81,24 @@ public class npc extends entity {
             batSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft2.png"));
             batSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft3.png"));
             batSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batleft/batleft4.png"));
+
+            npcImages.add(batSprites[0]);
+            npcImages.add(batSprites[1]);
+            npcImages.add(batSprites[2]);
+            npcImages.add(batSprites[3]);
+            npcImages.add(batSprites[4]);
+            npcImages.add(batSprites[5]);
+            npcImages.add(batSprites[6]);
+            npcImages.add(batSprites[7]);
+            npcImages.add(batSprites[8]);
+            npcImages.add(batSprites[9]);
+            npcImages.add(batSprites[10]);
+            npcImages.add(batSprites[11]);
+            npcImages.add(batSprites[13]);
+            npcImages.add(batSprites[15]);
+            npcImages.add(batSprites[15]);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,10 +183,6 @@ public class npc extends entity {
             g2d.drawImage(image, npcBound.x, npcBound.y, npcBound.width, npcBound.height, null);
             g2d.draw(npcRect);
         }
-        for (Rectangle npcBound : npcBounds) {
-            g2d.drawImage(image, npcBound.x, npcBound.y, npcBound.width, npcBound.height, null);
-            g2d.draw(npcRect);
-        }
     }
 
     /*
@@ -211,19 +226,4 @@ public class npc extends entity {
         this.y = newY;
     }
 
-    /*
-     * Checks if the player collides with any of the non-player character (NPC) bounds.
-     * @param playerBounds the bounding rectangle of the player object
-     * @return true if there is a collision with any NPC bounds, false otherwise
-     */
-    public boolean checkCollision(Rectangle playerBounds) {
-        for (Rectangle npcBound : npcBounds) {
-            boolean collision = playerBounds.intersects(npcBound);
-            while (collision) {
-                System.out.println("Collision detected! with an item");
-                return true; // return true on the first collision
-            }
-        }
-        return false; // return false if no collision is detected
-    }
 }
