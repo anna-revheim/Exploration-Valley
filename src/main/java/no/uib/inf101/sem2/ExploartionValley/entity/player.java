@@ -41,6 +41,7 @@ public class player extends entity {
 
     // er dinna nødvendig? kan bruke konstruktøren
     public void setDefaultValues() {
+        this.hitNumber = 3;
         worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;
@@ -75,21 +76,23 @@ public class player extends entity {
             downatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk1.png"));
             downatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk2.png"));
             downatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk3.png"));
-
             upatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk1.png"));
             upatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk2.png"));
             upatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk3.png"));
             upatk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk4.png"));
-
             latk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk1.png"));
             latk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk2.png"));
             latk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk3.png"));
             latk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk4.png"));
-
             ratk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk1.png"));
             ratk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk2.png"));
             ratk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk3.png"));
             ratk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk4.png"));
+
+            //laying
+            lay1 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay1.png"));
+            lay2 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay2.png"));
+            lay3 = ImageIO.read(getClass().getResourceAsStream("/player/laying/lay3.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -126,17 +129,21 @@ public class player extends entity {
         else if (view.bat.checkCollision(playerBounds)){
             hitNumber --;
             if (hitNumber > 0) {
-                System.out.println("We are now colliding with the bat, reset should happen");
+                System.out.println("Bat is attacking");
             }
-            if (hitNumber == 0) {
-                worldX  = this.view.w / 2 - 56;
-                worldY = this.view.h / 2 - 60;
-                hitNumber = 3;
+            while (hitNumber == 0) {
+                try {
+                    Thread.sleep(1000); // add a delay of 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                direction = "lay";
+                isMoving = false;
+                setDefaultValues();
+                System.out.println("We got respawned");
+                }
             }
-            
-
-
-        }
+        
 
         else {
             // player did not collide with item, so continue moving
@@ -332,6 +339,16 @@ public class player extends entity {
                     image = ratk4;
                 } else if (spriteNum == 5 || spriteNum == 6) {
                     image = right1;
+                }
+                break;
+
+            case "lay":
+                if (spriteNum == 1) {
+                    image = lay1;
+                } else if (spriteNum == 2) {
+                    image = lay2;
+                } else if (spriteNum == 3) {
+                    image = lay3;
                 }
                 break;
         }
