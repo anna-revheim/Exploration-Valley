@@ -5,15 +5,15 @@ import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import no.uib.inf101.sem2.ExploartionValley.view.gameView;
+import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 
 /**
  * Represents an itemclass in the game and handles interactions with other entities.
  * This class is a subclass of the entity class. 
 */
 
-public class item extends entity {
-    gameView view;
+public class Item extends Entity {
+    GameView view;
     public boolean collision = false;
     public ArrayList<Rectangle> itemBounds; //ArrayList of Rectangles for collisions
     public ArrayList<Rectangle> treeBounds; //ArrayList of Rectangles for collisions
@@ -28,7 +28,7 @@ public class item extends entity {
      * @param view The current game view.
      */
 
-    public item(gameView view) {
+    public Item(GameView view) {
         this.view = view;
         getItemImage();
         

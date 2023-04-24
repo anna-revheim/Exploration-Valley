@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class gameTextBox extends JFrame {
+public class GameTextBox extends JFrame {
     private JTextArea textArea;
     
     /*
     * A custom dialog box that displays game text in a black background with a translucent effect.
     */
-    public gameTextBox() {
+    public GameTextBox() {
         setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(380, 200);

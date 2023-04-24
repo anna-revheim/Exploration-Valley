@@ -9,11 +9,11 @@ import javax.imageio.ImageIO;
 public class UI {
     public BufferedImage hp0, hp2, hp4, hp6, hp8;
     BufferedImage healthBar = null;
-    private gameView view;
-    BufferedImage healthBar = null;
+    private GameView view;
 
 
-    public UI(gameView view) {
+
+    public UI(GameView view) {
         this.view = view;
         getUIImage();
     }
@@ -21,37 +21,38 @@ public class UI {
     public void getUIImage() {
         try {
             hp0 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp2 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp4 =  ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp6 =  ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
-            hp8 = ImageIO.read(getClass().getResourceAsStream("/UI/0.png"));
+            hp2 = ImageIO.read(getClass().getResourceAsStream("/UI/2.png"));
+            hp4 =  ImageIO.read(getClass().getResourceAsStream("/UI/4.png"));
+            hp6 =  ImageIO.read(getClass().getResourceAsStream("/UI/6.png"));
+            hp8 = ImageIO.read(getClass().getResourceAsStream("/UI/8.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void update(int health) {
+    public BufferedImage getHPimage(int health) {
         switch (health) {
             case 0:
                 healthBar = hp0;
-                break;
+                return healthBar;
             case 1:
                 healthBar = hp2;
-                break;
+                return healthBar;
             case 2:
                 healthBar = hp4;
-                break;
+                return healthBar;
             case 3:
                 healthBar = hp6;
-                break;
+                return healthBar;
             case 4:
                 healthBar = hp8;
-                break;
+                return healthBar;
             default:
-                break;
+                return null;
         }
     }
 
     public void drawUI(Graphics2D g2d, int health) {
+        healthBar = getHPimage(health);
         g2d.drawImage(healthBar, 10, 30, 32, 104, null);
     }
     

@@ -8,7 +8,7 @@ import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
  * Represents a model for a game with a game board
  */
 
- public class gameModel implements ViewableGame{
+ public class GameModel implements ViewableGame{
 
     private GameBoard board; 
 
@@ -16,7 +16,7 @@ import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
     *Constructs a game model with the given game board.
     *@param board the game board
     */
-    public gameModel(GameBoard board) {
+    public GameModel(GameBoard board) {
         this.board = board;
     }
     
