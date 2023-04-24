@@ -18,7 +18,8 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 
 public class npc extends entity {
-    private int x, y; // NPC's current position
+    int x; // NPC's current position
+    int y;
     private int speed;     // NPC's movement speed
     private int moveTimer; // Timer for NPC's movement
     private Random rand;   // Random number generator for NPC's movement
@@ -26,6 +27,8 @@ public class npc extends entity {
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
     public ArrayList<BufferedImage> npcImages;
+
+    public int hitNumber;
 
     ArrayList<Rectangle> npcBounds;
     gameView view; // gp
@@ -47,6 +50,7 @@ public class npc extends entity {
         y = rand.nextInt(this.view.h-200);
         moveTimer = 0;
         speed = 4;
+        hitNumber = 2;
 
         npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
         npcRect = new Rectangle(x, y, 40, 40);
