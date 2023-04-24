@@ -71,4 +71,5 @@ public class item extends entity {
             //g2.draw(itemBound);
         }
     }
+
 }
