@@ -58,24 +58,24 @@ public class npc extends entity {
             direction = rand.nextInt(4); // Randomly choose a direction
             moveTimer = rand.nextInt(20) + 30; // Wait 2-6 seconds before moving again
         }
-            switch (direction) {
-                case 0: // Move up
-                    y -= speed;
-                    break;
-                case 1: // Move down
-                    y += speed;
-                    break;
-                case 2: // Move left
-                    x -= speed;
-                    break;
-                case 3: // Move right
-                    x += speed;
-                    break;
-            }   
-            this.spriteCounter++;
-            if (this.spriteCounter > 4) {
-                this.spriteCounter = 0;
-            }
+        switch (direction) {
+            case 0: // Move up
+                y -= speed;
+                break;
+            case 1: // Move down
+                y += speed;
+                break;
+            case 2: // Move left
+                x -= speed;
+                break;
+            case 3: // Move right
+                x += speed;
+                break;
+        }
+        this.spriteCounter++;
+        if (this.spriteCounter > 4) {
+            this.spriteCounter = 0;
+        }
         // Update NPC's collision rectangle
         npcRect.setLocation(x, y);
 
@@ -115,7 +115,7 @@ public class npc extends entity {
         return y;
     }
 
-    public int getSpriteCounter(){
+    public int getSpriteCounter() {
         return this.spriteCounter;
     }
 
