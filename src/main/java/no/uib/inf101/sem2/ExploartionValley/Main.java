@@ -2,7 +2,9 @@ package no.uib.inf101.sem2.ExploartionValley;
 
 import java.io.IOException;
 import javax.swing.JFrame;
-import no.uib.inf101.sem2.ExploartionValley.model.gameBoard;
+
+import no.uib.inf101.sem2.ExploartionValley.model.BackgroundMusic;
+import no.uib.inf101.sem2.ExploartionValley.model.GameBoard;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 import no.uib.inf101.sem2.ExploartionValley.model.gameModel;
@@ -19,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
-            gameBoard board = new gameBoard(40 ,60, "maps4.txt"); // Original map
+            GameBoard board = new GameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
             JFrame frame = new JFrame(WINDOW_TITLE);
@@ -31,7 +33,7 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
-            
+            BackgroundMusic musicplayer = new BackgroundMusic();
             gameTextBox textBox = new gameTextBox();
             textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");
         }catch (IOException e) {

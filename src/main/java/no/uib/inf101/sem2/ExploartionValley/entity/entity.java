@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

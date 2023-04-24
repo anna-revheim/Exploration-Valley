@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;;
 
-public class gameBoard extends Grid<Character> {
+public class GameBoard extends Grid<Character> {
 
     /**
      * Constructs a game board with the given number of rows and columns, initialized with '-'. The board can also be read from a text file, with each character representing a tile in the board.
@@ -19,7 +19,7 @@ public class gameBoard extends Grid<Character> {
      * @throws IOException If there is an error reading the text file.
      */
 
-    public gameBoard(int rows, int cols, String filename) throws IOException {
+    public GameBoard(int rows, int cols, String filename) throws IOException {
         super(rows, cols, '-');
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
         List<String> lines = reader.lines().collect(Collectors.toList());

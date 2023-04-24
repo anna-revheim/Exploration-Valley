@@ -9,13 +9,13 @@ import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
  */
 
 public class gameModel implements ViewableGame{
-    public gameBoard board; 
+    public GameBoard board; 
 
     /**
     *Constructs a game model with the given game board.
     *@param board the game board
     */
-    public gameModel(gameBoard board) {
+    public gameModel(GameBoard board) {
         this.board = board;
     }
     
