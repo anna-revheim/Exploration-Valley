@@ -10,6 +10,7 @@ public class UI {
     public BufferedImage hp0, hp2, hp4, hp6, hp8;
     BufferedImage healthBar = null;
     private gameView view;
+    BufferedImage healthBar = null;
 
 
     public UI(gameView view) {
