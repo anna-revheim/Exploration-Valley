@@ -29,11 +29,11 @@ public class npc extends entity {
     public npc(gameView view) {
         this.view = view;
         rand = new Random();
-        //startX = rand.nextInt(this.view.w);
-        //startY = rand.nextInt(this.view.h);
 
-        x = 300;
-        y = 400;
+        x = 500;
+        x = 200;
+        //x = rand.nextInt(this.view.w);
+        //y = rand.nextInt(this.view.h);
         moveTimer = 0;
         
         speed = 4;
@@ -108,8 +108,6 @@ public class npc extends entity {
         if (this.spriteCounter > 4) {
             this.spriteCounter = 0;
         }
-    
-        System.out.println("NPC position: (" + x + ", " + y + ")");
     }
 
     

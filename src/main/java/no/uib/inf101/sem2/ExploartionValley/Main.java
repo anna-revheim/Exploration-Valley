@@ -15,8 +15,8 @@ public class Main {
         try {
             //gamePlay gameplay = new gamePlay();
             //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
+
             gameBoard board = new gameBoard(40 ,60, "maps4.txt"); // Original map
-            // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);
             JFrame frame = new JFrame(WINDOW_TITLE);

@@ -29,13 +29,13 @@ public class gameView extends JPanel implements Runnable{
 
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
-    player player = new player(this, controller);
+    public player player = new player(this, controller);
     item item = new item(this);
     public npc bat = new npc(this);
 
     public gameView(ViewableGame model) {
         this.model = model;
-        this.tilesize = 20; //KOR STOR E VÅR TILESIZE
+        this.tilesize = 48; //KOR STOR E VÅR TILESIZE
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
@@ -106,9 +106,9 @@ public class gameView extends JPanel implements Runnable{
         }
         this.npcDrawCounter++;
     }
+    
 
     private void drawGame(Graphics2D g2) {
-
         double width = this.getWidth() - 2 * OUTER_MARGIN;
         double height = this.getHeight() - 2 * OUTER_MARGIN;
         Rectangle2D rektangel = new Rectangle2D.Double(OUTER_MARGIN, OUTER_MARGIN, width, height);

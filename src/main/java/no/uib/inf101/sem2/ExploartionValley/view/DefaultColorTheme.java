@@ -55,8 +55,6 @@ public class DefaultColorTheme implements ColorTheme {
             case 'o' :
             imagePath = "/tiles/grass/grassK4.png";
                 break;
-
-
             case 'w' :
             imagePath = "/tiles/water/water.png";
                 break;

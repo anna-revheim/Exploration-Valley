@@ -13,13 +13,13 @@ public class player extends entity {
     gameView view; // gp
     gameController controller; // keyh
     gamePlay gameplay;
-    String direction = "down"; 
+    String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
     public Rectangle playerBounds;
     private Rectangle interactRange;
 
-    //Where we place the player
+    // Where we place the player
     public final int screenX;
     public final int screenY;
 
@@ -38,10 +38,10 @@ public class player extends entity {
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
     }
-    
-    //er dinna nødvendig? kan bruke konstruktøren
+
+    // er dinna nødvendig? kan bruke konstruktøren
     public void setDefaultValues() {
-        worldX  = this.view.w / 2 - 56;
+        worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;
         this.isMoving = false;
@@ -70,26 +70,39 @@ public class player extends entity {
             right3 = ImageIO.read(getClass().getResourceAsStream("/player/right/right3.png"));
             right4 = ImageIO.read(getClass().getResourceAsStream("/player/right/right4.png"));
             right5 = ImageIO.read(getClass().getResourceAsStream("/player/right/right5.png"));
+
+            // Attack
             downatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk1.png"));
             downatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk2.png"));
             downatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/downatk/downatk3.png"));
+
             upatk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk1.png"));
             upatk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk2.png"));
             upatk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk3.png"));
             upatk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/upatk/upatk4.png"));
+
+            latk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk1.png"));
+            latk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk2.png"));
+            latk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk3.png"));
+            latk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/leftatk/latk4.png"));
+
+            ratk1 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk1.png"));
+            ratk2 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk2.png"));
+            ratk3 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk3.png"));
+            ratk4 = ImageIO.read(getClass().getResourceAsStream("/player/interact/rightatk/ratk4.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void interact(){
-        if(controller.actionPressed == true);
+    public void interact() {
+        if (controller.actionPressed == true)
+            ;
     }
-    
+
     public void update() {
         item currentItem = new item(view); // create an instance of item
-        //view.bat = new npc(view); // Create an instance of a npc
 
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
@@ -133,18 +146,32 @@ public class player extends entity {
                 direction = "left";
                 //int border = gameplay.getXBorder();
                 if (this.worldX > -24) {
-                    worldX  -= speed;
+                    worldX -= speed;
                     isMoving = true;
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if (this.worldX  < this.view.w - 80) {
-                    worldX  += speed;
+                if (this.worldX < this.view.w - 80) {
+                    worldX += speed;
                     isMoving = true;
                 }
             } else if(controller.actionPressed){
-                direction = "interact"; 
-                interact();
+                if (direction == "up") {
+                    direction = "up_atk";
+                    interact();
+                }
+                if (direction == "down") {
+                    direction = "down_atk";
+                    interact();
+                }
+                if (direction == "left") {
+                    direction = "left_atk";
+                    interact();
+                }
+                if (direction == "right") {
+                    direction = "right_atk";
+                    interact();
+                    }
             }
             else {
                 isMoving = false;
@@ -177,7 +204,12 @@ public class player extends entity {
                 }
                 spriteCounter = 0;
             }
-        } else {
+        } 
+        else if (controller.actionPressed = false) {
+            spriteNum = 6;
+            spriteCounter = 0;
+        }
+        else {
             spriteNum = 3;
             spriteCounter = 0;
         }
@@ -232,35 +264,74 @@ public class player extends entity {
             case "right":
                 if (spriteNum == 1) {
                     image = right1;
-                }
-                else if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = right2;
                 } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
-                }
-                else if (spriteNum == 4) {
+                } else if (spriteNum == 4) {
                     image = right4;
                 } else if (spriteNum == 5) {
                     image = right5;
                 }
                 break;
-            case "interact":
-            if (spriteNum == 1) {
-                image = downatk1;
-            }
-            else if (spriteNum == 2) {
-                image = downatk2;
-            } else if (spriteNum == 3 || spriteNum == 6) {
-                image = downatk3;
-            }
-            else if (spriteNum == 4) {
-                image = downatk3;
-            } else if (spriteNum == 5) {
-                image = down1;
-            }
-            break;
+
+            // Interaction for attack
+
+            case "up_atk":
+                if (spriteNum == 1) {
+                    image = upatk1;
+                } else if (spriteNum == 2) {
+                    image = upatk2;
+                } else if (spriteNum == 3) {
+                    image = upatk3;
+                } else if (spriteNum == 4) {
+                    image = upatk4;
+                } else if (spriteNum == 5 || spriteNum == 6) {
+                    image = up1;
+                }
+                break;
+            case "down_atk":
+                if (spriteNum == 1) {
+                    image = downatk1;
+                } else if (spriteNum == 2) {
+                    image = downatk2;
+                } else if (spriteNum == 3) {
+                    image = downatk3;
+                } else if (spriteNum == 4) {
+                    image = downatk1;
+                } else if (spriteNum == 5 || spriteNum == 6) {
+                    image = down1;
+                }
+                break;
+            case "left_atk":
+                if (spriteNum == 1) {
+                    image = latk1;
+                } else if (spriteNum == 2) {
+                    image = latk2;
+                } else if (spriteNum == 3) {
+                    image = latk3;
+                } else if (spriteNum == 4) {
+                    image = latk4;
+                } else if (spriteNum == 5 || spriteNum == 6) {
+                    image = left1;
+                }
+                break;
+            case "right_atk":
+                if (spriteNum == 1) {
+                    image = ratk1;
+                } else if (spriteNum == 2) {
+                    image = ratk2;
+                } else if (spriteNum == 3) {
+                    image = ratk3;
+                } else if (spriteNum == 4) {
+                    image = ratk4;
+                } else if (spriteNum == 5 || spriteNum == 6) {
+                    image = right1;
+                }
+                break;
         }
-        //g2.drawImage(image, screenX, screenY, 100, 100, null);
+
+        // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
         g2.draw(playerBounds);
     }

@@ -17,7 +17,12 @@ public class gameBoard extends Grid<Character> {
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
         List<String> lines = reader.lines().collect(Collectors.toList());
 
-        // Loop over the lines and fill the board
+
+        /*
+         * Loop over the lines and fill the board
+         * If smaller map added the game panel will add black tiles to cover up. then center the new map.
+         */
+        
         if (lines.size() != rows) {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);
@@ -32,7 +37,6 @@ public class gameBoard extends Grid<Character> {
                 }
             }
         }
-
         else {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);
