@@ -21,4 +21,6 @@ puttet rundt 40 timer kvær i prosjektet.
 
 For å spare tid er deler av Tetris coden resirkulert for å kunne ta i bruk grid. 
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)]https://youtu.be/M0He3N-vlVc)
+Her er forklaring av videoen, kort og enkelt hva vårt spill går ut på.
+https://youtu.be/M0He3N-vlVc
+
