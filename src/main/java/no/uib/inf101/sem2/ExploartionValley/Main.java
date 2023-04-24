@@ -19,7 +19,8 @@ public class Main {
     public static final String WINDOW_TITLE = "Exploration valley";
     public static void main(String[] args) {
         try {
-            //gameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
+            //GameBoard board = new gameBoard(gameplay.getRows(),gameplay.getCols(), gameplay.getMap());
+
             GameBoard board = new GameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new gameModel(board);
             gameView view = new gameView(model);

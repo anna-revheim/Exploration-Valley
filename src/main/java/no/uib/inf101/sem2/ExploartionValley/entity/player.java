@@ -332,11 +332,9 @@ public class player extends entity {
                 if (spriteNum == 1) {
                     image = right1;
                 } else if (spriteNum == 2) {
-                } else if (spriteNum == 2) {
                     image = right2;
                 } else if (spriteNum == 3 || spriteNum == 6) {
                     image = right3;
-                } else if (spriteNum == 4) {
                 } else if (spriteNum == 4) {
                     image = right4;
                 } else if (spriteNum == 5) {
@@ -413,8 +411,8 @@ public class player extends entity {
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
-        g2.draw(playerBounds);
-        g2.draw(hitBox);
+        //g2.draw(playerBounds);
+        //g2.draw(hitBox);
     }
 
     public void PlayerSteps(){
