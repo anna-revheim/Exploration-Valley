@@ -15,7 +15,7 @@ public class entity {
                         downatk1, downatk2, downatk3, upatk1, upatk2, upatk3, upatk4, latk1, latk2, latk3, latk4, ratk1, ratk2, ratk3, ratk4,
                         lay1, lay2, lay3;
     public int direction;
-    public BufferedImage tree, house;
+    public BufferedImage tree, house, stump;
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public int hitNumber = 3;

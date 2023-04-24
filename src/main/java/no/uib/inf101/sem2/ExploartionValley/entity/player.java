@@ -95,20 +95,24 @@ public class player extends entity {
         }
     }
 
+    //When action on certain objects, remove them
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
         if (view.item.checkCollision(hitBox) || view.bat.checkCollision(hitBox)) {
-            System.out.println("Attack" + view.item);
+            System.out.println("Attack");
             Iterator<Rectangle> iterator = view.item.itemBounds.iterator();
             while (iterator.hasNext()) {
                 Rectangle item = iterator.next();
                 if (item.intersects(hitBox)) {
-                    iterator.remove(); // Remove the item from the ArrayList using the iterator
-                    break; // Break out of the loop to avoid a ConcurrentModificationException
+                    int index = view.item.itemBounds.indexOf(item);
+                    view.item.removeItem(index); // Call removeItem() with the index
+                    break;
                 }
             }
         }
     }
+    
+
 
     public void update() {
         playerBounds.setLocation(worldX + 36, worldY + 60);

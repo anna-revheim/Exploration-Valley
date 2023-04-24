@@ -18,6 +18,7 @@ public class item extends entity {
 
     public item(gameView view) {
         this.view = view;
+        itemImages = new ArrayList<Image>();
         getItemImage();
         
         treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
@@ -36,6 +37,11 @@ public class item extends entity {
         try {
             tree = ImageIO.read(getClass().getResourceAsStream("/item/tree.png"));
             house = ImageIO.read(getClass().getResourceAsStream("/item/buildings/house.png"));
+            stump =  ImageIO.read(getClass().getResourceAsStream("/item/stump.png"));
+            
+            itemImages.add(tree);
+            itemImages.add(house);
+            itemImages.add(stump);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +52,7 @@ public class item extends entity {
         for (Rectangle itemBound : treeBounds) {
             g2.drawImage(tree, itemBound.x, itemBound.y, itemBound.width, itemBound.height, null);
             g2.drawImage(house, 500, 200, 200, 200, null);
-            g2.draw(itemBound);
+            //g2.draw(itemBound);
         }
     }
 
@@ -60,10 +66,20 @@ public class item extends entity {
         }
         return false; // return false if no collision is detected
     }
-
+    
     public void removeItem(int index) {
-        itemBounds.remove(index);
-        itemImages.remove(index);
+        if (index >= 0 && index < itemBounds.size()) {
+            Rectangle itemToRemove = itemBounds.get(index);
+            itemBounds.remove(index);
+            if (itemToRemove.equals(treeBounds.get(index))) {
+                itemImages.set(index, stump);
+                itemBounds.add(index, new Rectangle(itemToRemove.x, itemToRemove.y, 16, 16));
+            } else {
+                itemImages.remove(index); // Remove the corresponding image from itemImages
+            }
+        }
+        view.repaint();
     }
-
+    
+    
 }
