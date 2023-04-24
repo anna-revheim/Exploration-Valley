@@ -44,7 +44,7 @@ public class player extends entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        
+        hitBox = new Rectangle(-70, -70, 70, 70);
     }
 
     /*
@@ -59,7 +59,7 @@ public class player extends entity {
         this.isMoving = false;
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
-        hitBox = new Rectangle(0, 0, 70, 70);
+        
     }
 
     private void getCharacterImage() {
@@ -144,8 +144,8 @@ public class player extends entity {
      * that is
      * used for drawing.
      */
-     
-     public void update() {
+    
+    public void update() {
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
@@ -166,11 +166,33 @@ public class player extends entity {
         }
 
         else if (view.bat.checkCollision(playerBounds)){
-            System.out.println("We are now colliding with the bat, reset should happen");
-            worldX  = this.view.w / 2 - 56;
-            worldY = this.view.h / 2 - 60;
-        }
-
+            hasCollided = true;
+            if (direction == "up" ) {
+                worldY +=8;
+            } else if (direction == "down") {
+                worldY -= 8;
+            } else if (direction == "left") {
+                worldX  += 8;
+            } else if (direction == "right") {
+                worldX  -= 8;
+            }
+            hitNumber --;
+            if (hitNumber > 0) {
+                
+                System.out.println("Bat is attacking");
+            }
+            while (hitNumber == 0) {
+                try {
+                    Thread.sleep(1000); // add a delay of 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                direction = "lay";
+                isMoving = false;
+                setDefaultValues();
+                System.out.println("We got respawned");
+                }
+            }
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
@@ -216,6 +238,7 @@ public class player extends entity {
             }
             else {
                 isMoving = false;
+                hitBox.setLocation(-70, -70); //Resets the hitBox
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement

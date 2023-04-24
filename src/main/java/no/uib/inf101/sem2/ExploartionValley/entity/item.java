@@ -110,5 +110,4 @@ public class item extends entity {
         view.repaint();
     }
     
-    
 }
