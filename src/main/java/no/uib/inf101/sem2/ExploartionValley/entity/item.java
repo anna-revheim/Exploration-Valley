@@ -46,7 +46,7 @@ public class item extends entity {
         bushBounds.add(new Rectangle(395, 350, 40, 40));
 
         
-        flowerBounds = new ArrayList<Rectangle>();
+        flowerBounds = new ArrayList<Rectangle>(); // Add flowers
         flowerBounds.add(new Rectangle(800, 200, 0, 0));
         flowerBounds.add(new Rectangle(658, 548, 0, 0));
         flowerBounds.add(new Rectangle(235, 398, 0, 0));
