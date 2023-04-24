@@ -1,7 +1,6 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
  * The npc moves randomly around the game area and has a sprite image that is loaded
  * from the resources folder. The class extends the entity class.
  */
-
 
 public class npc extends entity {
     int x; // NPC's current position
@@ -35,7 +33,6 @@ public class npc extends entity {
     gameView view; // gp
     gameController controller; // keyh
     
-    //Where we place the player
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -43,9 +40,7 @@ public class npc extends entity {
 */
     public npc(gameView view) {
         this.view = view;
-        
         npcImages = new ArrayList<BufferedImage>();
-
         rand = new Random();
         x = rand.nextInt(this.view.w-200);
         y = rand.nextInt(this.view.h-200);
@@ -58,8 +53,6 @@ public class npc extends entity {
         npcBounds.add(npcRect);
         getNPCimage();
 
-        
-        
         // Print out the random starting position for testing purposes
     }
 

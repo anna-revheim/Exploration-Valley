@@ -4,11 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.model.AudioPlayer;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 /**
@@ -27,6 +27,9 @@ public class player extends entity {
     public Rectangle playerBounds;
     public Rectangle interactRange;
     private Rectangle hitBox;
+    private int StepCounter;
+    private int SwordCounter;
+    private Random Soundrand;
 
     // Where we place the player
     public final int screenX;
@@ -126,6 +129,7 @@ public class player extends entity {
 
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
+        PlayerSword();
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
             view.bat.hitNumber --;
@@ -136,9 +140,6 @@ public class player extends entity {
             }
         }
     }
-        
-    
-    
 
     /**
      * Updates the player's position and checks for collisions.
@@ -150,6 +151,7 @@ public class player extends entity {
      */
     
     public void update() {
+        PlayerSteps();
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
@@ -416,4 +418,34 @@ public class player extends entity {
         //g2.draw(playerBounds);
         //g2.draw(hitBox);
     }
+
+    public void PlayerSteps(){
+        if(this.isMoving){
+        StepCounter++;
+        AudioPlayer audio = new AudioPlayer();
+        if(StepCounter == 15){
+            audio.play("src/main/resources/sound/misc/grass_l.wav", 0.2);
+        }
+        else if(StepCounter == 30){
+            audio.play("src/main/resources/sound/misc/grass_r.wav", 0.2);
+            StepCounter = 0;
+        }
+    }}
+
+public void PlayerSword(){
+    SwordCounter++;
+    AudioPlayer audio = new AudioPlayer();
+    int index = rand.nextInt(4);
+    switch(index){
+        case 0:
+            audio.play("src/main/resources/sound/misc/sword1.wav", 1);
+        case 1:
+            audio.play("src/main/resources/sound/misc/sword2.wav", 1);
+        case 2:
+            audio.play("src/main/resources/sound/misc/sword3.wav", 1);
+        case 3:
+            audio.play("src/main/resources/sound/misc/sword4.wav", 1);
+    }
+    }
 }
+//Code got quite long but it was needed. 

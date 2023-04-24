@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -18,8 +17,7 @@ public class entity {
     public int speed;
     //Sprite for player.
     public BufferedImage up1, up2, up3, up4, up5, down1, down2, down3, down4, down5, left1, left2, left3, left4, left5, right1, right2, right3, right4, right5,
-                        downatk1, downatk2, downatk3, upatk1, upatk2, upatk3, upatk4, latk1, latk2, latk3, latk4, ratk1, ratk2, ratk3, ratk4,
-                        lay1, lay2, lay3;
+    downatk1, downatk2, downatk3, upatk1, upatk2, upatk3, upatk4, latk1, latk2, latk3, latk4, ratk1, ratk2, ratk3, ratk4, lay1, lay2, lay3;
     public int direction;
     public BufferedImage tree, house, stump;
     public int spriteCounter = 0;
@@ -30,7 +28,6 @@ public class entity {
     public gameView view;
 
 
-    
 /**
  * Checks for collision between the player and the game bounds.
  *
