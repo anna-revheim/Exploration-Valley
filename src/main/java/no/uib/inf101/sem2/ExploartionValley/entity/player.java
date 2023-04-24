@@ -144,15 +144,15 @@ public class player extends entity {
      * that is
      * used for drawing.
      */
-
-    public void update() {
+     
+     public void update() {
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (view.item.checkCollision(playerBounds)) { 
-            // player collided with item, so stop moving 
+        if (view.item.checkCollision(playerBounds)) { // 
             hasCollided = true;
+
             // move player away from item
             if (direction == "up" ) {
                 worldY +=4;
@@ -166,33 +166,11 @@ public class player extends entity {
         }
 
         else if (view.bat.checkCollision(playerBounds)){
-            hasCollided = true;
-            if (direction == "up" ) {
-                worldY +=8;
-            } else if (direction == "down") {
-                worldY -= 8;
-            } else if (direction == "left") {
-                worldX  += 8;
-            } else if (direction == "right") {
-                worldX  -= 8;
-            }
-            hitNumber --;
-            if (hitNumber > 0) {
-                
-                System.out.println("Bat is attacking");
-            }
-            while (hitNumber == 0) {
-                try {
-                    Thread.sleep(1000); // add a delay of 1 second
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                direction = "lay";
-                isMoving = false;
-                setDefaultValues();
-                System.out.println("We got respawned");
-                }
-            }
+            System.out.println("We are now colliding with the bat, reset should happen");
+            worldX  = this.view.w / 2 - 56;
+            worldY = this.view.h / 2 - 60;
+        }
+
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
@@ -200,28 +178,23 @@ public class player extends entity {
                 if ((this.worldY > -40)) {
                     worldY -= speed;
                     isMoving = true;}
-                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
             } else if (controller.downPressed) {
                 direction = "down";
-                if (this.worldY < this.view.h - 128) {
+                if (this.worldY < this.view.h - 100) {
                     worldY += speed;
                     isMoving = true;
-                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
-                //int border = gameplay.getXBorder();
-                if (this.worldX > 0) {
+                if (this.worldX > -24) {
                     worldX -= speed;
                     isMoving = true;
-                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if (this.worldX < this.view.w - 100) {
+                if (this.worldX < this.view.w - 80) {
                     worldX += speed;
                     isMoving = true;
-                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if(controller.actionPressed){
                 if (direction == "up") {
@@ -240,19 +213,18 @@ public class player extends entity {
                     direction = "right_atk";
                     interact();
                     }
-            } else {
+            }
+            else {
                 isMoving = false;
-                hitBox.setLocation(-70, -70);
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
-            if (hasCollided && view.item.checkCollision(playerBounds)) {
+            if (hasCollided && !view.item.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
                 //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
             }
         }
-
         // If the character is moving start counting. Count is for character movement.
         if (isMoving == true || controller.actionPressed) {
             spriteCounter++;
@@ -272,6 +244,10 @@ public class player extends entity {
                 }
                 spriteCounter = 0;
             }
+        } 
+        else if (controller.actionPressed = false) {
+            spriteNum = 6;
+            spriteCounter = 0;
         }
         else {
             spriteNum = 3;
