@@ -5,14 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import no.uib.inf101.sem2.ExploartionValley.grid.CellPosition;
 import no.uib.inf101.sem2.ExploartionValley.grid.Grid;
-import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 import no.uib.inf101.sem2.ExploartionValley.grid.IGrid;
 
 /**

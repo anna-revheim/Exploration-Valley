@@ -11,8 +11,6 @@ public class UI {
     BufferedImage healthBar = null;
     private GameView view;
 
-
-
     public UI(GameView view) {
         this.view = view;
         getUIImage();
