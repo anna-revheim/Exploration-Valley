@@ -28,7 +28,6 @@ public class npc extends entity {
     gameView view;
     gameController controller; 
     
-
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -75,6 +74,7 @@ public class npc extends entity {
             e.printStackTrace();
         }
     }
+
 
     /*
      * NPC method that is called in gameview. It has a movementpattern that is randomized.
@@ -198,5 +198,4 @@ public class npc extends entity {
         }
         return false; // return false if no collision is detected
     }
-    
 }

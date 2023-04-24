@@ -9,20 +9,25 @@ import java.util.List;
 import java.util.stream.Collectors;;
 
 public class gameBoard extends Grid<Character> {
-    // The board is made by rows*cols and will be filled with '-'
+
+    /**
+     * Constructs a game board with the given number of rows and columns, initialized with '-'. The board can also be read from a text file, with each character representing a tile in the board.
+     * @param rows The number of rows in the game board.
+     * @param cols The number of columns in the game board.
+     * @param filename The name of the text file containing the characters representing the tiles in the board.
+     * 
+     * @throws IOException If there is an error reading the text file.
+     */
+
     public gameBoard(int rows, int cols, String filename) throws IOException {
         super(rows, cols, '-');
-
-        // Read the content of the file
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/maps/" + filename)));
         List<String> lines = reader.lines().collect(Collectors.toList());
-
-
+        
         /*
          * Loop over the lines and fill the board
          * If smaller map added the game panel will add black tiles to cover up. then center the new map.
          */
-        
         if (lines.size() != rows) {
             for (int i = 0; i < rows && i < lines.size(); i++) {
                 String line = lines.get(i);
@@ -61,8 +66,7 @@ public class gameBoard extends Grid<Character> {
             }
             stringOfBoard.append('\n');
         }
-        // Returns form stringbuilder to a string, then trim any spaces to get correct
-        // format
+        // Returns form stringbuilder to a string, then trim any spaces to get correct format
         return stringOfBoard.toString().trim();
     }
 }

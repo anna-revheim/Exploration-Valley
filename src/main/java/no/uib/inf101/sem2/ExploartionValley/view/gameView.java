@@ -21,7 +21,7 @@ import no.uib.inf101.sem2.ExploartionValley.grid.GridCell;
 
 
 public class gameView extends JPanel implements Runnable{
-    private DefaultColorTheme ct;
+    private TileDirectory ct;
     private ViewableGame model;
     private static final int OUTER_MARGIN = 0;
     private boolean isLoaded = false;  // Game only needs to be painted once
@@ -30,17 +30,16 @@ public class gameView extends JPanel implements Runnable{
     private Thread gameThread;       
     public Dimension dim;
     public int tilesize;
-
     private int fps = 60;
     public int w = 1200;
     public int h = 800;
     public int npcDrawCounter = 0;
-
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
     public player player = new player(this, controller);
     item item = new item(this);
     public npc bat = new npc(this);
+
 
     /*
     * Constructs a new game view with the given ViewableGame model.
@@ -55,7 +54,7 @@ public class gameView extends JPanel implements Runnable{
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
-        ct = new DefaultColorTheme();
+        ct = new TileDirectory();
         this.setBackground(ct.getBackgroundColor());
     }
 
@@ -86,6 +85,7 @@ public class gameView extends JPanel implements Runnable{
         gameThread.start();
     }
 
+
 /**
  * This method runs the game loop, which updates the game state and repaints
  * the screen at a fixed frame rate per second. It uses the 'repaint()'
@@ -94,7 +94,6 @@ public class gameView extends JPanel implements Runnable{
  *
  * @override The 'run()' method of the 'Thread' class.
  */
-
     @Override
     public void run() {
         double drawInterval = 1000000000 / fps;
@@ -117,19 +116,27 @@ public class gameView extends JPanel implements Runnable{
         }
     }
 
+
+    /**
+    * Updates the player and bat entities.
+    * The bat entity is only updated every 5 calls to this method (to make it move slower).
+    */
     public void update() {
         if(this.npcDrawCounter % 5 == 0){
             player.update();
             bat.update();
             //System.out.println("X: "+bat.getX()+", Y: "+bat.getY()); Bat tracking for testing purposes.
-        }
-        else{
+        } else{
             player.update();
         }
         this.npcDrawCounter++;
     }
     
 
+    /**
+    * Draws the game board, given a graphics context.
+    * @param Graphics2D g2 The graphics context to use for drawing.
+    */
     private void drawGame(Graphics2D g2) {
         double width = this.getWidth() - 2 * OUTER_MARGIN;
         double height = this.getHeight() - 2 * OUTER_MARGIN;
@@ -141,11 +148,20 @@ public class gameView extends JPanel implements Runnable{
         drawCell(g2, model.getTilesOnBoard(), cp, ct);
     }
 
+
+    /**
+    * Draws the cells on the game board by iterating over them and drawing each
+    * cell with its respective image using 'CellPositionToPixelConverter' and 'DeafultColorTheme'
+    * @param g2 object to use for drawing.
+    * @param cells an Iterable of GridCell<Character> representing the cells on the board.
+    * @param cp: CellPositionToPixelConverter object that converts cell positions to pixel coordinates on the screen.
+    * @param ct: DefaultColorTheme object that provides the images for each cell value.
+    */
     private void drawCell(Graphics2D g2, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cp,
-            DefaultColorTheme ct) {
+            TileDirectory ct) {
         for (GridCell<Character> cell : cells) {
             Rectangle2D bounds = cp.getBoundsForCell(cell.pos());
-            Image image = ct.getCellImage(cell.value());
+            Image image = ct.getTileImage(cell.value());
             g2.drawImage(image, (int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(),
                     (int) bounds.getHeight(), null);
         }

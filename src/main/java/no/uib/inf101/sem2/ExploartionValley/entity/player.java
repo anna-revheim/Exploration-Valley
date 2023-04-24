@@ -8,19 +8,26 @@ import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
+/**
+ * The player class represents the player in a game. It extends the entity class.
+ * It contains information about the player's position, speed, direction, and interaction range.
+ */
+
 public class player extends entity {
-    gameView view; // gp
-    gameController controller; // keyh
+    gameView view; 
+    gameController controller; 
     String direction = "down";
     public boolean isMoving;
     private boolean hasCollided = false;
     public Rectangle playerBounds;
-    private Rectangle interactRange;
+    public Rectangle interactRange;
 
-    // Player start position
-    public final int screenX;
-    public final int screenY;
-
+     /**
+     * Constructor for the `player` class.
+     * 
+     * @param view The `gameView` instance for displaying the game.
+     * @param controller The `gameController` instance for controlling the game.
+     */
     public player(gameView view, gameController controller) {
         this.view = view;
         this.controller = controller;
@@ -32,11 +39,12 @@ public class player extends entity {
         collisionArea.width = 30;
         collisionArea.height = 30;
         this.interactRange = new Rectangle(0, 0, 40, 40);
-        screenX = this.view.w / 2 - 56;
-        screenY = this.view.h / 2 - 60;
     }
 
-    // er dinna nødvendig? kan bruke konstruktøren
+    /*
+     * Sets players default values. Not in constructor as we want to
+     * be able to reset the players values midgame.
+     */
     public void setDefaultValues() {
         worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
@@ -95,6 +103,13 @@ public class player extends entity {
             ;
     }
 
+
+    /**
+      * Updates the player's position and checks for collisions.
+      * This code is quite long due to its complexity. First checks for collision, if no move.
+      * After it checks for directions and inputs. Also keeps track for spritecounter that is
+      * used for drawing. 
+      */
     public void update() {
         item currentItem = new item(view); // create an instance of item
 
@@ -102,9 +117,9 @@ public class player extends entity {
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (currentItem.checkCollision(playerBounds)) { 
-            // player collided with item, so stop moving 
+        if (currentItem.checkCollision(playerBounds)) { // 
             hasCollided = true;
+
             // move player away from item
             if (direction == "up" ) {
                 worldY +=4;
@@ -319,6 +334,7 @@ public class player extends entity {
                 }
                 break;
         }
+
         g2.drawImage(image, worldX, worldY, 100, 100, null);
         g2.draw(playerBounds);
     }

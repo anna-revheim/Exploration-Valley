@@ -5,13 +5,16 @@ import no.uib.inf101.sem2.ExploartionValley.grid.GridDimension;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 
 /*
- * Parts of this code is inspired by #Loosen from discord
+ * Represents a model for a game with a game board
  */
 
 public class gameModel implements ViewableGame{
     public gameBoard board; 
 
-    // Constructor for the board and the first piece
+    /**
+    *Constructs a game model with the given game board.
+    *@param board the game board
+    */
     public gameModel(gameBoard board) {
         this.board = board;
     }
