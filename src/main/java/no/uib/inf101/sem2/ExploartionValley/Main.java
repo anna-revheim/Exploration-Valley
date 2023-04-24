@@ -2,6 +2,8 @@ package no.uib.inf101.sem2.ExploartionValley;
 
 import java.io.IOException;
 import javax.swing.JFrame;
+
+import no.uib.inf101.sem2.ExploartionValley.model.BackgroundMusic;
 import no.uib.inf101.sem2.ExploartionValley.model.gameBoard;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
@@ -31,9 +33,9 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
-            
+            BackgroundMusic musicPlayer = new BackgroundMusic("/sound/8bit-music.waw");
             gameTextBox textBox = new gameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky.. Use your 'E' and go look for them!\n\nPress escape to close.");
+            textBox.appendText("Welcome to Exploration Valley!\nIt seems you lost your keys your house..\nThats unlucky..Use your 'E' and go look for them!\n\nPress escape to close.");
         }catch (IOException e) {
                 System.out.print("Error couldn't find:" + e.getMessage());
             }
