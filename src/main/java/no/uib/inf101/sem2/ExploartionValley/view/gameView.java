@@ -40,6 +40,9 @@ public class gameView extends JPanel implements Runnable{
     item item = new item(this);
     public npc bat = new npc(this);
 
+    public player player = new player(this, controller);
+    public item item = new item(this);
+    public npc bat = new npc(this);
 
     /*
     * Constructs a new game view with the given ViewableGame model.
@@ -51,6 +54,7 @@ public class gameView extends JPanel implements Runnable{
     public gameView(ViewableGame model) {
         this.model = model;
         this.tilesize = 48; 
+        this.tilesize = 48; //KOR STOR E VÅR TILESIZE
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
@@ -73,6 +77,7 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
+        
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());
@@ -127,10 +132,16 @@ public class gameView extends JPanel implements Runnable{
             bat.update();
             //System.out.println("X: "+bat.getX()+", Y: "+bat.getY()); Bat tracking for testing purposes.
         } else{
+            bat.update();
+            //System.out.println("X: "+bat.getX()+", Y: "+bat.getY());
+        }
+        else{
             player.update();
         }
         this.npcDrawCounter++;
     }
+    
+
     
 
     /**
