@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
+import no.uib.inf101.sem2.ExploartionValley.model.AudioPlayer;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 /**
@@ -27,6 +28,7 @@ public class player extends entity {
     public Rectangle playerBounds;
     public Rectangle interactRange;
     private Rectangle hitBox;
+    private int StepCounter;
 
     // Where we place the player
     public final int screenX;
@@ -49,6 +51,7 @@ public class player extends entity {
         screenY = this.view.h / 2 - 60;
         hitBox = new Rectangle(-70, -70, 70, 70);
         rand = new Random();
+
     }
 
     /*
@@ -136,9 +139,6 @@ public class player extends entity {
             }
         }
     }
-        
-    
-    
 
     /**
      * Updates the player's position and checks for collisions.
@@ -150,10 +150,10 @@ public class player extends entity {
      */
     
     public void update() {
+        PlayerSteps();
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
-
         if (checkCollision(hitBox, view.item.itemBounds)) { // 
             hasCollided = true;
 
@@ -416,4 +416,17 @@ public class player extends entity {
         g2.draw(playerBounds);
         g2.draw(hitBox);
     }
+
+    public void PlayerSteps(){
+        if(this.isMoving){
+        StepCounter++;
+        AudioPlayer audio = new AudioPlayer();
+        if(StepCounter == 15){
+            audio.play("src/main/resources/sound/misc/grass_l.wav", 0.1);
+        }
+        else if(StepCounter == 30){
+            audio.play("src/main/resources/sound/misc/grass_r.wav", 0.1);
+            StepCounter = 0;
+        }
+    }}
 }

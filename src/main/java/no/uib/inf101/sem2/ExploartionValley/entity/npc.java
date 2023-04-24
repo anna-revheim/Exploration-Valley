@@ -16,7 +16,6 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
  * from the resources folder. The class extends the entity class.
  */
 
-
 public class npc extends entity {
     int x; // NPC's current position
     int y;
@@ -57,8 +56,6 @@ public class npc extends entity {
         npcBounds.add(npcRect);
         getNPCimage();
 
-        
-        
         // Print out the random starting position for testing purposes
     }
 
