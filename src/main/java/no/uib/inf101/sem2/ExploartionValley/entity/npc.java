@@ -33,7 +33,6 @@ public class npc extends entity {
     gameView view; // gp
     gameController controller; // keyh
     
-    //Where we place the player
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
 * and movement speed are randomly generated within the gameView's boundaries.
@@ -41,9 +40,7 @@ public class npc extends entity {
 */
     public npc(gameView view) {
         this.view = view;
-        
         npcImages = new ArrayList<BufferedImage>();
-
         rand = new Random();
         x = rand.nextInt(this.view.w-200);
         y = rand.nextInt(this.view.h-200);

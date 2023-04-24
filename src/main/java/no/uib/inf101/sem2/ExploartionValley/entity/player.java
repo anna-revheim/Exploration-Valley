@@ -423,11 +423,13 @@ public class player extends entity {
         StepCounter++;
         AudioPlayer audio = new AudioPlayer();
         if(StepCounter == 15){
-            audio.play("src/main/resources/sound/misc/grass_l.wav", 0.1);
+            audio.play("src/main/resources/sound/misc/grass_l.wav", 0.2);
         }
         else if(StepCounter == 30){
-            audio.play("src/main/resources/sound/misc/grass_r.wav", 0.1);
+            audio.play("src/main/resources/sound/misc/grass_r.wav", 0.2);
             StepCounter = 0;
         }
     }}
 }
+
+//Code got quite long but it was needed. 
