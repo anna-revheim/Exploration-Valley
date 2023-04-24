@@ -137,6 +137,7 @@ public class player extends entity {
                 view.bat.x = rand.nextInt(this.view.w-200);
                 view.bat.y = rand.nextInt(this.view.h-200);
                 System.out.println("Bat Dead");
+                view.bat.hitNumber = 2;
             }
         }
     }
