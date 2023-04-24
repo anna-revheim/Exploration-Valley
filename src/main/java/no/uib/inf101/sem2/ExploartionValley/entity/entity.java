@@ -22,7 +22,7 @@ public class entity {
     public BufferedImage tree, house, stump, bush, flower;
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    public int hitNumber = 3;
+    public int hitNumber = 4;
     public Rectangle collisionArea;
     public boolean collisionOn = false;
     public gameView view;

@@ -224,7 +224,7 @@ public class player extends entity {
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if (this.worldX < this.view.w - 80) {
+                if (this.worldX < this.view.w - 100) {
                     worldX += speed;
                     isMoving = true;
                 }

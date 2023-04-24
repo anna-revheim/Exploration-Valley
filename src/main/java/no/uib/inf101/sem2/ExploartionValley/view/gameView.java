@@ -42,6 +42,8 @@ public class gameView extends JPanel implements Runnable{
     public player player = new player(this, controller);
     public item item = new item(this);
     public npc bat = new npc(this);
+    public UI ui  = new UI(this);
+
 
 
     /*
@@ -54,7 +56,6 @@ public class gameView extends JPanel implements Runnable{
     public gameView(ViewableGame model) {
         this.model = model;
         this.tilesize = 48; 
-        this.tilesize = 48;
         this.addKeyListener(controller);
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(w, h));
@@ -84,7 +85,8 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
-        
+        ui.drawUI(g2, player.hitNumber);
+
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());
@@ -139,10 +141,11 @@ public class gameView extends JPanel implements Runnable{
         if(this.npcDrawCounter % 5 == 0){
             player.update();
             bat.update();
-            //System.out.println("X: "+bat.getX()+", Y: "+bat.getY()); Bat tracking for testing purposes.
+            ui.update(player.hitNumber);
         } else{
             player.update();
         }
+
         this.npcDrawCounter++;
     }
 
