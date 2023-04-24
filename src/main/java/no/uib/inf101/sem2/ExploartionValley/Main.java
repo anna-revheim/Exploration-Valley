@@ -22,6 +22,7 @@ public class Main {
             GameBoard board = new GameBoard(40 ,60, "maps4.txt"); // Original map
             ViewableGame model = new GameModel(board);
             GameView view = new GameView(model);
+            
             JFrame frame = new JFrame(WINDOW_TITLE);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setTitle("Exploation Valley");
