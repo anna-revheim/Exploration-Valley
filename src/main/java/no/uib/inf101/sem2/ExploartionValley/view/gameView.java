@@ -30,7 +30,7 @@ public class gameView extends JPanel implements Runnable{
     gameController controller = new gameController();
     // tileManager tileM = new tileManager(this);
     public player player = new player(this, controller);
-    item item = new item(this);
+    public item item = new item(this);
     public npc bat = new npc(this);
 
     public gameView(ViewableGame model) {
@@ -58,7 +58,7 @@ public class gameView extends JPanel implements Runnable{
             isLoaded = true;
         }
         g.drawImage(buffer, 0, 0, null);
-
+        
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());

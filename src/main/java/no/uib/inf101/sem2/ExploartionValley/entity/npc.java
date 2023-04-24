@@ -12,7 +12,7 @@ import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 
 public class npc extends entity {
-    private int x, y, startX, startY; // NPC's current position
+    private int x, y; // NPC's current position
     private int speed; // NPC's movement speed
     private int moveTimer; // Timer for NPC's movement
     private Random rand; // Random number generator for NPC's movement
@@ -99,7 +99,7 @@ public class npc extends entity {
                 break;
         }
     
-        if (newX >= -24 && newX <= view.w - 80 && newY >= -40 && newY <= view.h - 100) {
+        if (newX >= 0 && newX <= view.w - 100 && newY >= -40 && newY <= view.h - 128) {
             x = newX;
             y = newY;
         }
@@ -161,7 +161,7 @@ public class npc extends entity {
         for (Rectangle npcBound : npcBounds) {
             boolean collision = playerBounds.intersects(npcBound);
             while (collision) {
-                System.out.println("Collision detected! with an item");
+                System.out.println("Collision detected! With an NPCS");
                 return true; // return true on the first collision
             }
         }

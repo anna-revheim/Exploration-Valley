@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import no.uib.inf101.sem2.ExploartionValley.view.gameView;
 public class item extends entity {
     gameView view;
     public boolean collision = false;
-    ArrayList<Rectangle> itemBounds;
-    ArrayList<Rectangle> treeBounds;
+    public ArrayList<Rectangle> itemBounds;
+    public ArrayList<Rectangle> treeBounds;
+    public ArrayList<Image> itemImages;
     Rectangle houseBound;
 
     public item(gameView view) {
@@ -19,9 +21,11 @@ public class item extends entity {
         getItemImage();
         
         treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
-        treeBounds.add(new Rectangle(300, 500, 100, 100)); // a tree
-        treeBounds.add(new Rectangle(200, 100, 100, 100)); // Second tree
-        houseBound = new Rectangle(500, 200, 200, 200); // A house
+        treeBounds.add(new Rectangle(300, 600, 100, 100)); 
+        treeBounds.add(new Rectangle(200, 100, 100, 100));
+        treeBounds.add(new Rectangle(1000, 500, 100, 100)); 
+        treeBounds.add(new Rectangle(800, 100, 100, 100));
+        houseBound = new Rectangle(500, 200, 200, 200); 
 
         itemBounds = new ArrayList<Rectangle>(); // One list for all of the items
         itemBounds.addAll(treeBounds); //Add the trees
@@ -32,6 +36,7 @@ public class item extends entity {
         try {
             tree = ImageIO.read(getClass().getResourceAsStream("/item/tree.png"));
             house = ImageIO.read(getClass().getResourceAsStream("/item/buildings/house.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,7 +46,7 @@ public class item extends entity {
         for (Rectangle itemBound : treeBounds) {
             g2.drawImage(tree, itemBound.x, itemBound.y, itemBound.width, itemBound.height, null);
             g2.drawImage(house, 500, 200, 200, 200, null);
-            // g2.draw(itemBound);
+            g2.draw(itemBound);
         }
     }
 
@@ -55,4 +60,10 @@ public class item extends entity {
         }
         return false; // return false if no collision is detected
     }
+
+    public void removeItem(int index) {
+        itemBounds.remove(index);
+        itemImages.remove(index);
+    }
+
 }

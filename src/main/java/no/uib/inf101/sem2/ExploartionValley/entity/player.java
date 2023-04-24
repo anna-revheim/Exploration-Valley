@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Iterator;
+
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.gameController;
 import no.uib.inf101.sem2.ExploartionValley.model.gamePlay;
@@ -17,7 +19,7 @@ public class player extends entity {
     public boolean isMoving;
     private boolean hasCollided = false;
     public Rectangle playerBounds;
-    private Rectangle interactRange;
+    private Rectangle hitBox;
 
     // Where we place the player
     public final int screenX;
@@ -28,15 +30,9 @@ public class player extends entity {
         this.controller = controller;
         setDefaultValues();
         getCharacterImage();
-        collisionArea = new Rectangle();
-        collisionArea.x = 0;
-        collisionArea.y = 0;
-        collisionArea.width = 30;
-        collisionArea.height = 30;
-        this.interactRange = new Rectangle(0, 0, 40, 40);
-
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
+        hitBox = new Rectangle(-70, -70, 70, 70);
     }
 
     // er dinna nødvendig? kan bruke konstruktøren
@@ -100,18 +96,26 @@ public class player extends entity {
     }
 
     public void interact() {
-        if (controller.actionPressed == true)
-            ;
+        hitBox.setLocation(worldX + 20, worldY + 45);
+        if (view.item.checkCollision(hitBox) || view.bat.checkCollision(hitBox)) {
+            System.out.println("Attack" + view.item);
+            Iterator<Rectangle> iterator = view.item.itemBounds.iterator();
+            while (iterator.hasNext()) {
+                Rectangle item = iterator.next();
+                if (item.intersects(hitBox)) {
+                    iterator.remove(); // Remove the item from the ArrayList using the iterator
+                    break; // Break out of the loop to avoid a ConcurrentModificationException
+                }
+            }
+        }
     }
 
     public void update() {
-        item currentItem = new item(view); // create an instance of item
-
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (currentItem.checkCollision(playerBounds)) { 
+        if (view.item.checkCollision(playerBounds)) { 
             // player collided with item, so stop moving 
             hasCollided = true;
             // move player away from item
@@ -127,8 +131,19 @@ public class player extends entity {
         }
 
         else if (view.bat.checkCollision(playerBounds)){
+            hasCollided = true;
+            if (direction == "up" ) {
+                worldY +=8;
+            } else if (direction == "down") {
+                worldY -= 8;
+            } else if (direction == "left") {
+                worldX  += 8;
+            } else if (direction == "right") {
+                worldX  -= 8;
+            }
             hitNumber --;
             if (hitNumber > 0) {
+                
                 System.out.println("Bat is attacking");
             }
             while (hitNumber == 0) {
@@ -143,8 +158,6 @@ public class player extends entity {
                 System.out.println("We got respawned");
                 }
             }
-        
-
         else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
@@ -192,13 +205,13 @@ public class player extends entity {
                     direction = "right_atk";
                     interact();
                     }
-            }
-            else {
+            } else {
                 isMoving = false;
+                hitBox.setLocation(-70, -70);
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
-            if (hasCollided && !currentItem.checkCollision(playerBounds)) {
+            if (hasCollided && view.item.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
                 //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
@@ -360,5 +373,6 @@ public class player extends entity {
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
         g2.draw(playerBounds);
+        g2.draw(hitBox);
     }
 }
