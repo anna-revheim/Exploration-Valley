@@ -44,7 +44,7 @@ public class player extends entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(-70, -70, 70, 70);
+        
     }
 
     /*
@@ -59,6 +59,7 @@ public class player extends entity {
         this.isMoving = false;
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
         playerBounds = new Rectangle(worldX, worldY, 32, 32);
+        hitBox = new Rectangle(0, 0, 70, 70);
     }
 
     private void getCharacterImage() {
@@ -143,15 +144,13 @@ public class player extends entity {
      * that is
      * used for drawing.
      */
-
+     
      public void update() {
-        item currentItem = new item(view); // create an instance of item
-
         playerBounds.setLocation(worldX + 36, worldY + 60);
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (currentItem.checkCollision(playerBounds)) { // 
+        if (view.item.checkCollision(playerBounds)) { // 
             hasCollided = true;
 
             // move player away from item
@@ -220,7 +219,7 @@ public class player extends entity {
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
-            if (hasCollided && !currentItem.checkCollision(playerBounds)) {
+            if (hasCollided && !view.item.checkCollision(playerBounds)) {
                 hasCollided = false;
                 isMoving = true;
                 //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
