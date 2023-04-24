@@ -122,19 +122,32 @@ public class player extends entity {
 
     public void interact() {
         hitBox.setLocation(worldX + 20, worldY + 45);
-        if (view.item.checkCollision(hitBox) || view.bat.checkCollision(hitBox)) {
-            System.out.println("Attack");
+        if (checkCollision(hitBox, view.item.itemBounds)) {
+            System.out.println("Attack item");
             Iterator<Rectangle> iterator = view.item.itemBounds.iterator();
             while (iterator.hasNext()) {
                 Rectangle item = iterator.next();
                 if (item.intersects(hitBox)) {
                     int index = view.item.itemBounds.indexOf(item);
-                    view.item.removeItem(index); // Call removeItem() with the index
+                    //view.item.removeItem(index, view.item.itemBounds, view.item.itemImages);
+                    break;
+                }
+            }
+        }
+        if (checkCollision(hitBox, view.bat.npcBounds)) {
+            System.out.println("Attack enemy");
+            Iterator<Rectangle> iterator = view.bat.npcBounds.iterator();
+            while (iterator.hasNext()) {
+                Rectangle item = iterator.next();
+                if (item.intersects(hitBox)) {
+                    int index = view.bat.npcBounds.indexOf(item);
+                    //view.bat.removeItem(index, view.bat.npcBounds, view.bat.npcImages);
                     break;
                 }
             }
         }
     }
+    
 
     /**
      * Updates the player's position and checks for collisions.
@@ -150,7 +163,7 @@ public class player extends entity {
         //To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (view.item.checkCollision(playerBounds)) { // 
+        if (checkCollision(hitBox, view.item.itemBounds)) { // 
             hasCollided = true;
 
             // move player away from item
@@ -165,7 +178,7 @@ public class player extends entity {
             }
         }
 
-        else if (view.bat.checkCollision(playerBounds)){
+        else if (checkCollision(hitBox, view.bat.npcBounds)){
             hasCollided = true;
             if (direction == "up" ) {
                 worldY +=8;
@@ -242,7 +255,7 @@ public class player extends entity {
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
-            if (hasCollided && !view.item.checkCollision(playerBounds)) {
+            if (hasCollided && !(checkCollision(hitBox, view.item.itemBounds))) {
                 hasCollided = false;
                 isMoving = true;
                 //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);

@@ -22,7 +22,7 @@ public class item extends entity {
     Rectangle houseBound;
 
 
-     /**
+    /**
      * Creates a new item object with the given game view.
      * Initializes the tree and house images and adds them to their respective bounds to the lists.
      * @param view The current game view.
@@ -32,13 +32,6 @@ public class item extends entity {
         this.view = view;
         itemImages = new ArrayList<Image>();
         getItemImage();
-        treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
-        treeBounds.add(new Rectangle(300, 500, 100, 100)); // a tree
-        treeBounds.add(new Rectangle(200, 100, 100, 100)); // Second tree
-        houseBound = new Rectangle(500, 200, 200, 200); // A house
-        itemBounds = new ArrayList<Rectangle>(); // One list for all of the items
-        itemBounds.addAll(treeBounds); //Add the trees
-        itemBounds.add(houseBound); // Add the houses
         
         treeBounds = new ArrayList<Rectangle>(); //Tree bounds list to add all the trees into
         treeBounds.add(new Rectangle(300, 600, 100, 100)); 
@@ -84,30 +77,4 @@ public class item extends entity {
      * @param playerBounds the bounds of the player
      * @return true if there is a collision between the player and any of the items, false otherwise
      */
-    
-    public boolean checkCollision(Rectangle playerBounds) {
-        for (Rectangle itemBound : itemBounds) {
-            boolean collision = playerBounds.intersects(itemBound);
-            while (collision) {
-                System.out.println("Collision detected! with an item with an item");
-                return true; 
-            }
-        }
-        return false; 
-    }
-    
-    public void removeItem(int index) {
-        if (index >= 0 && index < itemBounds.size()) {
-            Rectangle itemToRemove = itemBounds.get(index);
-            itemBounds.remove(index);
-            if (itemToRemove.equals(treeBounds.get(index))) {
-                itemImages.set(index, stump);
-                itemBounds.add(index, new Rectangle(itemToRemove.x, itemToRemove.y, 16, 16));
-            } else {
-                itemImages.remove(index); // Remove the corresponding image from itemImages
-            }
-        }
-        view.repaint();
-    }
-    
 }

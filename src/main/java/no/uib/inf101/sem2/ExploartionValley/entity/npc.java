@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2.ExploartionValley.entity;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class npc extends entity {
     private Rectangle npcRect; // Rectangle for NPC's collision detection
     BufferedImage[] batSprites = new BufferedImage[16]; // NPC's sprite image
     private int spriteCounter = 0;
+    public ArrayList<Image> itemImages;
 
     ArrayList<Rectangle> npcBounds;
     gameView view; // gp
@@ -39,28 +41,18 @@ public class npc extends entity {
     public npc(gameView view) {
         this.view = view;
         rand = new Random();
-
-        x = 500;
-        x = 200;
-        //x = rand.nextInt(this.view.w);
-        //y = rand.nextInt(this.view.h);
-        moveTimer = 0;
-        
-        speed = 4;
-    
-        npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
-        npcRect = new Rectangle(x, y, 40, 40);
-        npcBounds.add(npcRect);
-        //x = 500;
-        //x = 200;
         x = rand.nextInt(this.view.w-200);
         y = rand.nextInt(this.view.h-200);
         moveTimer = 0;
         speed = 4;
+
         npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
         npcRect = new Rectangle(x, y, 40, 40);
         npcBounds.add(npcRect);
         getNPCimage();
+
+        itemImages = new ArrayList<Image>();
+        
         
         // Print out the random starting position for testing purposes
     }
@@ -71,6 +63,7 @@ public class npc extends entity {
     */
     public void getNPCimage() {
         try {
+            
             batSprites[0] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright1.png"));
             batSprites[1] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright2.png"));
             batSprites[2] = ImageIO.read(getClass().getResourceAsStream("/enemies/bat/batright/batright3.png"));
