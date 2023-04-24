@@ -152,24 +152,28 @@ public class player extends entity {
                 if ((this.worldY > -40)) {
                     worldY -= speed;
                     isMoving = true;}
+                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
             } else if (controller.downPressed) {
                 direction = "down";
-                if (this.worldY < this.view.h - 100) {
+                if (this.worldY < this.view.h - 128) {
                     worldY += speed;
                     isMoving = true;
+                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if (controller.leftPressed) {
                 direction = "left";
                 //int border = gameplay.getXBorder();
-                if (this.worldX > -24) {
+                if (this.worldX > 0) {
                     worldX -= speed;
                     isMoving = true;
+                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if (controller.rightPressed) {
                 direction = "right";
-                if (this.worldX < this.view.w - 80) {
+                if (this.worldX < this.view.w - 100) {
                     worldX += speed;
                     isMoving = true;
+                    System.out.println("X:" + this.worldX + "Y:" + this.worldY);
                 }
             } else if(controller.actionPressed){
                 if (direction == "up") {
