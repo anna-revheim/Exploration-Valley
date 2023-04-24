@@ -20,3 +20,5 @@ I tillegg har vi full forståelse for all kode som er brukt i dette programmet. 
 puttet rundt 40 timer kvær i prosjektet.
 
 For å spare tid er deler av Tetris coden resirkulert for å kunne ta i bruk grid. 
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)]https://youtu.be/M0He3N-vlVc)
