@@ -422,8 +422,8 @@ public class Player extends Entity {
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
-        g2.draw(playerBounds);
-        g2.draw(hitBox);
+        //g2.draw(playerBounds);
+        //g2.draw(hitBox);
     }
 
     private void gameOver() {
@@ -432,9 +432,9 @@ public class Player extends Entity {
         switch (index) {
             case 0:
                 textBox.appendText(
-                        "Sorry to break it to you but you died...\n\nThat was a pretty bloody death right there.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
+                        "Sorry to break it to you but you died...\n\nThat was a pretty bloody death right there.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.\n\n\n\n");
             case 1:
-                textBox.appendText("\t     OUCH!!!!\n\n That looked brutal, too bad you dont own a gun.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
+                textBox.appendText("\t       OUCH!!!!\n\n That looked brutal, too bad you dont own a gun.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
         }
     }
 

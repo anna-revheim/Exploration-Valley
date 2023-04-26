@@ -148,7 +148,7 @@ public class Npc extends Entity {
         }
         for (Rectangle npcBound : npcBounds) {
             g2d.drawImage(image, npcBound.x, npcBound.y, npcBound.width, npcBound.height, null);
-            g2d.draw(npcRect); //bat hitbox
+            //g2d.draw(npcRect); //bat hitbox
         }
     }
 

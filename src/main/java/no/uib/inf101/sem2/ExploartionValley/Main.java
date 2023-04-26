@@ -8,7 +8,6 @@ import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 import no.uib.inf101.sem2.ExploartionValley.view.ViewableGame;
 import no.uib.inf101.sem2.ExploartionValley.model.GameModel;
 import no.uib.inf101.sem2.ExploartionValley.model.GameTextBox;
-
 /**
 The Main class is the entry point for the Exploration Valley game.
 It creates a gameBoard, a model and a view, and starts the game thread.
