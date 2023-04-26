@@ -20,3 +20,7 @@ I tillegg har vi full forståelse for all kode som er brukt i dette programmet. 
 puttet rundt 40 timer kvær i prosjektet.
 
 For å spare tid er deler av Tetris coden resirkulert for å kunne ta i bruk grid. 
+
+Her er forklaring av videoen, kort og enkelt hva vårt spill går ut på.
+https://youtu.be/M0He3N-vlVc
+

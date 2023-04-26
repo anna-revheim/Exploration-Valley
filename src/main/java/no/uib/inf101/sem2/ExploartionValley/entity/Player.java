@@ -28,7 +28,7 @@ public class Player extends Entity {
     public Rectangle interactRange;
     private Rectangle hitBox;
     private int StepCounter;
-    public int KillCount; //Killcount record: Elias
+    public int KillCount;
     public int hitPoints;
     
     // Where we place the player
@@ -49,10 +49,9 @@ public class Player extends Entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(0, 0, 200, 200);
+        hitBox = new Rectangle(-100, -100, 100, 100);
         rand = new Random();
         KillCount = 0;
-
     }
 
     /*
@@ -132,7 +131,7 @@ public class Player extends Entity {
     }
 
     public void interact() {
-        hitBox.setLocation(worldX, worldY);
+        hitBox.setLocation(worldX + 5, worldY + 30);
         PlayerSword();
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
@@ -423,7 +422,7 @@ public class Player extends Entity {
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
-        //g2.draw(playerBounds);
+        g2.draw(playerBounds);
         g2.draw(hitBox);
     }
 
@@ -456,5 +455,3 @@ public void PlayerSword(){
     }
 }
 //Code got quite long but it was needed. 
-
-
