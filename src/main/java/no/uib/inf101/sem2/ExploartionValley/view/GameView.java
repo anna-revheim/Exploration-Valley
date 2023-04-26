@@ -69,7 +69,7 @@ public class GameView extends JPanel implements Runnable{
         g2.setColor(Color.WHITE);
         g2.drawString("Killcount: " + player.getKillCount(), 10, 20);
     }
-    
+
     @Override
     // public ettersom vi ønsker at JComponent kan implementere denne
     public void paintComponent(Graphics g) {

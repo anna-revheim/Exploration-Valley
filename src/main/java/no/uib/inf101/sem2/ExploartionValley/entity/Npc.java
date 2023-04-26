@@ -30,6 +30,7 @@ public class Npc extends Entity {
     ArrayList<Rectangle> npcBounds;
     GameView view; 
     GameController controller;
+    private Player player;
 
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
@@ -43,7 +44,7 @@ public class Npc extends Entity {
         y = rand.nextInt(this.view.h-200);
         moveTimer = 0;
         speed = 4;
-        hitNumber = 2;
+        hitNumber = 1;
 
         npcBounds = new ArrayList<Rectangle>(); //List used for collision detection
         npcRect = new Rectangle(x, y, 40, 40);
@@ -78,7 +79,10 @@ public class Npc extends Entity {
             e.printStackTrace();
         }
     }
-
+    public void updateHP(){
+        int kc = 1+view.player.getKillCount();
+        this.hitNumber = kc;
+    }
     /*
      * NPC method that is called in gameview. It has a movementpattern that is randomized.
      * It keeps the NPC limited to the border, and updates the SpriteCounter.  

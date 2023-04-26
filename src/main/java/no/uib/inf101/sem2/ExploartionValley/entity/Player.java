@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import no.uib.inf101.sem2.ExploartionValley.controller.GameController;
 import no.uib.inf101.sem2.ExploartionValley.model.AudioPlayer;
+import no.uib.inf101.sem2.ExploartionValley.model.GameTextBox;
 import no.uib.inf101.sem2.ExploartionValley.view.GameView;
 
 /**
@@ -30,15 +31,15 @@ public class Player extends Entity {
     private int StepCounter;
     public int KillCount;
     public int hitPoints;
-    
+
     // Where we place the player
     public final int screenX;
     public final int screenY;
-    private Random rand; 
-    
+    private Random rand;
 
     /**
      * Constructor for the 'player' class.
+     * 
      * @param view       The 'gameView' instance for displaying the game.
      * @param controller The 'gameController' instance for controlling the game.
      */
@@ -49,7 +50,7 @@ public class Player extends Entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(-100, -100, 100, 100);
+        hitBox = new Rectangle(-100, -100, 150, 150);
         rand = new Random();
         KillCount = 0;
     }
@@ -59,7 +60,7 @@ public class Player extends Entity {
      * be able to reset the players values midgame.
      */
     public void setDefaultValues() {
-        this.hitPoints = 4;
+        this.hitPoints = 1;
         worldX = this.view.w / 2 - 56;
         worldY = this.view.h / 2 - 60;
         this.speed = 4;
@@ -126,7 +127,7 @@ public class Player extends Entity {
         }
     }
 
-    public int getKillCount(){
+    public int getKillCount() {
         return this.KillCount;
     }
 
@@ -135,13 +136,13 @@ public class Player extends Entity {
         PlayerSword();
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
-            view.bat.hitNumber --;
-            if(view.bat.hitNumber == 0){
-                view.bat.x = rand.nextInt(this.view.w-200);
-                view.bat.y = rand.nextInt(this.view.h-200);
+            view.bat.hitNumber--;
+            if (view.bat.hitNumber == 0) {
+                view.bat.x = rand.nextInt(this.view.w - 200);
+                view.bat.y = rand.nextInt(this.view.h - 200);
                 System.out.println("Bat Dead");
-                view.bat.hitNumber = 2;
                 this.KillCount++;
+                view.bat.updateHP();
             }
         }
     }
@@ -153,42 +154,42 @@ public class Player extends Entity {
      * After it checks for directions and inputs. Also keeps track for spritecounter
      * that is used for drawing. Code inspiration from: @RyiSnow
      */
-    
+
     public void update() {
         PlayerSteps();
         playerBounds.setLocation(worldX + 36, worldY + 60);
-        //To do collisions. First check when collision happens, then when not.
+        // To do collisions. First check when collision happens, then when not.
         // check collision with item
 
-        if (checkCollision(playerBounds, view.item.itemBounds)) { // 
+        if (checkCollision(playerBounds, view.item.itemBounds)) { //
             hasCollided = true;
 
             // move player away from item
-            if (direction == "up" ) {
-                worldY +=4;
+            if (direction == "up") {
+                worldY += 4;
             } else if (direction == "down") {
                 worldY -= 4;
             } else if (direction == "left") {
-                worldX  += 4;
+                worldX += 4;
             } else if (direction == "right") {
-                worldX  -= 4;
+                worldX -= 4;
             }
         }
 
-        else if (checkCollision(playerBounds, view.bat.npcBounds)){
+        else if (checkCollision(playerBounds, view.bat.npcBounds)) {
             hasCollided = true;
-            if (direction == "up" ) {
-                worldY +=35;
+            if (direction == "up") {
+                worldY += 35;
             } else if (direction == "down") {
                 worldY -= 35;
             } else if (direction == "left") {
-                worldX  += 35;
+                worldX += 35;
             } else if (direction == "right") {
-                worldX  -= 35;
+                worldX -= 35;
             }
-            hitPoints --;
+            hitPoints--;
             if (hitPoints > 0) {
-                
+
                 System.out.println("Bat is attacking");
             }
             while (hitPoints == 0) {
@@ -197,20 +198,22 @@ public class Player extends Entity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
                 direction = "lay";
                 isMoving = false;
                 setDefaultValues();
                 System.out.println("We got respawned");
                 this.KillCount = 0;
-                }
+                gameOver();
             }
-        else {
+        } else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
                 direction = "up";
                 if ((this.worldY > -40)) {
                     worldY -= speed;
-                    isMoving = true;}
+                    isMoving = true;
+                }
             } else if (controller.downPressed) {
                 direction = "down";
                 if (this.worldY < this.view.h - 128) {
@@ -229,7 +232,7 @@ public class Player extends Entity {
                     worldX += speed;
                     isMoving = true;
                 }
-            } else if(controller.actionPressed){
+            } else if (controller.actionPressed) {
                 if (direction == "up") {
                     direction = "up_atk";
                     interact();
@@ -245,18 +248,17 @@ public class Player extends Entity {
                 if (direction == "right") {
                     direction = "right_atk";
                     interact();
-                    }
-            }
-            else {
+                }
+            } else {
                 isMoving = false;
-                hitBox.setLocation(-70, -70); //Resets the hitBox
+                hitBox.setLocation(-70, -70); // Resets the hitBox
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
             if (hasCollided && !(checkCollision(hitBox, view.item.itemBounds))) {
                 hasCollided = false;
                 isMoving = true;
-                //System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
+                // System.out.println("X: " + this.worldX + "\tY: " + this.worldY);
             }
         }
         // If the character is moving start counting. Count is for character movement.
@@ -278,12 +280,10 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        } 
-        else if (controller.actionPressed = false) {
+        } else if (controller.actionPressed = false) {
             spriteNum = 6;
             spriteCounter = 0;
-        }
-        else {
+        } else {
             spriteNum = 3;
             spriteCounter = 0;
         }
@@ -293,7 +293,7 @@ public class Player extends Entity {
         return isMoving;
     }
 
-    public int getHitPoints(){
+    public int getHitPoints() {
         return this.hitPoints;
     }
 
@@ -426,32 +426,42 @@ public class Player extends Entity {
         g2.draw(hitBox);
     }
 
-    public void PlayerSteps(){
-        if(this.isMoving){
-        StepCounter++;
-        AudioPlayer audio = new AudioPlayer();
-        if(StepCounter == 15){
-            audio.play("src/main/resources/sound/misc/grass_l.wav", 0.2);
+    private void gameOver() {
+        GameTextBox textBox = new GameTextBox();
+        int index = 1; //rand.nextInt(3);
+        switch (index) {
+            case 0:
+                textBox.appendText(
+                        "Sorry to break it to you but you died...\n\nThat was a pretty bloody death right there.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
+            case 1:
+                textBox.appendText("\t     OUCH!!!!\n\n That looked brutal, too bad you dont own a gun.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
         }
-        else if(StepCounter == 30){
-            audio.play("src/main/resources/sound/misc/grass_r.wav", 0.2);
-            StepCounter = 0;
-        }
-    }}
-
-public void PlayerSword(){
-    AudioPlayer audio = new AudioPlayer();
-    int index = rand.nextInt(4);
-    switch(index){
-        case 0:
-            audio.play("src/main/resources/sound/misc/sword1.wav", 1);
-        case 1:
-            audio.play("src/main/resources/sound/misc/sword2.wav", 1);
-        case 2:
-            audio.play("src/main/resources/sound/misc/sword3.wav", 1);
-        case 3:
-            audio.play("src/main/resources/sound/misc/sword4.wav", 1);
     }
+
+    public void PlayerSteps() {
+        if (this.isMoving) {
+            StepCounter++;
+            AudioPlayer audio = new AudioPlayer();
+            if (StepCounter == 15) {
+                audio.play("src/main/resources/sound/misc/grass_l.wav", 0.2);
+            } else if (StepCounter == 30) {
+                audio.play("src/main/resources/sound/misc/grass_r.wav", 0.2);
+                StepCounter = 0;
+            }
+        }
+    }
+
+    public void PlayerSword() {
+        AudioPlayer audio = new AudioPlayer();
+        int index = rand.nextInt(3);
+        switch (index) {
+            case 0:
+                audio.play("src/main/resources/sound/misc/sword2.wav", 1);
+            case 1:
+                audio.play("src/main/resources/sound/misc/sword3.wav", 1);
+            case 2:
+                audio.play("src/main/resources/sound/misc/sword4.wav", 1);
+        }
     }
 }
-//Code got quite long but it was needed. 
+// Code got quite long but it was needed.

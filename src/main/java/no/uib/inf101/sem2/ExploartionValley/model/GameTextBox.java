@@ -15,7 +15,7 @@ public class GameTextBox extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(380, 200);
         setLocationRelativeTo(null);
-        setOpacity(0.8f);
+        setOpacity(0.9f);
         textArea = new JTextArea(10, 40);
         textArea.setEditable(false);
         textArea.setFont(new Font("Serif", Font.PLAIN, 18));

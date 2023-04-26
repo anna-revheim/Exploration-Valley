@@ -34,8 +34,8 @@ public class Main {
             view.startGameThread();
             AudioPlayer musicplayer = new AudioPlayer();
             musicplayer.play("src/main/resources/sound/music/GC8bit.wav", 0.05);
-            GameTextBox textBox = new GameTextBox();
-            textBox.appendText("Welcome to Exploration Valley!\n\nThose darn bats have been violating your backyard for way too long.\n\nPress or hold E to eliminate them!\n\nPress escape to close.");
+            //GameTextBox textBox = new GameTextBox();
+            //textBox.appendText("Welcome to Exploration Valley!\n\nThose darn bats have been violating your backyard for way too long.\n\nPress or hold E to eliminate them!\n\nPress escape to close.");
         }catch (IOException e) {
                 System.out.print("Error couldn't find:" + e.getMessage());
             }
