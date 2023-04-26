@@ -30,7 +30,6 @@ public class Npc extends Entity {
     ArrayList<Rectangle> npcBounds;
     GameView view; 
     GameController controller;
-    private Player player;
 
 /*
 * Creates a new npc with the specified gameView as its view. The npc's position
