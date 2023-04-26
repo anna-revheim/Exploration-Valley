@@ -78,10 +78,39 @@ public class Npc extends Entity {
             e.printStackTrace();
         }
     }
-    public void updateHP(){
-        int kc = 1+view.player.getKillCount();
-        this.hitNumber = kc;
+
+    public BufferedImage[] getRedNPCimage() {
+        BufferedImage[] redBatSprites = new BufferedImage[16];
+        try {
+            redBatSprites[0] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatright/redbatright1.png"));
+            redBatSprites[1] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatright/redbatright2.png"));
+            redBatSprites[2] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatright/redbatright3.png"));
+            redBatSprites[3] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatup/redbatup1.png"));
+            redBatSprites[4] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatup/redbatup1.png"));
+            redBatSprites[5] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatup/redbatup2.png"));
+            redBatSprites[6] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatup/redbatup3.png"));
+            redBatSprites[7] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatup/redbatup4.png"));
+            redBatSprites[8] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatdown/redbatdown1.png"));
+            redBatSprites[9] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatdown/redbatdown2.png"));
+            redBatSprites[10] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatdown/redbatdown3.png"));
+            redBatSprites[11] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatdown/redbatdown4.png"));
+            redBatSprites[12] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatleft/redbatleft1.png"));
+            redBatSprites[13] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatleft/redbatleft2.png"));
+            redBatSprites[14] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatleft/redbatleft3.png"));
+            redBatSprites[15] = ImageIO.read(getClass().getResourceAsStream("/enemies/redbat/redbatleft/redbatleft4.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return redBatSprites;
     }
+    
+    public void updateBat() {
+        BufferedImage[] redBatSprites = getRedNPCimage();
+        for (int i = 0; i < batSprites.length; i++) {
+            batSprites[i] = redBatSprites[i];
+        }
+    }
+    
     /*
      * NPC method that is called in gameview. It has a movementpattern that is randomized.
      * It keeps the NPC limited to the border, and updates the SpriteCounter.  
@@ -110,7 +139,7 @@ public class Npc extends Entity {
                 newX += speed;
                 break;
         }
-        if (newX >= 0 && newX <= view.w - 100 && newY >= -40 && newY <= view.h - 128) {
+        if (newX >= 0 && newX <= view.w - 100 && newY >= -0 && newY <= view.h - 128) {
             x = newX;
             y = newY;
         }

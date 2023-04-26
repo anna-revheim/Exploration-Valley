@@ -141,7 +141,11 @@ public class Player extends Entity {
                 view.bat.y = rand.nextInt(this.view.h - 200);
                 System.out.println("Bat Dead");
                 this.KillCount++;
-                view.bat.updateHP();
+                view.bat.hitNumber = 2;
+                if (this.KillCount == 5){
+                    view.bat.updateBat();
+                    view.bat.hitNumber = 5;
+                }
             }
         }
     }
@@ -205,6 +209,7 @@ public class Player extends Entity {
                 this.KillCount = 0;
                 gameOver();
             }
+
         } else {
             // player did not collide with item, so continue moving
             if (controller.upPressed == true) {
