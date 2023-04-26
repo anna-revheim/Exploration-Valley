@@ -131,7 +131,6 @@ public class Player extends Entity {
     }
 
     public void interact() {
-        hitBox.setLocation(worldX + 5, worldY + 30);
         PlayerSword();
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
@@ -230,6 +229,7 @@ public class Player extends Entity {
                     isMoving = true;
                 }
             } else if(controller.actionPressed){
+                hitBox.setLocation(worldX + 5, worldY + 30);
                 if (direction == "up") {
                     direction = "up_atk";
                     interact();
@@ -249,7 +249,7 @@ public class Player extends Entity {
             }
             else {
                 isMoving = false;
-                hitBox.setLocation(-70, -70); //Resets the hitBox
+                hitBox.setLocation(-100, -100); //Resets the hitBox
             }
             // if the player has collided with the item and is not colliding anymore, allow
             // movement
