@@ -3,7 +3,6 @@ package no.uib.inf101;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import org.junit.Before;
@@ -17,7 +16,7 @@ public class UITest {
 
     private UI ui;
     private GameView mockView;
-    private BufferedImage mockImage;
+    public BufferedImage mockImage;
 
     @Before
     public void setUp() throws Exception {

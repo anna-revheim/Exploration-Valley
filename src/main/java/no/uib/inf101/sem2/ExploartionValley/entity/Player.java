@@ -131,7 +131,7 @@ public class Player extends Entity {
     }
 
     public void interact() {
-        hitBox.setLocation(worldX + 20, worldY + 45);
+        hitBox.setLocation(worldX + 5, worldY + 30);
         PlayerSword();
         if (checkCollision(hitBox, view.bat.npcBounds)) {
             System.out.println("Attack enemy");
@@ -422,8 +422,8 @@ public class Player extends Entity {
 
         // g2.drawImage(image, screenX, screenY, 100, 100, null);
         g2.drawImage(image, worldX, worldY, 100, 100, null);
-        //g2.draw(playerBounds);
-        //g2.draw(hitBox);
+        g2.draw(playerBounds);
+        g2.draw(hitBox);
     }
 
     public void PlayerSteps(){
