@@ -86,7 +86,6 @@ public class GameView extends JPanel implements Runnable{
         }
         g.drawImage(buffer, 0, 0, null);
         ui.drawUI(g2, player.getHitPoints());
-
         this.item.drawItem(g2); 
         this.player.draw(g2); // Paint the player
         this.bat.draw(g2, bat.getSpriteCounter());

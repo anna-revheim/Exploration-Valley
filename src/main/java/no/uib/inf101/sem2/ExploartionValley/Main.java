@@ -31,6 +31,7 @@ public class Main {
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             view.startGameThread();
+            
             AudioPlayer musicplayer = new AudioPlayer();
             musicplayer.play("src/main/resources/sound/music/GC8bit.wav", 0.05);
             GameTextBox textBox = new GameTextBox();
