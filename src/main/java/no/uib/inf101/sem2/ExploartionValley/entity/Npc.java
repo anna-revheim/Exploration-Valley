@@ -109,6 +109,7 @@ public class Npc extends Entity {
         for (int i = 0; i < batSprites.length; i++) {
             batSprites[i] = redBatSprites[i];
         }
+        this.speed=7;
     }
     
     /*
