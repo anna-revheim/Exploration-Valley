@@ -50,7 +50,7 @@ public class Player extends Entity {
         getCharacterImage();
         screenX = this.view.w / 2 - 56;
         screenY = this.view.h / 2 - 60;
-        hitBox = new Rectangle(-100, -100, 150, 150);
+        hitBox = new Rectangle(-100, -100, 100, 100);
         rand = new Random();
         KillCount = 0;
     }
