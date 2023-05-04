@@ -39,7 +39,6 @@ public class Player extends Entity {
 
     /**
      * Constructor for the 'player' class.
-     * 
      * @param view       The 'gameView' instance for displaying the game.
      * @param controller The 'gameController' instance for controlling the game.
      */
@@ -142,7 +141,7 @@ public class Player extends Entity {
                 System.out.println("Bat Dead");
                 this.KillCount++;
                 view.bat.hitNumber = 2;
-                if (this.KillCount == 5){
+                if (this.KillCount >= 5){
                     view.bat.updateBat();
                     view.bat.hitNumber = 5;
                 }
@@ -201,7 +200,6 @@ public class Player extends Entity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 direction = "lay";
                 isMoving = false;
                 setDefaultValues();
@@ -437,9 +435,9 @@ public class Player extends Entity {
         switch (index) {
             case 0:
                 textBox.appendText(
-                        "Sorry to break it to you but you died...\n\nThat was a pretty bloody death right there.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.\n\n\n\n");
+                        "Sorry to break it to you but you died...\n\nThat was a pretty bloody death right there.\n\nBe careful! After you killed 5 bats, their bigger and older red siblings come out.\n\nEscape to close.\n\n\n\n");
             case 1:
-                textBox.appendText("\t       OUCH!!!!\n\n That looked brutal, too bad you dont own a gun.\n\nBe careful! These bats keeps evolving, whenever one dies another one comes back with one more HP.\nEscape to close.");
+                textBox.appendText("\t       OUCH!!!!\n\n That looked brutal, too bad you dont own a gun.\n\nBe careful! After you killed 5 bats, their bigger and older red siblings come out.\n\nEscape to close.");
         }
     }
 
