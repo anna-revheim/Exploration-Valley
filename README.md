@@ -7,8 +7,7 @@ This is a relaxing game
 yes it is
 
 Her er forklaring av videoen, kort og enkelt hva vårt spill går ut på.
-https://youtu.be/PF0j5IUKRbo
-
+https://www.youtube.com/watch?v=PF0j5IUKRbo
 
 
 # Mitt program
